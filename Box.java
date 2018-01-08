@@ -20,7 +20,7 @@ public class Box {
     value = aValue;
   }
 
-  public double giveValuePerUnit() {
+  public double getValuePerUnit() {
     return (((value/height)/length)/width);
   }
 
