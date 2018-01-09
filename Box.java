@@ -56,7 +56,7 @@ public class Box {
 		return value;
 	}
 
-	//Returns the box which is rotated based on the number, numbers from 0 to 5 can be used
+	//Returns the box which is rotated based on the number, numbers from 0 to 5 can be used (6 rotations are possible)
 	public Box rotate(int rotation) {
 		Box rotatedBox = null;
 		if (rotation == 1) {

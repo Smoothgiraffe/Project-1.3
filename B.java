@@ -1,3 +1,7 @@
+/*
+  A class that is made to solve exercise b.
+*/
+
 public class B {
   private static double spaceLength = 16.5;
   private static double spaceWidth = 2.5;
@@ -18,7 +22,8 @@ public class B {
 
   }
 
-  public static boolean computeNewCoordinates() { //computes the coordinates for the next box to be placed, this returns false if the space is full
+  //computes the coordinates for the next box to be placed, this returns false if the space is full
+  public static boolean computeNewCoordinates() {
     for (int i = x; i < space[0][0].length; i++) {
       for (int j = y; j < space[0].length; j++) {
         for (int k = z; k < space.length; k++) {
@@ -34,6 +39,7 @@ public class B {
     return false;
   }
 
+  //places a box at a given point with coordinates x, y, and z
   public static void placeBoxAt(Box box, int x, int y, int z) {
     if (fits(box, x, y, z)) {
       for (int i = 0; i < (int) box.getLength()*2; i++) {
@@ -46,13 +52,14 @@ public class B {
     }
   }
 
-  //places a box
+  //sets the next coordinates
   public static void setNextCoordinates(int newX, int newY, int newZ) {
     x = newX;
     y = newY;
     z = newZ;
   }
 
+  //checks if a specific box fits at a secific place with the coordinates x, y, and z
   public static boolean fits(Box box, int x, int y, int z) {
     if (x + box.getLength() > space.length) {
       return false;
@@ -70,7 +77,8 @@ public class B {
 
   }
 
-  public static Box[] sortBoxes(Box[] boxes) { //sorts an array of boxes after value per unit and returns them
+  //sorts an array of boxes after value per unit and returns them
+  public static Box[] sortBoxes(Box[] boxes) {
     Box[] newBoxes = new Box[boxes.length];
     if (boxes[0].getValuePerUnit() > boxes[1].getValuePerUnit() && boxes[0].getValuePerUnit() > boxes[2].getValuePerUnit()) {
       newBoxes[0] = boxes[0];
