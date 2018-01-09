@@ -46,7 +46,8 @@ public class B {
     }
   }
 
-  public static void setNextCoordinates(int newX, int newY, int newZ) { //places a box
+  //places a box
+  public static void setNextCoordinates(int newX, int newY, int newZ) {
     x = newX;
     y = newY;
     z = newZ;
