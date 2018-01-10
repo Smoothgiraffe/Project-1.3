@@ -36,4 +36,9 @@ public class PlacedBox extends Doos {
     return placedZ;
   }
 
+  //returns a copied placedBox with the correct values (these are multiplied by 2 three times and must therefore be divided back again by 4)
+  public PlacedBox copy() {
+		PlacedBox copiedBox = new PlacedBox(length/4, width/4, height/4, name, placedX, placedY, placedZ);
+		return copiedBox;
+	}
 }

@@ -125,7 +125,7 @@ public class Space {
 
   //deletes the last box in the boxArray and returns a new boxArray with the last entry deleted
   public static PlacedBox[] deleteBox(PlacedBox[] boxArray) {
-    PlacedBox lastBox = boxArray[boxArray.length - 1];
+    PlacedBox lastBox = boxArray[boxArray.length - 1].copy(); //here the width, length and height of the box is multiplied by 2 two times
     for (int i = 0; i < lastBox.getLength(); i++) {
       for (int j = 0; j < lastBox.getWidth(); j++) {
         for (int k = 0; k < lastBox.getHeight(); k++) {
