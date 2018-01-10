@@ -6,27 +6,27 @@
 
 public class Box {
 
-	private double height;
-	private double length;
-	private double width;
+	private int height;
+	private int length;
+	private int width;
 	private char name;
 
 	private double value;
 
 	//Constructor without value
 	public Box(double aLength, double aWidth, double aHeight, char aName) {
-		height = aHeight;
-		length = aLength;
-		width = aWidth;
+		height = (int) aHeight*2;
+		length= (int) aLength*2;
+		width = (int) aWidth*2;
 		name = aName;
 		value = 0;
 	}
 
 	//Constructor with value
 	public Box(double aLength, double aWidth, double aHeight, char aName, double aValue) {
-		height = aHeight;
-		length = aLength;
-		width = aWidth;
+		height = (int) aHeight*2;
+		length = (int) aLength*2;
+		width = (int) aWidth*2;
 		name = aName;
 		value = aValue;
 	}
