@@ -14,15 +14,13 @@ public class Space {
   private static int x, y, z = 0;
 
   //space is a three-dimensional array where every single spot acts as a 0.5*0.5*0.5 block.
-  private static char[][][] space = new char[SPACELENGTH*2][SPACEWIDTH*2][SPACEHEIGHT*2];
-
-  private static 
+  private static char[][][] space = new char[(int)SPACELENGTH*2][(int)SPACEWIDTH*2][(int)SPACEHEIGHT*2];
 
   //computes the coordinates for the next box/pentomino to be placed, this returns false if the space is full
   public static boolean computeNewCoordinates() {
-    for (int i = x; i < space[0][0].length; i++) {
-      for (int j = y; j < space[0].length; j++) {
-        for (int k = z; k < space.length; k++) {
+    for (int i = x; i < space[0][0].length; i++) { //height
+      for (int j = y; j < space[0].length; j++) { //width
+        for (int k = z; k < space.length; k++) { //length
           if (space[i][j][k] == '0') {
             x = i;
             y = j;
@@ -48,9 +46,9 @@ public class Space {
       return false;
     }
     //checks for every single spot in the array to be empty
-    for(int i = 0; i < box.length; i++) {
-      for (int j = 0; j < box[0].length; j++) {
-        for (int k = 0; k < box[0][0].length; k++) {
+    for(int i = 0; i < box.getHeight(); i++) {
+      for (int j = 0; j < box.getWidth(); j++) {
+        for (int k = 0; k < box.getLength(); k++) {
           if (box[i][j][k] != '0' && space[x + i][y + j][z +k] != '0') {
             return false;
           }
@@ -95,15 +93,16 @@ public class Space {
   }
 
   //places a box at a given point with coordinates x, y, and z
-  public static void placeBoxAt(Box box, int x, int y, int z) {
+  public static void placeBoxAt(Box box, int x, int y, int z, PlacedBox[] boxArray) {
     if (fits(box, x, y, z)) {
-      for (int i = 0; i < (int) box.getLength()*2; i++) {
-        for (int j = 0; j < (int) box.getWidth()*2; j++) {
-          for (int k = 0; k < (int) box.getHeight()*2; k++) {
+      for (int i = 0; i < (int) box.getLength(); i++) {
+        for (int j = 0; j < (int) box.getWidth(); j++) {
+          for (int k = 0; k < (int) box.getHeight(); k++) {
             space [x + i][y + j][z + k] = box.getName();
           }
         }
       }
+      trackBox(boxArray, box);
     }
   }
 
@@ -112,7 +111,16 @@ public class Space {
   }
 
   //keeps track of the boxes placed and puts them into an array
-  public static PlacedBox[] trackBox() {
+  public static PlacedBox[] trackBox(PlacedBox[] boxArray, PlacedBox placedBox) {
+    PlacedBox[] newBoxArray = new PlacedBox[boxArray.length + 1];
+    for (int i = 0; i < boxArray.length; i++) {
+      newBoxArray[i] = boxArray[i];
+    }
+    newBoxArray[newBoxArray - 1] = placedBox;
+    return newBoxArray;
+  }
+
+  public static void deleteBox() {
 
   }
 
