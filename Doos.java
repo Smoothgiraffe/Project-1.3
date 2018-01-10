@@ -61,15 +61,15 @@ public class Doos {
 	public Doos rotate(int rotation) {
 		Doos rotatedBox = null;
 		if (rotation == 1) {
-			rotatedBox = new Box(length, height, width, name, value);
+			rotatedBox = new Doos(length, height, width, name, value);
 		} else if (rotation == 2) {
-			rotatedBox = new Box(width, length, height, name, value);
+			rotatedBox = new Doos(width, length, height, name, value);
 		} else if (rotation == 3) {
-			rotatedBox = new Box(width, height, length, name, value);
+			rotatedBox = new Doos(width, height, length, name, value);
 		} else if (rotation == 4) {
-			rotatedBox = new Box(height, width, length, name, value);
+			rotatedBox = new Doos(height, width, length, name, value);
 		} else if (rotation == 5) {
-			rotatedBox = new Box(height, length, width, name, value);
+			rotatedBox = new Doos(height, length, width, name, value);
 		}
 		return rotatedBox;
 	}
