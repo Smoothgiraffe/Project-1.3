@@ -2,9 +2,9 @@
   This class makes a new box which is already placed and is able to return its x, y and z-coordinates
 */
 public class PlacedBox extends Box {
-  private double placedX;
-  private double placedY;
-  private double placedZ;
+  private int placedX;
+  private int placedY;
+  private int placedZ;
 
   //Constructor without value
   public PlacedBox(double aLength, double aWidth, double aHeight, char aName, int aPlaceX, int aPlaceY, int aPlaceZ) {
