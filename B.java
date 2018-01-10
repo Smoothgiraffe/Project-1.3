@@ -9,12 +9,13 @@ public class B extends Space{
   public static void main(String[] args) {
 
     //initiate the three types of boxes
-    Box A = new Box(1, 1, 2, 'A', 3);
-    Box B = new Box(1, 1.5, 2, 'B', 4);
-    Box C = new Box(1.5, 1.5, 1.5, 'C', 5);
+    Doos A = new Doos(1, 1, 2, 'A', 3);
+    Doos B = new Doos(1, 1.5, 2, 'B', 4);
+    Doos C = new Doos(1.5, 1.5, 1.5, 'C', 5);
 
-    Box[] boxes = {A, B, C}; //put them into an array
+    Doos[] boxes = {A, B, C}; //put them into an array
     sortBoxes(boxes); //sort the boxes by value
+
 
   }
 }

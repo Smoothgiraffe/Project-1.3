@@ -4,36 +4,37 @@
 * The other classes are to get the height, length, width and/or value
 */
 
-public class Box {
+public class Doos {
 
-	private int height;
-	private int length;
-	private int width;
-	private char name;
+	protected int height;
+	protected int length;
+	protected int width;
+	protected char name;
+	protected double valuePerUnit;
 
-	private double value;
+	protected double value;
 
 	//Constructor without value
-	public Box(double aLength, double aWidth, double aHeight, char aName) {
+	public Doos(double aLength, double aWidth, double aHeight, char aName) {
 		height = (int) aHeight*2;
 		length= (int) aLength*2;
 		width = (int) aWidth*2;
 		name = aName;
-		value = 0;
 	}
 
 	//Constructor with value
-	public Box(double aLength, double aWidth, double aHeight, char aName, double aValue) {
+	public Doos(double aLength, double aWidth, double aHeight, char aName, double aValue) {
 		height = (int) aHeight*2;
 		length = (int) aLength*2;
 		width = (int) aWidth*2;
 		name = aName;
 		value = aValue;
+		valuePerUnit = (((aValue/aHeight)/aLength)/aWidth);
 	}
 
 	//Calculates the value per unit (1x1x1 square)
 	public double getValuePerUnit() {
-		return (((value/height)/length)/width);
+		return valuePerUnit;
 	}
 
 	public double getHeight() {
@@ -57,8 +58,8 @@ public class Box {
 	}
 
 	//Returns the box which is rotated based on the number, numbers from 0 to 5 can be used (6 rotations are possible)
-	public Box rotate(int rotation) {
-		Box rotatedBox = null;
+	public Doos rotate(int rotation) {
+		Doos rotatedBox = null;
 		if (rotation == 1) {
 			rotatedBox = new Box(length, height, width, name, value);
 		} else if (rotation == 2) {

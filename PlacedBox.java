@@ -1,7 +1,7 @@
 /*
   This class makes a new box which is already placed and is able to return its x, y and z-coordinates
 */
-public class PlacedBox extends Box {
+public class PlacedBox extends Doos {
   private int placedX;
   private int placedY;
   private int placedZ;
@@ -24,15 +24,15 @@ public class PlacedBox extends Box {
 
   }
 
-  public double getX() {
+  public int getX() {
     return placedX;
   }
 
-  public double getY() {
+  public int getY() {
     return placedY;
   }
 
-  public double getZ() {
+  public int getZ() {
     return placedZ;
   }
 
