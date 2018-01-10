@@ -1,6 +1,7 @@
 /*
   A class meant to be the superclass for all solving algorithms.
   It saves general variables such as the size of the cargo space.
+  It is able to find the coordinates for a new box, place in there, keep track of the steps made, and more
 */
 
 public class Space {
