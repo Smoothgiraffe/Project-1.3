@@ -11,6 +11,7 @@ public class Doos {
 	protected int width;
 	protected char name;
 	protected double valuePerUnit;
+	protected int volume;
 
 	protected double value;
 
@@ -20,6 +21,7 @@ public class Doos {
 		length= (int) aLength*2;
 		width = (int) aWidth*2;
 		name = aName;
+		volume = height*length*width;
 	}
 
 	//Constructor with value
@@ -30,6 +32,7 @@ public class Doos {
 		name = aName;
 		value = aValue;
 		valuePerUnit = (((aValue/aHeight)/aLength)/aWidth);
+		volume = height*length*width;
 	}
 
 	//Calculates the value per unit (1x1x1 square)
@@ -57,6 +60,10 @@ public class Doos {
 		return value;
 	}
 
+	public double getVolume() {
+		return volume;
+	}
+
 	//Returns the box which is rotated based on the number, numbers from 0 to 5 can be used (6 rotations are possible)
 	public Doos rotate(int rotation) {
 		Doos rotatedBox = null;
@@ -73,8 +80,6 @@ public class Doos {
 		}
 		return rotatedBox;
 	}
-
-
 
 	/*
 	public char[][][] returnAsArray() { //returns a box as an array for the cargo space

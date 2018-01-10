@@ -7,9 +7,12 @@
 public class Space {
 
   //these variables describe the cargo-space
-  protected static final double SPACELENGTH = 1;
-  protected static final double SPACEWIDTH = 1;
-  protected static final double SPACEHEIGHT = 2;
+  protected static final double SPACELENGTH = 16.5;
+  protected static final double SPACEWIDTH = 2.5;
+  protected static final double SPACEHEIGHT = 4;
+  protected static final double SPACEVOLUME = SPACELENGTH*SPACEWIDTH*SPACEHEIGHT*8;
+  protected static final double stopPercentage = 0.9;
+  protected static double completeBoxVolume = 0;
 
   //x, y, and z are the coordinates where the next
   protected static int x, y, z = 0;
@@ -104,6 +107,7 @@ public class Space {
         }
       }
       PlacedBox newBox = new PlacedBox(box.getLength(), box.getWidth(), box.getHeight(), box.getName(), x, y, z);
+      completeBoxVolume = completeBoxVolume + box.getVolume();
       return trackBox(boxArray, newBox);
     }
     return boxArray;
@@ -137,9 +141,15 @@ public class Space {
     for (int i = 0; i < newBoxArray.length; i++) {
       newBoxArray[i] = boxArray[i];
     }
+    completeBoxVolume = completeBoxVolume + box.getVolume();
     return newBoxArray;
   }
 
-
+  public static boolean isFullEnough() {
+    if (completeBoxVolume >= stopPercentage*SPACEVOLUME) {
+      return true;
+    }
+    return false;
+  }
 
 }

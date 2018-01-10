@@ -41,4 +41,5 @@ public class PlacedBox extends Doos {
 		PlacedBox copiedBox = new PlacedBox(length/4, width/4, height/4, name, placedX, placedY, placedZ);
 		return copiedBox;
 	}
+
 }

@@ -16,6 +16,8 @@ public class B extends Space{
     Doos[] boxes = {A, B, C}; //put them into an array
     sortBoxes(boxes); //sort the boxes by value
 
+    while(!isFullEnough()) {
 
+    }
   }
 }
