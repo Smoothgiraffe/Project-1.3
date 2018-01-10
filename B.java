@@ -1,6 +1,6 @@
 /*
   A class that is made to solve exercise b.
-  It utilizes a so-called greedy algorithm, where we take the most valuable box first and then put it into the crgo space as often as possible.
+  It utilizes a so-called greedy algorithm, where we take the most valuable box first and then put it into the cargo space as often as possible.
   When there is no space for the most valuable box, the second-most valueable box is considered, and so on.
 */
 
