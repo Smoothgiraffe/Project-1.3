@@ -1,22 +1,30 @@
 /*
   A class that is made to solve exercise b.
+  It utilizes a so-called greedy algorithm, where we take the most valuable box first and then put it into the crgo space as often as possible.
+  When there is no space for the most valuable box, the second-most valueable box is considered, and so on.
 */
 
 public class B {
+  //these variables describe the cargo-space
   private static double spaceLength = 16.5;
   private static double spaceWidth = 2.5;
   private static double spaceHeight = 4;
 
+  //x, y, and z are the coordinates where the next
   private static int x, y, z = 0;
 
-  private static char[][][] space = new char[33][5][8];
+  //space is a three-dimensional array where every single spot acts as a 0.5*0.5*0.5 block.
+  private static char[][][] space = new char[spaceLength*2][spaceWidth*2][spaceHeight*2];
 
   public static void main(String[] args) {
+    //initiate the three types of boxes
     Box A = new Box(1, 1, 2, 'A', 3);
     Box B = new Box(1, 1.5, 2, 'B', 4);
     Box C = new Box(1.5, 1.5, 1.5, 'C', 5);
 
+    //put them into an array
     Box[] boxes = {A, B, C};
+    //sort the boxes by value
     sortBoxes(boxes);
 
 
@@ -50,13 +58,6 @@ public class B {
         }
       }
     }
-  }
-
-  //sets the next coordinates
-  public static void setNextCoordinates(int newX, int newY, int newZ) {
-    x = newX;
-    y = newY;
-    z = newZ;
   }
 
   //checks if a specific box fits at a secific place with the coordinates x, y, and z
