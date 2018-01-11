@@ -23,50 +23,6 @@ public class Space {
   //space is a three-dimensional array where every single spot acts as a 0.5*0.5*0.5 block.
   protected static char[][][] space = new char[(int)SPACELENGTH*2][(int)SPACEWIDTH*2][(int)SPACEHEIGHT*2];
 
-  //computes the coordinates for the next box/pentomino to be placed
-  public static void computeNewCoordinates() {
-    for (int i = x; i < space.length; i++) { //height
-      for (int j = y; j < space[0].length; j++) { //width
-        for (int k = z; k < space[0][0].length; k++) { //length
-          if (space[i][j][k] == '\u0000') {
-            setCoordinates(i, j, k);
-          }
-        }
-      }
-    }
-  }
-
-  public static void setCoordinates(int coordinateX, int coordinateY, int coordinateZ) {
-    x = coordinateX;
-    y = coordinateY;
-    z = coordinateZ;
-  }
-
-  //checks if a specific box//pentomino fits at a secific place with the coordinates x, y, and z
-  public static boolean fits(Doos box, int x, int y, int z) {
-    //checks for out-of-bound-errors
-    if (x + box.getArrayLength() > space.length) {
-      return false;
-    }
-    if (y + box.getArrayWidth() > space[0].length) {
-      return false;
-    }
-    if (z + box.getArrayHeight() > space[0][0].length) {
-      return false;
-    }
-    //checks for every single spot in the array to be empty
-    for(int i = 0; i < box.getArrayLength(); i++) {
-      for (int j = 0; j < box.getArrayWidth(); j++) {
-        for (int k = 0; k < box.getArrayHeight(); k++) {
-          if (space[x + i][y + j][z + k] != '\u0000') {
-            return false;
-          }
-        }
-      }
-    }
-    return true;
-  }
-
   //sorts an array of boxes after value per unit and returns them
   public static Doos[] sortBoxes(Doos[] boxes) {
     Doos[] newBoxes = new Doos[boxes.length];
@@ -101,8 +57,52 @@ public class Space {
     return newBoxes;
   }
 
+  //computes the coordinates for the next box/pentomino to be placed
+  public static void computeNewCoordinates() {
+    for (int i = x; i < space.length; i++) { //height
+      for (int j = y; j < space[0].length; j++) { //width
+        for (int k = z; k < space[0][0].length; k++) { //length
+          if (space[i][j][k] == '\u0000') {
+            setCoordinates(i, j, k);
+          }
+        }
+      }
+    }
+  }
+
+  public static void setCoordinates(int coordinateX, int coordinateY, int coordinateZ) {
+    x = coordinateX;
+    y = coordinateY;
+    z = coordinateZ;
+  }
+
+  //checks if a specific box//pentomino fits at a secific place with the coordinates x, y, and z
+  public static boolean fits(Doos box) {
+    //checks for out-of-bound-errors
+    if (x + box.getArrayLength() > space.length) {
+      return false;
+    }
+    if (y + box.getArrayWidth() > space[0].length) {
+      return false;
+    }
+    if (z + box.getArrayHeight() > space[0][0].length) {
+      return false;
+    }
+    //checks for every single spot in the array to be empty
+    for(int i = 0; i < box.getArrayLength(); i++) {
+      for (int j = 0; j < box.getArrayWidth(); j++) {
+        for (int k = 0; k < box.getArrayHeight(); k++) {
+          if (space[x + i][y + j][z + k] != '\u0000') {
+            return false;
+          }
+        }
+      }
+    }
+    return true;
+  }
+
   //places a box at a given point with coordinates x, y, and z
-  public static void placeBoxAt(Doos box, int x, int y, int z) { //CHECK IF FITS FIRST!
+  public static void placeBoxAt(Doos box) { //CHECK IF FITS FIRST!
       for (int i = 0; i < (int) box.getArrayLength(); i++) {
         for (int j = 0; j < (int) box.getArrayWidth(); j++) {
           for (int k = 0; k < (int) box.getArrayHeight(); k++) {
@@ -115,14 +115,15 @@ public class Space {
       solution.add(newBox);
   }
 
-  public static void placePentominoAt() {
+  //places a pentomino at a certain positon x, y, z
+  public static void placePentominoAt(int x, int y, int z) {
 
   }
 
   //deletes the last box in the solution-Array and updates the space accordingly
-  public static void deleteLastBox() {
+  public static void deleteBox(int index) {
     //update the space
-    PlacedBox lastBox = solution.get(solution.size() - 1);
+    PlacedBox deleteBox = solution.get(index);
     for (int i = 0; i < lastBox.getArrayLength(); i++) {
       for (int j = 0; j < lastBox.getArrayWidth(); j++) {
         for (int k = 0; k < lastBox.getArrayHeight(); k++) {
@@ -130,9 +131,11 @@ public class Space {
         }
       }
     }
-    solution.remove(solution.size() - 1);
+    //update the arrayList
+    solution.remove(index);
   }
 
+  //returns true if a certain percentage of the cargo-space is full (for exercise b and d)
   public static boolean isFullEnough() {
     if (completeBoxVolume >= stopPercentage*SPACEVOLUME) {
       return true;
@@ -140,6 +143,7 @@ public class Space {
     return false;
   }
 
+  //returns true if the entire cargo-space is full (for exercise a and c)
   public static boolean isFull() {
     for (int i = x; i < space.length; i++) { //height
       for (int j = y; j < space[0].length; j++) { //width
