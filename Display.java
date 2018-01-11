@@ -25,9 +25,38 @@ public class Display {
 		SimpleUniverse universe = new SimpleUniverse();
 		BranchGroup group = new BranchGroup();
 
-		for (int i = 0; i < boxArray.length; i++) {
+		Appearance appearanceA = new Appearance();
+		Appearance appearanceB = new Appearance();
+		Appearance appearanceC = new Appearance();
 
-			Box box = new Box((float) boxArray[i].getHeight(), (float) boxArray[i].getWidth(), (float) boxArray[i].getLength(), null);
+		ColoringAttributes coloringAttributesA = new ColoringAttributes();
+		ColoringAttributes coloringAttributesB = new ColoringAttributes();
+		ColoringAttributes coloringAttributesC = new ColoringAttributes();
+
+		Color3f colorA = new Color3f(Color.yellow);
+		Color3f colorB = new Color3f(Color.red);
+		Color3f colorC = new Color3f(Color.green);
+
+		coloringAttributesA.setColor(colorA);
+		coloringAttributesB.setColor(colorB);
+		coloringAttributesC.setColor(colorC);
+		appearanceA.setColoringAttributes(coloringAttributesA);
+		appearanceB.setColoringAttributes(coloringAttributesB);
+		appearanceC.setColoringAttributes(coloringAttributesC);
+
+		for (int i = 0; i < boxArray.length; i++) {
+			Box box = new Box();
+			System.out.println("i'm " + boxArray[i].getName());
+			if (boxArray[i].getName() == 'A') {
+				box = new Box((float) boxArray[i].getArrayHeight(), (float) boxArray[i].getArrayWidth(), (float) boxArray[i].getArrayLength(), appearanceA);
+			}else if (boxArray[i].getName() == 'B'){
+				System.out.println("im Red now");
+				box = new Box((float) boxArray[i].getArrayHeight(), (float) boxArray[i].getArrayWidth(), (float) boxArray[i].getArrayLength(), appearanceB);
+			}else if (boxArray[i].getName() == 'C'){
+				System.out.println("im Green now");
+				box = new Box((float) boxArray[i].getArrayHeight(), (float) boxArray[i].getArrayWidth(), (float) boxArray[i].getArrayLength(), appearanceC);
+			}
+
 
 			TransformGroup tg = new TransformGroup();
 			Transform3D transform = new Transform3D();
