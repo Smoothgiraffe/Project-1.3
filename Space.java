@@ -124,10 +124,10 @@ public class Space {
   public static void deleteBox(int index) {
     //update the space
     PlacedBox deleteBox = solution.get(index);
-    for (int i = 0; i < lastBox.getArrayLength(); i++) {
-      for (int j = 0; j < lastBox.getArrayWidth(); j++) {
-        for (int k = 0; k < lastBox.getArrayHeight(); k++) {
-          space[lastBox.getX() + i][lastBox.getY() + j][lastBox.getZ() + k] = '\u0000';
+    for (int i = 0; i < deleteBox.getArrayLength(); i++) {
+      for (int j = 0; j < deleteBox.getArrayWidth(); j++) {
+        for (int k = 0; k < deleteBox.getArrayHeight(); k++) {
+          space[deleteBox.getX() + i][deleteBox.getY() + j][deleteBox.getZ() + k] = '\u0000';
         }
       }
     }
