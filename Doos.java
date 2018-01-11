@@ -1,7 +1,7 @@
 /*
 * The class box is called for creating one box with its height, length and width, and perhaps a value
-* The box can return a rotated version and the value per unit
-* The other classes are to get the height, length, width and/or value
+* The box can return a rotated version, the value per unit and its volume
+* The other methods return the height, length, width and/or value
 */
 
 public class Doos {

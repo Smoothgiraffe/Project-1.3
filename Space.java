@@ -141,7 +141,7 @@ public class Space {
     for (int i = 0; i < newBoxArray.length; i++) {
       newBoxArray[i] = boxArray[i];
     }
-    completeBoxVolume = completeBoxVolume + box.getVolume();
+    completeBoxVolume = completeBoxVolume - lastBox.getVolume();
     return newBoxArray;
   }
 
