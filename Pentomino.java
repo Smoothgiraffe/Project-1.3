@@ -1,7 +1,5 @@
 public class Pentomino {
 
-	protected double value;
-	protected char name;
 	protected final double volume = 2.5; //0.5*5 = 2.5
 
 	static char[][][] pentP = {{{'p','p'},{'p','p'},{'p','\u0000'}}};
@@ -41,7 +39,7 @@ public class Pentomino {
 		return pentT;
 	}
 
-	public static char[][][] getPentomino(char pentomino, int rotation, int version) {
+	public static char[][][] pent(char pentomino, int rotation, int version) {
 		char[][][] endPentomino;
 
 		if(pentomino == 'P') {

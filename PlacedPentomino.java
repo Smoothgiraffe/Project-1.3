@@ -1,4 +1,8 @@
 public class PlacedPentomino extends Pentomino{
+	protected double value;
+	protected char name;
+	private int version;
+	private int rotation;
 	private int placedX;
 	private int placedY;
 	private int placedZ;
@@ -19,6 +23,14 @@ public class PlacedPentomino extends Pentomino{
 		placedY = aPlaceY;
 		placedZ = aPlaceZ;
 
+	}
+
+	public int getRotation() {
+		return rotation;
+	}
+
+	public int getVersion() {
+		return version;
 	}
 
 	public int getX() {
