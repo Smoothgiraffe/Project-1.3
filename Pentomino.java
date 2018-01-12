@@ -5,9 +5,9 @@ public class Pentomino {
 
 	protected final double volume = 2.5; //0.5*5 = 2.5
 
-	static char[][][] pentP = {{{'p','p'},{'p','p'},{'p','\u0000'}}};
-	static char[][][] pentL = {{{'l','\u0000','\u0000','\u0000',},{'l','l','l','l'}}};
-	static char[][][] pentT = {{{'t','t','t'},{'\u0000','t','\u0000'},{'\u0000','t','\u0000'}}};
+	static char[][][] pentP = {{{'p','p'},{'p','p'},{'p','0'}}};
+	static char[][][] pentL = {{{'l','0','0','0',},{'l','l','l','l'}}};
+	static char[][][] pentT = {{{'t','t','t'},{'0','t','0'},{'0','t','0'}}};
 
 	public Pentomino(char aName) {
 		name = aName;
