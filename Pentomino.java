@@ -33,7 +33,7 @@ public class Pentomino {
 		return pentP;
 	}
 
- public static char[][][] getPentL() {
+	public static char[][][] getPentL() {
 		return pentL;
 	}
 
@@ -41,30 +41,59 @@ public class Pentomino {
 		return pentT;
 	}
 
-	public static char[][][] getPentomino(char pentomino, int version) {
+	public static char[][][] getPentomino(char pentomino, int rotation, int version) {
 		char[][][] endPentomino;
 
 		if(pentomino == 'P') {
-			endPentomino = getPentP();
-		} else if(pentomino == 'L') {
-			endPentomino = getPentL();
+			endPentomino = pentP;
+		} else if (pentomino == 'L') {
+			endPentomino = pentL;
 		} else {
-			endPentomino = getPentT();
+			endPentomino = 'T';
 		}
 
-		// 24 versions for rotations (included the mirrored pentominoes
-		if(version < 6) {
-			return rotate(endPentomino, version);
-		} else if(version < 12){
-				char[][][] tempPentomino = rotate(endPentomino, version - 6);
-				return rotate(tempPentomino, version - 6);
-		} else if(version < 24){
-				char[][][] temp1Pentomino = rotate(endPentomino, version - 12);
-				char[][][] temp2Pentomino = rotate(endPentomino, version - 6);
-				return rotate(temp2Pentomino, version - 6);
-		} else {
-			System.out.println("Error!"); //put a real error here!
-			return null;
+		return flip(rotate(endPentomino, rotation), version);
+
+	}
+
+	//flips the pentomino such as it still has the same dimensions, can go from 0 to 3
+	public static char[][][] flip(char[][][] pent, int version) {
+		char[][][] newPentomino = char[pent.length][pent[0].length][pent[0][0].length];
+		if(version == 0) {
+			/*
+			for(int i = 0; i < pent.length; i++) {
+				for(int j = 0; j < pent[0].length; j++) {
+					for(int k = 0; k < pent[0][0].length; k++) {
+						newPentomino[i][j][k] = pent[i][j][k];
+					}
+				}
+			}
+			*/
+			return pent;
+		} else if(version == 1) {
+			for(int i = 0; i < pent.length; i++) {
+				for(int j = 0; j < pent[0].length; j++) {
+					for(int k = 0; k < pent[0][0].length; k++) {
+						newPentomino[i][j][k] = pent[pent.length - i - 1][j][k];
+					}
+				}
+			}
+		} else if(version == 2) {
+			for(int i = 0; i < pent.length; i++) {
+				for(int j = 0; j < pent[0].length; j++) {
+					for(int k = 0; k < pent[0][0].length; k++) {
+						newPentomino[i][j][k] = pent[i][pent[0].length - j - 1][k];
+					}
+				}
+			}
+		} else () {
+			for(int i = 0; i < pent.length; i++) {
+				for(int j = 0; j < pent[0].length; j++) {
+					for(int k = 0; k < pent[0][0].length; k++) {
+						newPentomino[i][j][k] = pent[pent.length - i - 1][pent[0].length - j - 1][k];
+					}
+				}
+			}
 		}
 	}
 
@@ -124,4 +153,5 @@ public class Pentomino {
 		}
 		return null;
 	}
+
 }
