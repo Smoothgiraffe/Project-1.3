@@ -116,8 +116,17 @@ public class Space {
   }
 
   //places a pentomino at a certain positon x, y, z
-  public static void placePentominoAt(int x, int y, int z) {
-
+  public static void placePentominoAt(char pentomino, int version, int x, int y, int z) {
+    char[][][] pent = Pentomino.getPentomino(pentomino, version);
+    for(int i = 0; i < pent.length; i++){
+      for(int j = 0; j < pent[0].length; j++) {
+        for(int k = 0; k < pent[0][0].length; k++) {
+          if(pent[i][j][k] != '\u0000') {
+            space[x + i][y + j][z + k] = pent[i][j][k];
+          }
+        }
+      }
+    }
   }
 
   //deletes the last box in the solution-Array and updates the space accordingly
