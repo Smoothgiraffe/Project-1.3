@@ -58,7 +58,7 @@ public class Pentomino {
 
 	//flips the pentomino such as it still has the same dimensions, can go from 0 to 3
 	public static char[][][] flip(char[][][] pent, int version) {
-		char[][][] newPentomino = char[pent.length][pent[0].length][pent[0][0].length];
+		char[][][] newPentomino = new char[pent.length][pent[0].length][pent[0][0].length];
 		if(version == 0) {
 			/*
 			for(int i = 0; i < pent.length; i++) {
