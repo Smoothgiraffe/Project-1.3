@@ -21,6 +21,14 @@ public class Pentomino {
 		return volume;
 	}
 
+	public char getName() {
+		return name;
+	}
+
+	public double getValue() {
+		return value;
+	}
+
 	public static char[][][] getPentP() {
 		return pentP;
 	}
