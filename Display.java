@@ -29,6 +29,13 @@ public class Display {
 		print3DArray();
 		GUI g = new GUI();
 	}
+
+	public Display(ArrayList<PlacedBox> boxArray){
+		this.boxArray = boxArray;
+		print3DArray();
+		GUI g = new GUI();
+	}
+
 	/*
 	This method takes the boxArray array and goes through each index of boxArray
 	and visually represents each object in the indexes. It also assigns each object in
