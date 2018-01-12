@@ -49,7 +49,7 @@ public class Pentomino {
 		} else if (pentomino == 'L') {
 			endPentomino = pentL;
 		} else {
-			endPentomino = 'T';
+			endPentomino = pentT;
 		}
 
 		return flip(rotate(endPentomino, rotation), version);
@@ -86,7 +86,7 @@ public class Pentomino {
 					}
 				}
 			}
-		} else () {
+		} else  if (version == 3){
 			for(int i = 0; i < pent.length; i++) {
 				for(int j = 0; j < pent[0].length; j++) {
 					for(int k = 0; k < pent[0][0].length; k++) {
@@ -94,7 +94,10 @@ public class Pentomino {
 					}
 				}
 			}
+		} else {
+			//ERROR!
 		}
+		return null;
 	}
 
 	public static char[][][] rotate(char[][][] pent, int rotation) {

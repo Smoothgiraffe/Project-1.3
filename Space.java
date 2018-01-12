@@ -149,7 +149,7 @@ public class Space {
 	}
 
 	//places a pentomino at a certain positon x, y, z
-	public static void placePentominoAt(char pentomino, int version, int x, int y, int z) {
+	public static void placePentominoAt(char pentomino, int rotation, int version, int x, int y, int z) {
 		char[][][] pent = Pentomino.getPentomino(pentomino, version);
 		for(int i = 0; i < pent.length; i++){
 			for(int j = 0; j < pent[0].length; j++) {
