@@ -35,11 +35,16 @@ public class Pentomino {
 
   public char[][][] getPentomino(char pentomino, int version) {
     char[][][] endPentomino = (getPent + pentomino)();
+    // 24 version for rotations (included the mirrored pentominoes
     if(version < 6) {
       return rotate(endPentomino, version);
     } else if(version < 12){
-        char[][][] tempPentomino = rotate(endPentomino, version -6);
+        char[][][] tempPentomino = rotate(endPentomino, version - 6);
         return rotate(tempPentomino, version - 6);
+    } else if(version < 24){
+        char[][][] temp1Pentomino = rotate(endPentomino, version - 12);
+        char[][][] temp2Pentomino = rotate(endPentomino, version - 6);
+        return rotate(temp2Pentomino, version - 6);
     } else {
       System.out.println("Error!"); //put a real error here!
     }
