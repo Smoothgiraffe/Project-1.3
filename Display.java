@@ -20,7 +20,7 @@ public class Display {
 	private int xCamera = -6;
 	private int yCamera =  4;
 
-	//Constructer that takes in an array filled with objects from PlacedBox
+	//Constructor that takes in an array filled with objects from PlacedBox
 	public Display(PlacedBox[] boxArray){
 		this.boxArray = boxArray;
 		print3DArray();
