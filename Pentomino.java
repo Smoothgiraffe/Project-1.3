@@ -25,7 +25,7 @@ public class Pentomino {
 		return pentP;
 	}
 
- public static char[][][] getPentL() {
+	public static char[][][] getPentL() {
 		return pentL;
 	}
 
@@ -57,6 +57,47 @@ public class Pentomino {
 		} else {
 			System.out.println("Error!"); //put a real error here!
 			return null;
+		}
+	}
+
+	//flips the pentomino such as it still has the same dimensions, can go from 0 to 3
+	public static char[][][] flip(char[][][] pent, int version) {
+		char[][][] newPentomino = char[pent.length][pent[0].length][pent[0][0].length];
+		if(version == 0) {
+			/*
+			for(int i = 0; i < pent.length; i++) {
+				for(int j = 0; j < pent[0].length; j++) {
+					for(int k = 0; k < pent[0][0].length; k++) {
+						newPentomino[i][j][k] = pent[i][j][k];
+					}
+				}
+			}
+			*/
+			return pent;
+		} else if(version == 1) {
+			for(int i = 0; i < pent.length; i++) {
+				for(int j = 0; j < pent[0].length; j++) {
+					for(int k = 0; k < pent[0][0].length; k++) {
+						newPentomino[i][j][k] = pent[pent.length - i - 1][j][k];
+					}
+				}
+			}
+		} else if(version == 2) {
+			for(int i = 0; i < pent.length; i++) {
+				for(int j = 0; j < pent[0].length; j++) {
+					for(int k = 0; k < pent[0][0].length; k++) {
+						newPentomino[i][j][k] = pent[i][pent[0].length - j - 1][k];
+					}
+				}
+			}
+		} else () {
+			for(int i = 0; i < pent.length; i++) {
+				for(int j = 0; j < pent[0].length; j++) {
+					for(int k = 0; k < pent[0][0].length; k++) {
+						newPentomino[i][j][k] = pent[pent.length - i - 1][pent[0].length - j - 1][k];
+					}
+				}
+			}
 		}
 	}
 
@@ -116,4 +157,5 @@ public class Pentomino {
 		}
 		return null;
 	}
+
 }
