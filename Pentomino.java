@@ -4,9 +4,9 @@ public class Pentomino {
   protected char name;
   protected final double volume = 2.5; //0.5*5 = 2.5
 
-  char[][][] pentP = {{{'p','p'},{'p','p'},{'p','\u0000'}}};
-  char[][][] pentL = {{{'l','\u0000','\u0000','\u0000',},{'l','l','l','l'}}};
-  char[][][] pentT = {{{'t','t','t'},{'\u0000','t','\u0000'},{'\u0000','t','\u0000'}}};
+  static char[][][] pentP = {{{'p','p'},{'p','p'},{'p','\u0000'}}};
+  static char[][][] pentL = {{{'l','\u0000','\u0000','\u0000',},{'l','l','l','l'}}};
+  static char[][][] pentT = {{{'t','t','t'},{'\u0000','t','\u0000'},{'\u0000','t','\u0000'}}};
 
   public Pentomino(char aName) {
     name = aName;
@@ -21,21 +21,30 @@ public class Pentomino {
     return volume;
   }
 
-  public char[][][] getPentP() {
+  public static char[][][] getPentP() {
     return pentP;
   }
 
-  public char[][][] getPentL() {
+  public static char[][][] getPentL() {
     return pentL;
   }
 
-  public char[][][] getPentT() {
+  public static char[][][] getPentT() {
     return pentT;
   }
 
-  public char[][][] getPentomino(char pentomino, int version) {
-    char[][][] endPentomino = (getPent + pentomino)();
-    // 24 version for rotations (included the mirrored pentominoes
+  public static char[][][] getPentomino(char pentomino, int version) {
+    char[][][] endPentomino;
+
+    if(pentomino == 'P') {
+      endPentomino = getPentP();
+    } else if(pentomino == 'L') {
+      endPentomino = getPentL();
+    } else {
+      endPentomino = getPentT();
+    }
+
+    // 24 versions for rotations (included the mirrored pentominoes
     if(version < 6) {
       return rotate(endPentomino, version);
     } else if(version < 12){
@@ -47,10 +56,11 @@ public class Pentomino {
         return rotate(temp2Pentomino, version - 6);
     } else {
       System.out.println("Error!"); //put a real error here!
+      return null;
     }
   }
 
-  public char[][][] rotate(char[][][] pent, int rotation) {
+  public static char[][][] rotate(char[][][] pent, int rotation) {
     if(rotation == 0) {
       return pent;
     } else if(rotation == 1) {
