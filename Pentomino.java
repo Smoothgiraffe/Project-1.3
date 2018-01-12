@@ -59,7 +59,7 @@ public class Pentomino {
       return null;
     }
   }
-
+	
   public static char[][][] rotate(char[][][] pent, int rotation) {
     if(rotation == 0) {
       return pent;
@@ -116,5 +116,4 @@ public class Pentomino {
     }
     return null;
   }
-
 }
