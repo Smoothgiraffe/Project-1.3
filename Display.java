@@ -19,7 +19,7 @@ public class Display {
 	ArrayList<PlacedBox> boxArray = new ArrayList<PlacedBox>();
 	//xCamera and yCamera control the viewing angle of the cargo
 	private int xCamera = -6;
-	private int yCamera =  4;
+	private int yCamera = 4;
 	private SimpleUniverse universe = new SimpleUniverse();
 
 	//Constructer that takes in an array filled with objects from PlacedBox
@@ -105,7 +105,7 @@ public class Display {
 		DirectionalLight light1 = new DirectionalLight(light1Color, light1Direction);
 		light1.setInfluencingBounds(bounds);
 		group.addChild(light1);*/
-		
+
 		// adds the group of objects to the Universe
 		universe.addBranchGraph(group);
 	}
