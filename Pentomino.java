@@ -126,11 +126,9 @@ public class Pentomino {
 			return rotatedPent;
 		} else if(rotation == 3) {
 			char[][][] rotatedPent = new char[pent[0].length][pent[0][0].length][pent.length];
-			System.out.println(pent[0].length + " " + pent[0][0].length + " " + pent.length);
 			for(int i = 0; i < pent[0].length; i++) {
 				for(int j = 0; j < pent[0][0].length; j++) {
 					for(int k = 0; k < pent.length; k++) {
-						System.out.println(i + " " + j + " " + k);
 						rotatedPent[i][j][k] = pent[j][k][i];
 					}
 				}
