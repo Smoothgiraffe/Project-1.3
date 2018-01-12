@@ -33,6 +33,18 @@ public class Pentomino {
     return pentT;
   }
 
+  public char[][][] getPentomino(char pentomino, int version) {
+    char[][][] endPentomino = (getPent + pentomino)();
+    if(version < 6) {
+      return rotate(endPentomino, version);
+    } else if(version < 12){
+        char[][][] tempPentomino = rotate(endPentomino, version -6);
+        return rotate(tempPentomino, version - 6);
+    } else {
+      System.out.println("Error!"); //put a real error here!
+    }
+  }
+
   public char[][][] rotate(char[][][] pent, int rotation) {
     if(rotation == 0) {
       return pent;
