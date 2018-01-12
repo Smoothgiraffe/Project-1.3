@@ -44,4 +44,9 @@ public class PlacedPentomino extends Pentomino{
 	public int getZ() {
 		return placedZ;
 	}
+
+	public char[][][] getPlacedPentomino() {
+		return super.pent(name, rotation, version);
+	}
+
 }
