@@ -1,5 +1,8 @@
 public class Pentomino {
 
+	protected double value;
+	protected char name;
+
 	protected final double volume = 2.5; //0.5*5 = 2.5
 
 	static char[][][] pentP = {{{'p','p'},{'p','p'},{'p','\u0000'}}};
@@ -123,9 +126,11 @@ public class Pentomino {
 			return rotatedPent;
 		} else if(rotation == 3) {
 			char[][][] rotatedPent = new char[pent[0].length][pent[0][0].length][pent.length];
+			System.out.println(pent[0].length + " " + pent[0][0].length + " " + pent.length);
 			for(int i = 0; i < pent[0].length; i++) {
 				for(int j = 0; j < pent[0][0].length; j++) {
 					for(int k = 0; k < pent.length; k++) {
+						System.out.println(i + " " + j + " " + k);
 						rotatedPent[i][j][k] = pent[j][k][i];
 					}
 				}
@@ -133,9 +138,9 @@ public class Pentomino {
 			return rotatedPent;
 		} else if(rotation == 4) {
 			char[][][] rotatedPent = new char[pent[0][0].length][pent.length][pent[0].length];
-			for(int i = 0; i < pent[0][0].length; i++) {
-				for(int j = 0; j < pent.length; j++) {
-					for(int k = 0; k < pent[0].length; k++) {
+			for(int i = 0; i < pent.length; i++) {
+				for(int j = 0; j < pent[0].length; j++) {
+					for(int k = 0; k < pent[0][0].length; k++) {
 						rotatedPent[i][j][k] = pent[k][i][j];
 					}
 				}
@@ -143,9 +148,9 @@ public class Pentomino {
 			return rotatedPent;
 		} else if(rotation == 5) {
 			char[][][] rotatedPent = new char[pent[0][0].length][pent[0].length][pent.length];
-			for(int i = 0; i < pent[0][0].length; i++) {
+			for(int i = 0; i < pent.length; i++) {
 				for(int j = 0; j < pent[0].length; j++) {
-					for(int k = 0; k < pent.length; k++) {
+					for(int k = 0; k < pent[0][0].length; k++) {
 						rotatedPent[i][j][k] = pent[k][j][i];
 					}
 				}
