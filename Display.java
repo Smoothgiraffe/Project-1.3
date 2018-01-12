@@ -9,19 +9,21 @@ import javax.swing.JRadioButton;
 import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 
 /*
 This class takes the objects recieved from the PlacedBox class as a parameter
 and then visually represents them in three dimensions
 */
 public class Display {
-	PlacedBox[] boxArray;
+	ArrayList<PlacedBox> boxArray = new ArrayList<PlacedBox>();
 	//xCamera and yCamera control the viewing angle of the cargo
 	private int xCamera = -6;
 	private int yCamera =  4;
+	private SimpleUniverse universe = new SimpleUniverse();
 
-	//Constructor that takes in an array filled with objects from PlacedBox
-	public Display(PlacedBox[] boxArray){
+	//Constructer that takes in an array filled with objects from PlacedBox
+	public Display(ArrayList<PlacedBox> boxArray){
 		this.boxArray = boxArray;
 		print3DArray();
 		GUI g = new GUI();
@@ -33,7 +35,6 @@ public class Display {
 	*/
 	private void print3DArray(){
 		//creates the area in which the boxes are created
-		SimpleUniverse universe = new SimpleUniverse();
 		BranchGroup group = new BranchGroup();
 
 		//sets the appearence that the coloringAttributes will be passed into for A,B, and C boxes
@@ -62,23 +63,20 @@ public class Display {
 		This for loop goes throgh the indexes of boxArray and looks to see if they are of A,B, or C type,
 		it then assigns their color and visually represents them in 3D
 		*/
-		for (int i = 0; i < boxArray.length; i++) {
+		for (int i = 0; i < boxArray.size(); i++) {
 			Box box = new Box();
-			System.out.println("i'm " + boxArray[i].getName());
-			if (boxArray[i].getName() == 'A') {
-				box = new Box((float) boxArray[i].getArrayHeight(), (float) boxArray[i].getArrayWidth(), (float) boxArray[i].getArrayLength(), appearanceA);
-			}else if (boxArray[i].getName() == 'B'){
-				System.out.println("im Red now");
-				box = new Box((float) boxArray[i].getArrayHeight(), (float) boxArray[i].getArrayWidth(), (float) boxArray[i].getArrayLength(), appearanceB);
-			}else if (boxArray[i].getName() == 'C'){
-				System.out.println("im Green now");
-				box = new Box((float) boxArray[i].getArrayHeight(), (float) boxArray[i].getArrayWidth(), (float) boxArray[i].getArrayLength(), appearanceC);
+			if (boxArray.get(i).getName() == 'A') {
+				box = new Box((float) boxArray.get(i).getArrayHeight(), (float) boxArray.get(i).getArrayWidth(), (float) boxArray.get(i).getArrayLength(), appearanceA);
+			}else if (boxArray.get(i).getName() == 'B'){
+				box = new Box((float) boxArray.get(i).getArrayHeight(), (float) boxArray.get(i).getArrayWidth(), (float) boxArray.get(i).getArrayLength(), appearanceB);
+			}else if (boxArray.get(i).getName() == 'C'){
+				box = new Box((float) boxArray.get(i).getArrayHeight(), (float) boxArray.get(i).getArrayWidth(), (float) boxArray.get(i).getArrayLength(), appearanceC);
 			}
 
 			//Sets each object in boxArray onto its own vector
 			TransformGroup tg = new TransformGroup();
 			Transform3D transform = new Transform3D();
-			Vector3f vector = new Vector3f( (float) boxArray[i].getX(), (float) boxArray[i].getY(), (float) boxArray[i].getZ());
+			Vector3f vector = new Vector3f( (float) boxArray.get(i).getX(), (float) boxArray.get(i).getY(), (float) boxArray.get(i).getZ());
 			transform.setTranslation(vector);
 			tg.setTransform(transform);
 			tg.addChild(box);
@@ -89,25 +87,25 @@ public class Display {
 		//This next bit of code allows us to move and set the angle in which we view the objects in boxArray
 		Vector3f viewTranslation = new Vector3f();
 		viewTranslation.z = 40f;
-		viewTranslation.x = 0f;
-		viewTranslation.y = 6f;
+		viewTranslation.x = 5f;
+		viewTranslation.y = 10f;
 		Transform3D viewTransform = new Transform3D();
 		viewTransform.setTranslation(viewTranslation);
 		Transform3D rotation = new Transform3D();
-		rotation.rotX(-Math.PI / xCamera);
-		rotation.rotY(-Math.PI / yCamera);
+		rotation.rotX(-Math.PI / /*xCamera*/ 4);
+		rotation.rotY(yCamera);
 		rotation.mul(viewTransform);
 		universe.getViewingPlatform().getViewPlatformTransform().setTransform(rotation);
 		universe.getViewingPlatform().getViewPlatformTransform().getTransform(viewTransform);
 
 		//This sets the lighting of our universe so our objects are visible
-		Color3f light1Color = new Color3f(.1f, 1.4f, .1f); // green light
-		BoundingSphere bounds = new BoundingSphere(new Point3d(0.0,0.0,0.0), 100.0);
-		Vector3f light1Direction = new Vector3f(4.0f, -7.0f, -12.0f);
+		/*Color3f light1Color = new Color3f(.1f, 1.4f, .1f); // green light
+		BoundingSphere bounds = new BoundingSphere(new Point3d(0.0,0.0,0.0), 1000.0);
+		Vector3f light1Direction = new Vector3f(100.0f, 100.0f, 100.0f);
 		DirectionalLight light1 = new DirectionalLight(light1Color, light1Direction);
 		light1.setInfluencingBounds(bounds);
-		group.addChild(light1);
-
+		group.addChild(light1);*/
+		
 		// adds the group of objects to the Universe
 		universe.addBranchGraph(group);
 	}
@@ -154,8 +152,8 @@ public class Display {
 				moveLeft.addActionListener(new ActionListener() {
 
 					public void actionPerformed(ActionEvent e){
-						yCamera = yCamera + 8;
-						xCamera = xCamera + 40;
+						yCamera = yCamera + 1;
+						//xCamera = xCamera + 40;
 						print3DArray();
 
 				}
@@ -164,8 +162,8 @@ public class Display {
 				moveRight.addActionListener(new ActionListener() {
 
 					public void actionPerformed(ActionEvent e){
-						yCamera = yCamera - 8;
-						xCamera = xCamera - 40;
+						yCamera = yCamera - 1;
+						//xCamera = xCamera - 40;
 						print3DArray();
 
 				}
@@ -182,12 +180,15 @@ public class Display {
 
 
 	public static void main(String[] args){
-		PlacedBox box = new PlacedBox( 3,2,2,'a',1,2,1);
-		PlacedBox box1 = new PlacedBox( 1,2,1,'a',1,5,6);
-		PlacedBox box2 = new PlacedBox( 1,1,1,'a',1,1,1);
-		PlacedBox[] array = {box,box1,box2};
+		PlacedBox box = new PlacedBox( 3,2,2,'A',1,2,1);
+		PlacedBox box1 = new PlacedBox( 1,2,1,'B',1,5,6);
+		PlacedBox box2 = new PlacedBox( 1,1,1,'C',1,1,1);
+		ArrayList array = new ArrayList();
+		array.add(box);
+		array.add(box1);
+		array.add(box2);
 
 
-		Display display = new Display(array);
+		new Display(array);
 	}
 }
