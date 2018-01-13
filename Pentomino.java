@@ -1,29 +1,43 @@
 public class Pentomino {
 
-	protected double value;
 	protected char name;
+	protected int rotation;
+	protected int version;
+	protected double value;
 
-	protected final double volume = 2.5; //0.5*5 = 2.5
+	protected final double volume = 2.5;
 
 	static char[][][] pentP = {{{'p','p'},{'p','p'},{'p','0'}}};
 	static char[][][] pentL = {{{'l','0','0','0',},{'l','l','l','l'}}};
 	static char[][][] pentT = {{{'t','t','t'},{'0','t','0'},{'0','t','0'}}};
 
-	public Pentomino(char aName) {
+	public Pentomino(char aName, int aRotation, int aVersion) {
 		name = aName;
+		rotation = aRotation;
+		version = aVersion;
 	}
 
-	public Pentomino(char aName, double aValue) {
+	public Pentomino(char aName, int aRotation, int aVersion, double aValue) {
 		name = aName;
+		rotation = aRotation;
+		version = aVersion;
 		value = aValue;
-	}
-
-	public double getVolume() {
-		return volume;
 	}
 
 	public char getName() {
 		return name;
+	}
+
+	public int getRotation() {
+		return rotation;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public double getVolume() {
+		return volume;
 	}
 
 	public double getValue() {
@@ -42,7 +56,7 @@ public class Pentomino {
 		return pentT;
 	}
 
-	public static char[][][] pent(char pentomino, int rotation, int version) {
+	public char[][][] pent(char pentomino, int rotation, int version) {
 		char[][][] endPentomino;
 
 		if(pentomino == 'P') {
@@ -58,7 +72,7 @@ public class Pentomino {
 	}
 
 	//flips the pentomino such as it still has the same dimensions, can go from 0 to 3
-	public static char[][][] flip(char[][][] pent, int version) {
+	public char[][][] flip(char[][][] pent, int version) {
 		char[][][] newPentomino = new char[pent.length][pent[0].length][pent[0][0].length];
 		if(version == 0) {
 			/*
@@ -101,7 +115,8 @@ public class Pentomino {
 		return null;
 	}
 
-	public static char[][][] rotate(char[][][] pent, int rotation) {
+
+	public char[][][] rotate(char[][][] pent) {
 		if(rotation == 0) {
 			return pent;
 		} else if(rotation == 1) {
