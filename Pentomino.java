@@ -42,7 +42,7 @@ public class Pentomino {
 		return pentT;
 	}
 
-	public static char[][][] pent(char pentomino, int rotation, int version) {
+	public static char[][][] toArray(char pentomino, int rotation, int version) {
 		char[][][] endPentomino;
 
 		if(pentomino == 'P') {

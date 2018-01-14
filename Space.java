@@ -58,7 +58,7 @@ public class Space {
 	}
 
 	public static Pentomino[] sortPentominoes(Pentomino[] pentomino) {
-		Pentomino[] newPentomino = new Pentomino[][pentomino.length];
+		Pentomino[] newPentomino = new Pentomino[pentomino.length];
 		if (pentomino[0].getValue() >= pentomino[1].getValue() && pentomino[0].getValue() >= pentomino[2].getValue()) {
 			newPentomino[0] = pentomino[0];
 			if (pentomino[1].getValue() >= pentomino[2].getValue()) {
@@ -150,7 +150,7 @@ public class Space {
 
 	//places a pentomino at a certain positon x, y, z
 	public static void placePentominoAt(char pentomino, int rotation, int version, int x, int y, int z) {
-		char[][][] pent = Pentomino.getPentomino(pentomino, version);
+		char[][][] pent = Pentomino.toArray(pentomino, rotation, version);
 		for(int i = 0; i < pent.length; i++){
 			for(int j = 0; j < pent[0].length; j++) {
 				for(int k = 0; k < pent[0][0].length; k++) {
