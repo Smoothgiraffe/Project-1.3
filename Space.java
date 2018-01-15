@@ -95,7 +95,7 @@ public class Space {
 		for (int i = x; i < space.length; i++) { //height
 			for (int j = y; j < space[0].length; j++) { //width
 				for (int k = z; k < space[0][0].length; k++) { //length
-					if (space[i][j][k] == '\u0000') {
+					if (space[i][j][k] == '\u0000' || space[i][j][k] == '0') {
 						setCoordinates(i, j, k);
 						return;
 					}
@@ -126,7 +126,7 @@ public class Space {
 		for(int i = 0; i < box.getArrayLength(); i++) {
 			for (int j = 0; j < box.getArrayWidth(); j++) {
 				for (int k = 0; k < box.getArrayHeight(); k++) {
-					if (space[x + i][y + j][z + k] != '\u0000') {
+					if (space[x + i][y + j][z + k] != '\u0000' || space[i][j][k] == '0') {
 						return false;
 					}
 				}
@@ -155,7 +155,7 @@ public class Space {
 		for(int i = 0; i < pent.length; i++){
 			for(int j = 0; j < pent[0].length; j++) {
 				for(int k = 0; k < pent[0][0].length; k++) {
-					if(pent[i][j][k] != '\u0000') {
+					if(pent[i][j][k] != '\u0000' || space[i][j][k] == '0') {
 						space[x + i][y + j][z + k] = pent[i][j][k];
 					}
 				}
@@ -191,7 +191,7 @@ public class Space {
 		for (int i = x; i < space.length; i++) { //height
 			for (int j = y; j < space[0].length; j++) { //width
 				for (int k = z; k < space[0][0].length; k++) { //length
-					if (space[i][j][k] == '\u0000') {
+					if (space[i][j][k] == '\u0000' || space[i][j][k] == '0') {
 						return false;
 					}
 				}

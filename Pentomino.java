@@ -85,15 +85,15 @@ public class Pentomino {
 	}
 
 	//rotates a pentomino.
-	public char[][][] rotate(char[][][] flippedPent, aRotation) {
+	public char[][][] rotate(char[][][] flippedPent, int aRotation) {
 		if(aRotation == 0) {
 			return flippedPent;
 		} else if(aRotation == 1) {
-			char[][][] rotatedPent = new char[flippedPent.length][flippedPent[0].length][flippedPent[0][0].length];
+			char[][][] rotatedPent = new char[flippedPent.length][flippedPent[0][0].length][flippedPent[0].length];
 			for(int i = 0; i < rotatedPent.length; i++) {
 				for(int j = 0; j < rotatedPent[0].length; j++) {
 					for(int k = 0; k < rotatedPent[0][0].length; k++) {
-						rotatedPent
+						rotatedPent[i][j][k] = flippedPent[i][flippedPent[0][0].length - j - 1][flippedPent[0].length - k -1];
 					}
 				}
 			}
