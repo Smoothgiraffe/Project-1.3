@@ -1,8 +1,8 @@
 public class Pentomino {
 
 	protected char name;
-	protected int rotation;
 	protected int flipVersion;
+	protected int rotation;
 	protected double value;
 
 	protected final double volume = 2.5; //0.5*5 = 2.5
@@ -20,7 +20,7 @@ public class Pentomino {
 		value = aValue;
 	}
 
-	public static char[][][] toArray(char pentomino, int rotation, int version) {
+	public char[][][] toArray(char pentomino, int aRotation, int aVersion) {
 		char[][][] endPentomino;
 
 		if(pentomino == 'P') {
@@ -31,12 +31,12 @@ public class Pentomino {
 			endPentomino = pentT;
 		}
 
-		return flip(rotate(endPentomino, rotation), version);
+		return rotate(flip(aVersion), aRotation);
 
 	}
 
 	//flips the pentomino such as it still has the same dimensions, can go from 0 to 3
-	public static char[][][] flip(int version) {
+	public char[][][] flip(int version) {
 		char[][][] originalArray;
 
 		if(name == 'P') {
@@ -49,6 +49,8 @@ public class Pentomino {
 			//You land here if the name of the pentomino is not P, L or T. That's wrong!
 			return null;
 		}
+
+		flipVersion = version;
 
 		char[][] tempArray = originalArray[0];
 		char[][] rotateArray = new char[tempArray.length][tempArray[0].length];
@@ -83,61 +85,20 @@ public class Pentomino {
 	}
 
 	//rotates a pentomino.
-	public static char[][][] rotate(char[][][] pent, int rotation) {
-		if(rotation == 0) {
-			return pent;
-		} else if(rotation == 1) {
-			char[][][] rotatedPent = new char[pent.length][pent[0][0].length][pent[0].length];
-			for(int i = 0; i < pent.length; i++) {
-				for(int j = 0; j < pent[0][0].length; j++) {
-					for(int k = 0; k < pent[0].length; k++) {
-						rotatedPent[i][j][k] = pent[i][k][j];
-					}
-				}
-			}
-			return rotatedPent;
-		} else if(rotation == 2) {
-			char[][][] rotatedPent = new char[pent[0].length][pent.length][pent[0][0].length];
-			for(int i = 0; i < pent[0].length; i++) {
-				for(int j = 0; j < pent.length; j++) {
-					for(int k = 0; k < pent[0][0].length; k++) {
-						rotatedPent[i][j][k] = pent[j][i][k];
-					}
-				}
-			}
-			return rotatedPent;
-		} else if(rotation == 3) {
-			char[][][] rotatedPent = new char[pent[0].length][pent[0][0].length][pent.length];
-			for(int i = 0; i < pent[0].length; i++) {
-				for(int j = 0; j < pent[0][0].length; j++) {
-					for(int k = 0; k < pent.length; k++) {
-						rotatedPent[i][j][k] = pent[j][k][i];
-					}
-				}
-			}
-			return rotatedPent;
-		} else if(rotation == 4) {
-			char[][][] rotatedPent = new char[pent[0][0].length][pent.length][pent[0].length];
-			for(int i = 0; i < pent.length; i++) {
-				for(int j = 0; j < pent[0].length; j++) {
-					for(int k = 0; k < pent[0][0].length; k++) {
-						rotatedPent[i][j][k] = pent[k][i][j];
-					}
-				}
-			}
-			return rotatedPent;
-		} else if(rotation == 5) {
-			char[][][] rotatedPent = new char[pent[0][0].length][pent[0].length][pent.length];
-			for(int i = 0; i < pent.length; i++) {
-				for(int j = 0; j < pent[0].length; j++) {
-					for(int k = 0; k < pent[0][0].length; k++) {
-						rotatedPent[i][j][k] = pent[k][j][i];
+	public char[][][] rotate(char[][][] flippedPent, aRotation) {
+		if(aRotation == 0) {
+			return flippedPent;
+		} else if(aRotation == 1) {
+			char[][][] rotatedPent = new char[flippedPent.length][flippedPent[0].length][flippedPent[0][0].length];
+			for(int i = 0; i < rotatedPent.length; i++) {
+				for(int j = 0; j < rotatedPent[0].length; j++) {
+					for(int k = 0; k < rotatedPent[0][0].length; k++) {
+						rotatedPent
 					}
 				}
 			}
 			return rotatedPent;
 		}
-		return null;
 	}
 
 	public double getVolume() {
