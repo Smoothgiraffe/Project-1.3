@@ -1,7 +1,9 @@
 public class Pentomino {
 
-	protected double value;
 	protected char name;
+	protected int rotation;
+	protected int version;
+	protected double value;
 
 	protected final double volume = 2.5; //0.5*5 = 2.5
 
@@ -16,30 +18,6 @@ public class Pentomino {
 	public Pentomino(char aName, double aValue) {
 		name = aName;
 		value = aValue;
-	}
-
-	public double getVolume() {
-		return volume;
-	}
-
-	public char getName() {
-		return name;
-	}
-
-	public double getValue() {
-		return value;
-	}
-
-	public static char[][][] getPentP() {
-		return pentP;
-	}
-
-	public static char[][][] getPentL() {
-		return pentL;
-	}
-
-	public static char[][][] getPentT() {
-		return pentT;
 	}
 
 	public static char[][][] toArray(char pentomino, int rotation, int version) {
@@ -58,49 +36,53 @@ public class Pentomino {
 	}
 
 	//flips the pentomino such as it still has the same dimensions, can go from 0 to 3
-	public static char[][][] flip(char[][][] pent, int version) {
-		char[][][] newPentomino = new char[pent.length][pent[0].length][pent[0][0].length];
-		if(version == 0) {
-			/*
-			for(int i = 0; i < pent.length; i++) {
-				for(int j = 0; j < pent[0].length; j++) {
-					for(int k = 0; k < pent[0][0].length; k++) {
-						newPentomino[i][j][k] = pent[i][j][k];
-					}
-				}
-			}
-			*/
-			return pent;
-		} else if(version == 1) {
-			for(int i = 0; i < pent.length; i++) {
-				for(int j = 0; j < pent[0].length; j++) {
-					for(int k = 0; k < pent[0][0].length; k++) {
-						newPentomino[i][j][k] = pent[pent.length - i - 1][j][k];
-					}
-				}
-			}
-		} else if(version == 2) {
-			for(int i = 0; i < pent.length; i++) {
-				for(int j = 0; j < pent[0].length; j++) {
-					for(int k = 0; k < pent[0][0].length; k++) {
-						newPentomino[i][j][k] = pent[i][pent[0].length - j - 1][k];
-					}
-				}
-			}
-		} else  if (version == 3){
-			for(int i = 0; i < pent.length; i++) {
-				for(int j = 0; j < pent[0].length; j++) {
-					for(int k = 0; k < pent[0][0].length; k++) {
-						newPentomino[i][j][k] = pent[pent.length - i - 1][pent[0].length - j - 1][k];
-					}
-				}
-			}
+	public static char[][][] flip(int version) {
+		char[][][] originalArray;
+
+		if(name == 'P') {
+			originalArray = getPentP();
+		} else if(name == 'L') {
+			originalArray = getPentL();
+		} else if(name == 'T') {
+			originalArray = getPentT();
 		} else {
-			//ERROR!
+			//You land here if the name of the pentomino is not P, L or T. That's wrong!
+			return null;
 		}
-		return null;
+
+		char[][] tempArray = originalArray[0];
+		char[][] rotateArray = new char[tempArray.length;][tempArray[0].length;];
+
+		if(version == 0) {
+			return originalArray;
+		} else if(version == 1) {
+			for(int i = 0; i < rotateArray.length; i++) {
+				for(int j = 0; j < rotateArray[0].length; j++) {
+					rotateArray[i][j] = tempArray[tempArray.length - i - 1][j];
+				}
+			}
+			char[][][] result = {rotateArray};
+			return result;
+		} else if(version == 2) {
+			for(int i = 0; i < rotateArray.length; i++) {
+				for(int j = 0; j < rotateArray[0].length; j++) {
+					rotateArray[i][j] = tempArray[i][tempArray[0].length];
+				}
+			}
+			char[][][] result = {rotateArray};
+			return result;
+		} else if(version == 3) {
+			for(int i = 0; i < rotateArray.length; i++) {
+				for(int j = 0; j < rotateArray[0].length; j++) {
+					rotateArray[i][j] = tempArray[tempArray.length - i - 1][tempArray[0].length];
+				}
+			}
+			char[][][] result = {rotateArray};
+			return result;
+		}
 	}
 
+	//rotates a pentomino.
 	public static char[][][] rotate(char[][][] pent, int rotation) {
 		if(rotation == 0) {
 			return pent;
@@ -156,6 +138,30 @@ public class Pentomino {
 			return rotatedPent;
 		}
 		return null;
+	}
+
+	public double getVolume() {
+		return volume;
+	}
+
+	public char getName() {
+		return name;
+	}
+
+	public double getValue() {
+		return value;
+	}
+
+	public static char[][][] getPentP() {
+		return pentP;
+	}
+
+	public static char[][][] getPentL() {
+		return pentL;
+	}
+
+	public static char[][][] getPentT() {
+		return pentT;
 	}
 
 }
