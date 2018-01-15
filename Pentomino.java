@@ -20,6 +20,14 @@ public class Pentomino {
 		value = aValue;
 	}
 
+	public setFliptation(int flipTation) {
+		flipVersion = flipTation;
+	}
+
+	public setRotation(int aRotation) {
+		rotation = aRotation;
+	}
+
 	public char[][][] toArray(int aRotation, int aVersion) {
 
 		return rotate(flip(aVersion), aRotation);
@@ -27,7 +35,7 @@ public class Pentomino {
 	}
 
 	//flips the pentomino such as it still has the same dimensions, can go from 0 to 3
-	public char[][][] flip(int version) {
+	public char[][][] flip() {
 		char[][][] originalArray;
 
 		if(name == 'P') {
@@ -41,14 +49,14 @@ public class Pentomino {
 			return null;
 		}
 
-		flipVersion = version;
+		flipVersion = flipVersion;
 
 		char[][] tempArray = originalArray[0];
 		char[][] rotateArray = new char[tempArray.length][tempArray[0].length];
 
-		if(version == 0) {
+		if(flipVersion == 0) {
 			return originalArray;
-		} else if(version == 1) {
+		} else if(flipVersion == 1) {
 			for(int i = 0; i < rotateArray.length; i++) {
 				for(int j = 0; j < rotateArray[0].length; j++) {
 					rotateArray[i][j] = tempArray[tempArray.length - i - 1][j];
@@ -56,7 +64,7 @@ public class Pentomino {
 			}
 			char[][][] result = {rotateArray};
 			return result;
-		} else if(version == 2) {
+		} else if(flipVersion == 2) {
 			for(int i = 0; i < rotateArray.length; i++) {
 				for(int j = 0; j < rotateArray[0].length; j++) {
 					rotateArray[i][j] = tempArray[i][tempArray[0].length];
@@ -64,7 +72,7 @@ public class Pentomino {
 			}
 			char[][][] result = {rotateArray};
 			return result;
-		} else if(version == 3) {
+		} else if(flipVersion == 3) {
 			for(int i = 0; i < rotateArray.length; i++) {
 				for(int j = 0; j < rotateArray[0].length; j++) {
 					rotateArray[i][j] = tempArray[tempArray.length - i - 1][tempArray[0].length];
@@ -77,11 +85,10 @@ public class Pentomino {
 	}
 
 	//rotates a pentomino.
-	public char[][][] rotate(char[][][] flippedPent, int aRotation) {
-		rotation = aRotation;
-		if(aRotation == 0) {
+	public char[][][] rotate(char[][][] flippedPent) {
+		if(rotation == 0) {
 			return flippedPent;
-		} else if(aRotation == 1) {
+		} else if(rotation == 1) {
 			char[][][] rotatedPent = new char[flippedPent.length][flippedPent[0][0].length][flippedPent[0].length];
 			for(int i = 0; i < rotatedPent.length; i++) {
 				for(int j = 0; j < rotatedPent[0].length; j++) {
@@ -91,19 +98,17 @@ public class Pentomino {
 				}
 			}
 			return rotatedPent;
-		} else if(aRotation == 2) {
+		} else if(rotation == 2) {
 			char[][][] rotatedPent = new char[flippedPent[0][0].length][flippedPent.length][flippedPent[0].length];
 			for(int i = 0; i < rotatedPent.length; i++) {
 				for(int j = 0; j < rotatedPent[0].length; j++) {
 					for(int k = 0; k < rotatedPent[0][0].length; k++) {
-						System.out.println(i + " " + j + " " + k);
-						System.out.println((rotatedPent[0][0].length - k - 1) + " " + (rotatedPent.length - i - 1)  + " " + (rotatedPent[0].length - j - 1));
-						rotatedPent[i][j][k] = flippedPent[rotatedPent[0][0].length - k - 1][rotatedPent.length - i - 1][rotatedPent[0].length - j - 1];
+						rotatedPent[i][j][k] = flippedPent[rotatedPent[0].length - j - 1][rotatedPent[0][0].length - k - 1][rotatedPent.length - i - 1];
 					}
 				}
 			}
 			return rotatedPent;
-		} else if(aRotation == 3) {
+		} else if(rotation == 3) {
 			char[][][] rotatedPent = new char[flippedPent[0][0].length][flippedPent[0].length][flippedPent.length];
 			for(int i = 0; i < rotatedPent.length; i++) {
 				for(int j = 0; j < rotatedPent[0].length; j++) {
@@ -113,7 +118,7 @@ public class Pentomino {
 				}
 			}
 			return rotatedPent;
-		}  else if(aRotation == 4) {
+		}  else if(rotation == 4) {
 			char[][][] rotatedPent = new char[flippedPent[0].length][flippedPent.length][flippedPent[0][0].length];
 			for(int i = 0; i < rotatedPent.length; i++) {
 				for(int j = 0; j < rotatedPent[0].length; j++) {
@@ -123,12 +128,12 @@ public class Pentomino {
 				}
 			}
 			return rotatedPent;
-		} else if(aRotation == 5) {
+		} else if(rotation == 5) {
 			char[][][] rotatedPent = new char[flippedPent[0].length][flippedPent[0][0].length][flippedPent.length];
 			for(int i = 0; i < rotatedPent.length; i++) {
 				for(int j = 0; j < rotatedPent[0].length; j++) {
 					for(int k = 0; k < rotatedPent[0][0].length; k++) {
-						rotatedPent[i][j][k] = flippedPent[rotatedPent[0].length - j - 1][rotatedPent[0][0].length - k - 1][rotatedPent.length - i - 1];
+						rotatedPent[i][j][k] = flippedPent[rotatedPent[0][0].length - k - 1][rotatedPent.length - i - 1][rotatedPent[0].length - j - 1];
 					}
 				}
 			}
