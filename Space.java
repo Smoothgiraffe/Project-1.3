@@ -104,9 +104,9 @@ public class Space {
 
 	//places a box at a given point with coordinates x, y, and z
 	public static void placeBoxAt(Doos box, int x, int y, int z) { //CHECK IF FITS FIRST!
-			for (int i = 0; i < (int) box.getArrayLength(); i++) {
-				for (int j = 0; j < (int) box.getArrayWidth(); j++) {
-					for (int k = 0; k < (int) box.getArrayHeight(); k++) {
+			for (int i = 0; i < box.getArrayLength(); i++) {
+				for (int j = 0; j < box.getArrayWidth(); j++) {
+					for (int k = 0; k < box.getArrayHeight(); k++) {
 						space[x + i][y + j][z + k] = box.getName();
 					}
 				}
@@ -131,7 +131,7 @@ public class Space {
 	}*/
 
 	//deletes the last box in the solution-Array and updates the space accordingly
-	public static void deleteBox(int index, int x, int y, int z) {
+	public static void deleteBox(int index) {
 		//update the space
 		PlacedBox deleteBox = solution.get(index);
 		System.out.println(deleteBox.getArrayLength() + " " + deleteBox.getArrayWidth() +  " " + deleteBox.getArrayHeight());

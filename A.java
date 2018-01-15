@@ -29,7 +29,7 @@ public class A extends Space{
 							if(fits(boxes[l], i, j, k)){
 								placeBoxAt(boxes[l], i, j, k);
 								fillSpace();
-								if(solutionFound){
+								if(isFull()){
 									System.out.println("found");
 									return;
 								}
