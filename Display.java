@@ -78,7 +78,7 @@ public class Display {
 			//Sets each object in boxArray onto its own vector
 			TransformGroup tg = new TransformGroup();
 			Transform3D transform = new Transform3D();
-			Vector3f vector = new Vector3f( (float) boxArray.get(i).getX() / 1.25f + (float) boxArray.get(i).getArrayLength() / 5, (float) boxArray.get(i).getY() / 1.25f  + (float) boxArray.get(i).getArrayHeight() / 5, (float) boxArray.get(i).getZ() / 1.25f + (float) boxArray.get(i).getArrayWidth() / 5);
+			Vector3f vector = new Vector3f(  ((float)boxArray.get(i).getX() / 1.25f + (float) boxArray.get(i).getArrayLength() / 5) * 0.95, (float)(boxArray.get(i).getY() / 1.25f  +  ((float)boxArray.get(i).getArrayHeight() / 5)) *0.95,  (boxArray.get(i).getZ() / 1.25f + (float) boxArray.get(i).getArrayWidth() / 5)*0.95);
 			transform.setTranslation(vector);
 			tg.setTransform(transform);
 			tg.addChild(box);
@@ -96,9 +96,9 @@ public class Display {
 
 		//This next bit of code allows us to move and set the angle in which we view the objects in boxArray
 		Vector3f viewTranslation = new Vector3f();
-		viewTranslation.z = 20f;
+		viewTranslation.z = 15f;
 		viewTranslation.x = 0f;
-		viewTranslation.y = 12f;
+		viewTranslation.y = 6f;
 		Transform3D viewTransform = new Transform3D();
 		viewTransform.setTranslation(viewTranslation);
 
@@ -190,10 +190,10 @@ public class Display {
 
 
 	public static void main(String[] args){
-		PlacedBox box = new PlacedBox( 1,1,3,'A',0,0,0);
-		PlacedBox box1 = new PlacedBox( 1,2,2,'B',0,0,1);
-		PlacedBox box2 = new PlacedBox( 1,1,1,'C',1,0,0);
-		PlacedBox box3 = new PlacedBox( 1,1,1,'C',1,2,0);
+		PlacedBox box = new PlacedBox( 2,2,6,'A',0,0,0);
+		PlacedBox box1 = new PlacedBox( 2,4,4,'B',0,0,1);
+		PlacedBox box2 = new PlacedBox( 2,2,2,'C',1,0,0);
+		PlacedBox box3 = new PlacedBox( 2,2,2,'C',1,2,0);
 		ArrayList array = new ArrayList();
 		array.add(box);
 		array.add(box1);

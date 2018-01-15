@@ -21,10 +21,7 @@ public class A extends Space{
 	}
 
 	private void fillSpace(){
-		if(solutionFound){
-			System.out.println("found");
-			return;
-		} else if(!isFull()) {
+		if(!isFull()) {
 			for(int i = 0; i < space.length; i++){
 				for(int j = 0; j < space[0].length; j++){
 					for(int k = 0; k < space[0][0].length; k++){
@@ -32,6 +29,10 @@ public class A extends Space{
 							if(fits(boxes[l], i, j, k)){
 								placeBoxAt(boxes[l], i, j, k);
 								fillSpace();
+								if(solutionFound){
+									System.out.println("found");
+									return;
+								}
 								deleteBox(solution.size() - 1, i, j, k);
 							}
 						}
