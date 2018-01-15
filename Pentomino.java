@@ -20,16 +20,7 @@ public class Pentomino {
 		value = aValue;
 	}
 
-	public char[][][] toArray(char pentomino, int aRotation, int aVersion) {
-		char[][][] endPentomino;
-
-		if(pentomino == 'P') {
-			endPentomino = pentP;
-		} else if (pentomino == 'L') {
-			endPentomino = pentL;
-		} else {
-			endPentomino = pentT;
-		}
+	public char[][][] toArray(int aRotation, int aVersion) {
 
 		return rotate(flip(aVersion), aRotation);
 
@@ -82,10 +73,12 @@ public class Pentomino {
 			char[][][] result = {rotateArray};
 			return result;
 		}
+		return null;
 	}
 
 	//rotates a pentomino.
 	public char[][][] rotate(char[][][] flippedPent, int aRotation) {
+		rotation = aRotation;
 		if(aRotation == 0) {
 			return flippedPent;
 		} else if(aRotation == 1) {
@@ -93,12 +86,55 @@ public class Pentomino {
 			for(int i = 0; i < rotatedPent.length; i++) {
 				for(int j = 0; j < rotatedPent[0].length; j++) {
 					for(int k = 0; k < rotatedPent[0][0].length; k++) {
-						rotatedPent[i][j][k] = flippedPent[i][flippedPent[0][0].length - j - 1][flippedPent[0].length - k -1];
+						rotatedPent[i][j][k] = flippedPent[rotatedPent.length - i - 1][rotatedPent[0][0].length - k - 1][rotatedPent[0].length - j - 1];
+					}
+				}
+			}
+			return rotatedPent;
+		} else if(aRotation == 2) {
+			char[][][] rotatedPent = new char[flippedPent[0][0].length][flippedPent.length][flippedPent[0].length];
+			for(int i = 0; i < rotatedPent.length; i++) {
+				for(int j = 0; j < rotatedPent[0].length; j++) {
+					for(int k = 0; k < rotatedPent[0][0].length; k++) {
+						System.out.println(i + " " + j + " " + k);
+						System.out.println((rotatedPent[0][0].length - k - 1) + " " + (rotatedPent.length - i - 1)  + " " + (rotatedPent[0].length - j - 1));
+						rotatedPent[i][j][k] = flippedPent[rotatedPent[0][0].length - k - 1][rotatedPent.length - i - 1][rotatedPent[0].length - j - 1];
+					}
+				}
+			}
+			return rotatedPent;
+		} else if(aRotation == 3) {
+			char[][][] rotatedPent = new char[flippedPent[0][0].length][flippedPent[0].length][flippedPent.length];
+			for(int i = 0; i < rotatedPent.length; i++) {
+				for(int j = 0; j < rotatedPent[0].length; j++) {
+					for(int k = 0; k < rotatedPent[0][0].length; k++) {
+						rotatedPent[i][j][k] = flippedPent[rotatedPent[0][0].length - k - 1][rotatedPent[0].length - j - 1][rotatedPent.length - i - 1];
+					}
+				}
+			}
+			return rotatedPent;
+		}  else if(aRotation == 4) {
+			char[][][] rotatedPent = new char[flippedPent[0].length][flippedPent.length][flippedPent[0][0].length];
+			for(int i = 0; i < rotatedPent.length; i++) {
+				for(int j = 0; j < rotatedPent[0].length; j++) {
+					for(int k = 0; k < rotatedPent[0][0].length; k++) {
+						rotatedPent[i][j][k] = flippedPent[rotatedPent[0].length - j - 1][rotatedPent.length - i - 1][rotatedPent[0][0].length - k - 1];
+					}
+				}
+			}
+			return rotatedPent;
+		} else if(aRotation == 5) {
+			char[][][] rotatedPent = new char[flippedPent[0].length][flippedPent[0][0].length][flippedPent.length];
+			for(int i = 0; i < rotatedPent.length; i++) {
+				for(int j = 0; j < rotatedPent[0].length; j++) {
+					for(int k = 0; k < rotatedPent[0][0].length; k++) {
+						rotatedPent[i][j][k] = flippedPent[rotatedPent[0].length - j - 1][rotatedPent[0][0].length - k - 1][rotatedPent.length - i - 1];
 					}
 				}
 			}
 			return rotatedPent;
 		}
+		return null;
 	}
 
 	public double getVolume() {
