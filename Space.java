@@ -16,48 +16,15 @@ public class Space {
 	protected static final double stopPercentage = 0.9;
 	protected static double completeBoxVolume = 0;
 	protected static ArrayList<PlacedBox> solution = new ArrayList<PlacedBox>();
-
 	//x, y, and z are the coordinates where the next Box/pentomino is placed
-	protected static int x, y, z = 0;
+	//protected static int x, y, z = 0;
 
 	//space is a three-dimensional array where every single spot acts as a 0.5*0.5*0.5 block.
 	protected static char[][][] space = new char[(int)SPACELENGTH*2][(int)SPACEWIDTH*2][(int)SPACEHEIGHT*2];
 
-	//sorts an array of boxes after value per unit and returns them
-	public static Doos[] sortBoxes(Doos[] boxes) {
-		Doos[] newBoxes = new Doos[boxes.length];
-		if (boxes[0].getValuePerUnit() >= boxes[1].getValuePerUnit() && boxes[0].getValuePerUnit() >= boxes[2].getValuePerUnit()) {
-			newBoxes[0] = boxes[0];
-			if (boxes[1].getValuePerUnit() >= boxes[2].getValuePerUnit()) {
-				newBoxes[1] = boxes[1];
-				newBoxes[2] = boxes[2];
-			} else {
-				newBoxes[1] = boxes[2];
-				newBoxes[2] = boxes[1];
-			}
-		} else if (boxes[1].getValuePerUnit() >= boxes[0].getValuePerUnit() && boxes[1].getValuePerUnit() >= boxes[2].getValuePerUnit()) {
-			newBoxes[0] = boxes[1];
-			if (boxes[0].getValuePerUnit() >= boxes[2].getValuePerUnit()) {
-				newBoxes[1] = boxes[0];
-				newBoxes[2] = boxes[2];
-			} else {
-				newBoxes[1] = boxes[2];
-				newBoxes[2] = boxes[0];
-			}
-		} else if (boxes[2].getValuePerUnit() >= boxes[0].getValuePerUnit() && boxes[2].getValuePerUnit() >= boxes[1].getValuePerUnit()) {
-			newBoxes[0] = boxes[2];
-			if (boxes[0].getValuePerUnit() >= boxes[1].getValuePerUnit()) {
-				newBoxes[1] = boxes[0];
-				newBoxes[2] = boxes[1];
-			} else {
-				newBoxes[1] = boxes[1];
-				newBoxes[2] = boxes[0];
-			}
-		}
-		return newBoxes;
-	}
 
-	public static Pentomino[] sortPentominoes(Pentomino[] pentomino) {
+
+	/*public static Pentomino[] sortPentominoes(Pentomino[] pentomino) {
 		Pentomino[] newPentomino = new Pentomino[pentomino.length];
 		if (pentomino[0].getValue() >= pentomino[1].getValue() && pentomino[0].getValue() >= pentomino[2].getValue()) {
 			newPentomino[0] = pentomino[0];
@@ -88,10 +55,10 @@ public class Space {
 			}
 		}
 		return newPentomino;
-	}
+	}*/
 
 	//computes the coordinates for the next box/pentomino to be placed
-	public static void computeNewCoordinates() {
+	/*public static void computeNewCoordinates() {
 		for (int i = x; i < space.length; i++) { //height
 			for (int j = y; j < space[0].length; j++) { //width
 				for (int k = z; k < space[0][0].length; k++) { //length
@@ -102,16 +69,16 @@ public class Space {
 				}
 			}
 		}
-	}
+	}*/
 
-	public static void setCoordinates(int coordinateX, int coordinateY, int coordinateZ) {
+	/*public static void setCoordinates(int coordinateX, int coordinateY, int coordinateZ) {
 		x = coordinateX;
 		y = coordinateY;
 		z = coordinateZ;
-	}
+	}*/
 
 	//checks if a specific box//pentomino fits at a secific place with the coordinates x, y, and z
-	public static boolean fits(Doos box) {
+	public static boolean fits(Doos box, int x, int y, int z) {
 		//checks for out-of-bound-errors
 		if (x + box.getArrayLength() > space.length) {
 			return false;
@@ -136,7 +103,7 @@ public class Space {
 	}
 
 	//places a box at a given point with coordinates x, y, and z
-	public static void placeBoxAt(Doos box) { //CHECK IF FITS FIRST!
+	public static void placeBoxAt(Doos box, int x, int y, int z) { //CHECK IF FITS FIRST!
 			for (int i = 0; i < (int) box.getArrayLength(); i++) {
 				for (int j = 0; j < (int) box.getArrayWidth(); j++) {
 					for (int k = 0; k < (int) box.getArrayHeight(); k++) {
@@ -150,7 +117,7 @@ public class Space {
 	}
 
 	//places a pentomino at a certain positon x, y, z
-	public static void placePentominoAt(char pentomino, int rotation, int version, int x, int y, int z) {
+	/*public static void placePentominoAt(char pentomino, int rotation, int version, int x, int y, int z) {
 		char[][][] pent = Pentomino.toArray(pentomino, rotation, version);
 		for(int i = 0; i < pent.length; i++){
 			for(int j = 0; j < pent[0].length; j++) {
@@ -161,19 +128,23 @@ public class Space {
 				}
 			}
 		}
-	}
+	}*/
 
 	//deletes the last box in the solution-Array and updates the space accordingly
-	public static void deleteBox(int index) {
+	public static void deleteBox(int index, int x, int y, int z) {
 		//update the space
 		PlacedBox deleteBox = solution.get(index);
+		System.out.println(deleteBox.getArrayLength() + " " + deleteBox.getArrayWidth() +  " " + deleteBox.getArrayHeight());
 		for (int i = 0; i < deleteBox.getArrayLength(); i++) {
 			for (int j = 0; j < deleteBox.getArrayWidth(); j++) {
 				for (int k = 0; k < deleteBox.getArrayHeight(); k++) {
+					//System.out.println(i + " " + j + " " + k + " " + solution.size() + " " + index);
+					System.out.println(deleteBox.getX() + i + " " + deleteBox.getY() + j + " " + deleteBox.getZ() + k);
 					space[deleteBox.getX() + i][deleteBox.getY() + j][deleteBox.getZ() + k] = '\u0000';
 				}
 			}
 		}
+        completeBoxVolume = completeBoxVolume - deleteBox.getVolume(); //update the volume
 		//update the arrayList
 		solution.remove(index);
 	}
@@ -188,9 +159,9 @@ public class Space {
 
 	//returns true if the entire cargo-space is full (for exercise a and c)
 	public static boolean isFull() {
-		for (int i = x; i < space.length; i++) { //height
-			for (int j = y; j < space[0].length; j++) { //width
-				for (int k = z; k < space[0][0].length; k++) { //length
+		for (int i = 0; i < space.length; i++) { //height
+			for (int j = 0; j < space[0].length; j++) { //width
+				for (int k = 0; k < space[0][0].length; k++) { //length
 					if (space[i][j][k] == '\u0000' || space[i][j][k] == '0') {
 						return false;
 					}

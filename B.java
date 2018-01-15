@@ -11,9 +11,9 @@ public class B extends Space{
 	public static void main(String[] args) {
 
 		//initiate the three types of boxes
-		Doos A = new Doos(1, 1, 2, 'A', 3);
-		Doos B = new Doos(1, 1.5, 2, 'B', 4);
-		Doos C = new Doos(1.5, 1.5, 1.5, 'C', 5);
+		Doos A = new Doos(1, 1, 2, 'A');
+		Doos B = new Doos(1, 1.5, 2, 'B');
+		Doos C = new Doos(1.5, 1.5, 1.5, 'C');
 
 		Doos[] boxes = {A, B, C}; //put them into an array
 		sortBoxes(boxes); //sort the boxes by value
@@ -22,4 +22,37 @@ public class B extends Space{
 
 		}
 	}
+ //sorts an array of boxes after value per unit and returns them
+  public static Doos[] sortBoxes(Doos[] boxes) {
+	Doos[] newBoxes = new Doos[boxes.length];
+	if (boxes[0].getValuePerUnit() >= boxes[1].getValuePerUnit() && boxes[0].getValuePerUnit() >= boxes[2].getValuePerUnit()) {
+	  newBoxes[0] = boxes[0];
+	  if (boxes[1].getValuePerUnit() >= boxes[2].getValuePerUnit()) {
+		newBoxes[1] = boxes[1];
+		newBoxes[2] = boxes[2];
+	  } else {
+		newBoxes[1] = boxes[2];
+		newBoxes[2] = boxes[1];
+	  }
+	} else if (boxes[1].getValuePerUnit() >= boxes[0].getValuePerUnit() && boxes[1].getValuePerUnit() >= boxes[2].getValuePerUnit()) {
+	  newBoxes[0] = boxes[1];
+	  if (boxes[0].getValuePerUnit() >= boxes[2].getValuePerUnit()) {
+		newBoxes[1] = boxes[0];
+		newBoxes[2] = boxes[2];
+	  } else {
+		newBoxes[1] = boxes[2];
+		newBoxes[2] = boxes[0];
+	  }
+	} else if (boxes[2].getValuePerUnit() >= boxes[0].getValuePerUnit() && boxes[2].getValuePerUnit() >= boxes[1].getValuePerUnit()) {
+	  newBoxes[0] = boxes[2];
+	  if (boxes[0].getValuePerUnit() >= boxes[1].getValuePerUnit()) {
+		newBoxes[1] = boxes[0];
+		newBoxes[2] = boxes[1];
+	  } else {
+		newBoxes[1] = boxes[1];
+		newBoxes[2] = boxes[0];
+	  }
+	}
+	return newBoxes;
+  }
 }

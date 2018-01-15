@@ -22,9 +22,9 @@ public class Doos {
 		length = aLength;
 		width = aWidth;
 		height = aHeight;
-		arrayLength = (int) aLength*2;
-		arrayWidth = (int) aWidth*2;
-		arrayHeight = (int) aHeight*2;
+		arrayLength = (int) aLength *2;
+		arrayWidth = (int) aWidth *2;
+		arrayHeight = (int) aHeight *2;
 		name = aName;
 		volume = height*length*width;
 	}
@@ -34,9 +34,9 @@ public class Doos {
 		length = aLength;
 		width = aWidth;
 		height = aHeight;
-		arrayLength = (int) aLength*2;
-		arrayWidth = (int) aWidth*2;
-		arrayHeight = (int) aHeight*2;
+		arrayLength = (int) aLength *2;
+		arrayWidth = (int) aWidth *2;
+		arrayHeight = (int) aHeight *2;
 		name = aName;
 		value = aValue;
 		valuePerUnit = (((aValue/aHeight)/aLength)/aWidth);

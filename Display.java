@@ -82,15 +82,23 @@ public class Display {
 			transform.setTranslation(vector);
 			tg.setTransform(transform);
 			tg.addChild(box);
-
 			group.addChild(tg);
 
 		}
+
+		Font3D font = new Font3D(new Font("font", Font.PLAIN, 1), new FontExtrusion());
+		Text3D text = new Text3D(font, "Group 13!", new Point3f(0.0f, 6.0f, 0.0f));
+
+		Transform3D transform2 = new Transform3D();
+		Shape3D shape = new Shape3D();
+		shape.setGeometry(text);
+		group.addChild(shape);
+
 		//This next bit of code allows us to move and set the angle in which we view the objects in boxArray
 		Vector3f viewTranslation = new Vector3f();
-		viewTranslation.z = 10f;
+		viewTranslation.z = 20f;
 		viewTranslation.x = 0f;
-		viewTranslation.y = 6f;
+		viewTranslation.y = 12f;
 		Transform3D viewTransform = new Transform3D();
 		viewTransform.setTranslation(viewTranslation);
 
