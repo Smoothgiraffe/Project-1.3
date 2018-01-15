@@ -20,14 +20,14 @@ public class Display {
 	//xCamera and yCamera control the viewing angle of the cargo
 	//private int xCamera = -6;
 
-	private int yCamera =  4;
+	private int yCamera =  1;
 	private SimpleUniverse universe = new SimpleUniverse();
 
 	//Constructer that takes in an array filled with objects from PlacedBox
 	public Display(ArrayList<PlacedBox> boxArray){
 		this.boxArray = boxArray;
-		print3DArray();
 		GUI g = new GUI();
+		print3DArray();
 	}
 
 	/*
@@ -68,17 +68,17 @@ public class Display {
 		for (int i = 0; i < boxArray.size(); i++) {
 			Box box = new Box();
 			if (boxArray.get(i).getName() == 'A') {
-				box = new Box((float) boxArray.get(i).getArrayHeight() / 5, (float) boxArray.get(i).getArrayWidth() / 5, (float) boxArray.get(i).getArrayLength() / 5, appearanceA);
+				box = new Box((float) boxArray.get(i).getArrayLength() / 5, (float) boxArray.get(i).getArrayHeight() / 5, (float) boxArray.get(i).getArrayWidth() / 5, appearanceA);
 			}else if (boxArray.get(i).getName() == 'B'){
-				box = new Box((float) boxArray.get(i).getArrayHeight() / 5, (float) boxArray.get(i).getArrayWidth() / 5, (float) boxArray.get(i).getArrayLength() / 5, appearanceB);
+				box = new Box((float) boxArray.get(i).getArrayLength() / 5, (float) boxArray.get(i).getArrayHeight() / 5, (float) boxArray.get(i).getArrayWidth() / 5, appearanceB);
 			}else if (boxArray.get(i).getName() == 'C'){
-				box = new Box((float) boxArray.get(i).getArrayHeight() / 5, (float) boxArray.get(i).getArrayWidth() / 5, (float) boxArray.get(i).getArrayLength() / 5, appearanceC);
+				box = new Box((float) boxArray.get(i).getArrayLength() / 5, (float) boxArray.get(i).getArrayHeight() / 5, (float) boxArray.get(i).getArrayWidth() / 5, appearanceC);
 			}
 
 			//Sets each object in boxArray onto its own vector
 			TransformGroup tg = new TransformGroup();
 			Transform3D transform = new Transform3D();
-			Vector3f vector = new Vector3f( (float) boxArray.get(i).getX() / 5, (float) boxArray.get(i).getY() / 5, (float) boxArray.get(i).getZ() / 5);
+			Vector3f vector = new Vector3f( (float) boxArray.get(i).getX() / 1.25f + (float) boxArray.get(i).getArrayLength() / 5, (float) boxArray.get(i).getY() / 1.25f  + (float) boxArray.get(i).getArrayHeight() / 5, (float) boxArray.get(i).getZ() / 1.25f + (float) boxArray.get(i).getArrayWidth() / 5);
 			transform.setTranslation(vector);
 			tg.setTransform(transform);
 			tg.addChild(box);
@@ -90,13 +90,19 @@ public class Display {
 		Vector3f viewTranslation = new Vector3f();
 		viewTranslation.z = 10f;
 		viewTranslation.x = 0f;
-		viewTranslation.y = 2f;
+		viewTranslation.y = 6f;
 		Transform3D viewTransform = new Transform3D();
 		viewTransform.setTranslation(viewTranslation);
+
 		Transform3D rotation = new Transform3D();
-		rotation.rotX(-Math.PI / /*xCamera*/ 4);
-		rotation.rotY(yCamera);
+		rotation.rotY(yCamera * Math.PI / 4);
 		rotation.mul(viewTransform);
+
+		Transform3D rotation2 = new Transform3D();
+		rotation2.rotX(-Math.PI / 8);
+		rotation.mul(rotation2);
+
+		//universe.getViewingPlatform().getViewPlatformTransform().setTransform(move);
 		universe.getViewingPlatform().getViewPlatformTransform().setTransform(rotation);
 		universe.getViewingPlatform().getViewPlatformTransform().getTransform(viewTransform);
 
@@ -176,13 +182,15 @@ public class Display {
 
 
 	public static void main(String[] args){
-		PlacedBox box = new PlacedBox( 3,2,2,'A',1,2,1);
-		PlacedBox box1 = new PlacedBox( 1,2,1,'B',1,5,6);
-		PlacedBox box2 = new PlacedBox( 1,1,1,'C',-2,-2,-1);
+		PlacedBox box = new PlacedBox( 1,1,3,'A',0,0,0);
+		PlacedBox box1 = new PlacedBox( 1,2,2,'B',0,0,1);
+		PlacedBox box2 = new PlacedBox( 1,1,1,'C',1,0,0);
+		PlacedBox box3 = new PlacedBox( 1,1,1,'C',1,2,0);
 		ArrayList array = new ArrayList();
 		array.add(box);
 		array.add(box1);
 		array.add(box2);
+		array.add(box3);
 
 		new Display(array);
 	}
