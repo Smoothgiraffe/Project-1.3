@@ -20,11 +20,11 @@ public class Pentomino {
 		value = aValue;
 	}
 
-	public setFliptation(int flipTation) {
+	public void setFliptation(int flipTation) {
 		flipVersion = flipTation;
 	}
 
-	public setRotation(int aRotation) {
+	public void setRotation(int aRotation) {
 		rotation = aRotation;
 	}
 
