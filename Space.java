@@ -97,6 +97,7 @@ public class Space {
 				for (int k = z; k < space[0][0].length; k++) { //length
 					if (space[i][j][k] == '\u0000') {
 						setCoordinates(i, j, k);
+						return;
 					}
 				}
 			}

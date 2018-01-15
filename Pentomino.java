@@ -2,7 +2,7 @@ public class Pentomino {
 
 	protected char name;
 	protected int rotation;
-	protected int version;
+	protected int flipVersion;
 	protected double value;
 
 	protected final double volume = 2.5; //0.5*5 = 2.5
@@ -51,7 +51,7 @@ public class Pentomino {
 		}
 
 		char[][] tempArray = originalArray[0];
-		char[][] rotateArray = new char[tempArray.length;][tempArray[0].length;];
+		char[][] rotateArray = new char[tempArray.length][tempArray[0].length];
 
 		if(version == 0) {
 			return originalArray;
