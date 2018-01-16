@@ -112,7 +112,7 @@ public class Space {
 		}
 		completeBoxVolume = completeBoxVolume + box.getVolume(); //update the volume
 		System.out.println("Placebox " + box.getLength() + " " + box.getWidth() + " " + box.getHeight() + " " + box.getName() + " " + x + " " + y + " " + z);
-		PlacedBox newBox = new PlacedBox(box.getLength(), box.getWidth(), box.getHeight(), box.getName(), x, y, z); //create new PlacedBox-Object to add to the solution
+		PlacedBox newBox = new PlacedBox(box.getLength(), box.getWidth(), box.getHeight(), box.getName(),(double) x / 2, (double) y / 2, (double) z / 2); //create new PlacedBox-Object to add to the solution
 		solution.add(newBox);
 	}
 
