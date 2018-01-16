@@ -19,7 +19,7 @@ public class Space {
 	//x, y, and z are the coordinates where the next Box/pentomino is placed
 
 	//space is a three-dimensional array where every single spot acts as a 0.5*0.5*0.5 block.
-	protected static char[][][] space = new char[(int)SPACELENGTH*2][(int)SPACEWIDTH*2][(int)SPACEHEIGHT*2];
+	protected static char[][][] space = new char[(int)SPACELENGTH*2][(int)SPACEHEIGHT*2][(int)SPACEWIDTH*2];
 
 
 
@@ -111,8 +111,8 @@ public class Space {
 			}
 		}
 		completeBoxVolume = completeBoxVolume + box.getVolume(); //update the volume
-		System.out.println(box.getLength() + " " + box.getWidth() + " " + box.getHeight() + " " + box.getName() + " " + x + " " + y + " " + z);
-		PlacedBox newBox = new PlacedBox(box.getLength(), box.getWidth(), box.getHeight(), box.getName(), x/2, y, z/2); //create new PlacedBox-Object to add to the solution
+		System.out.println("Placebox " + box.getLength() + " " + box.getWidth() + " " + box.getHeight() + " " + box.getName() + " " + x + " " + y + " " + z);
+		PlacedBox newBox = new PlacedBox(box.getLength(), box.getWidth(), box.getHeight(), box.getName(), x, y, z); //create new PlacedBox-Object to add to the solution
 		solution.add(newBox);
 	}
 
@@ -134,13 +134,12 @@ public class Space {
 	public static void deleteBox(int index) {
 		//update the space
 		PlacedBox deleteBox = solution.get(index);
-		System.out.println(deleteBox.getLength() + " " + deleteBox.getWidth() +  " " + deleteBox.getHeight());
+		System.out.println("deletebox " + deleteBox.getName() + " " + deleteBox.getLength() + " " + deleteBox.getWidth() +  " " + deleteBox.getHeight());
 		for (int i = 0; i < deleteBox.getLength(); i++) {
 			for (int j = 0; j < deleteBox.getWidth(); j++) {
 				for (int k = 0; k < deleteBox.getHeight(); k++) {
 					//System.out.println(i + " " + j + " " + k + " " + solution.size() + " " + index);
-					System.out.println(deleteBox.getX() + i + " " + deleteBox.getY() + j + " " + deleteBox.getZ() + k);
-					space[deleteBox.getX() + i][deleteBox.getY() + j][deleteBox.getZ() + k] = '\u0000';
+					space[(int) (deleteBox.getX() + i)][(int) (deleteBox.getY() + j)][(int) (deleteBox.getZ() + k)] = '\u0000';
 				}
 			}
 		}

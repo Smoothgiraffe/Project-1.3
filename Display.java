@@ -79,7 +79,7 @@ public class Display {
 			//Sets each object in boxArray onto its own vector
 			TransformGroup tg = new TransformGroup();
 			Transform3D transform = new Transform3D();
-			Vector3f vector = new Vector3f((float)boxArray.get(i).getX() / 1.25f + (float) boxArray.get(i).getLength() / 5, (float)boxArray.get(i).getY() / 1.25f  +  ((float)boxArray.get(i).getHeight() / 5),  boxArray.get(i).getZ() / 1.25f + (float) boxArray.get(i).getWidth() / 5);
+			Vector3f vector = new Vector3f((float)boxArray.get(i).getX() / 1.25f + (float) boxArray.get(i).getLength() / 5, (float)boxArray.get(i).getY() / 1.25f  +  ((float)boxArray.get(i).getHeight() / 5), (float) boxArray.get(i).getZ() / 1.25f + (float) boxArray.get(i).getWidth() / 5);
 			transform.setTranslation(vector);
 			tg.setTransform(transform);
 			tg.addChild(box);

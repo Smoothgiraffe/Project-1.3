@@ -2,12 +2,12 @@
 	This class makes a new box which is already placed and is able to return its x, y and z-coordinates
 */
 public class PlacedBox extends Doos {
-	private int placedX;
-	private int placedY;
-	private int placedZ;
+	private double placedX;
+	private double placedY;
+	private double placedZ;
 
 	//Constructor without value
-	public PlacedBox(double aLength, double aWidth, double aHeight, char aName, int aPlaceX, int aPlaceY, int aPlaceZ) {
+	public PlacedBox(double aLength, double aWidth, double aHeight, char aName, double aPlaceX, double aPlaceY, double aPlaceZ) {
 		super(aLength, aWidth, aHeight, aName);
 		placedX = aPlaceX;
 		placedY = aPlaceY;
@@ -15,22 +15,22 @@ public class PlacedBox extends Doos {
 	}
 
 	//Constructor with value
-	public PlacedBox(double aLength, double aWidth, double aHeight, char aName, double aValue, int aPlaceX, int aPlaceY, int aPlaceZ) {
+	public PlacedBox(double aLength, double aWidth, double aHeight, char aName, double aValue, double aPlaceX, double aPlaceY, double aPlaceZ) {
 		super(aLength, aWidth, aHeight,aName, aValue);
 		placedX = aPlaceX;
 		placedY = aPlaceY;
 		placedZ = aPlaceZ;
 	}
 
-	public int getX() {
+	public double getX() {
 		return placedX;
 	}
 
-	public int getY() {
+	public double getY() {
 		return placedY;
 	}
 
-	public int getZ() {
+	public double getZ() {
 		return placedZ;
 	}
 

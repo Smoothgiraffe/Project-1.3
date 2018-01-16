@@ -5,11 +5,11 @@ import java.util.ArrayList;
 */
 public class A extends Space{
 	//initiate the three types of boxes
-	private Doos A = new Doos(2, 2, 4, 'A', 3);
-	private Doos B = new Doos(2, 3, 4, 'B', 4);
-	private Doos C = new Doos(3, 3, 3, 'C', 5);
+	private Doos A = new Doos(2, 2, 4, 'A');
+	private Doos B = new Doos(2, 3, 4, 'B');
+	private Doos C = new Doos(1, 1, 1, 'C');
 	private boolean solutionFound = false;
-	Doos[] boxes = {A, B, C}; //put them into an array
+	Doos[] boxes = {C, A, B}; //put them into an array
 
 	public A(){
 		fillSpace();
