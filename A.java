@@ -33,7 +33,7 @@ public class A extends Space{
 									System.out.println("found");
 									return;
 								}
-								deleteBox(solution.size() - 1, i, j, k);
+								deleteBox(solution.size() - 1);
 							}
 						}
 					}
