@@ -93,7 +93,7 @@ public class Space {
 		for(int i = 0; i < box.getArrayLength(); i++) {
 			for (int j = 0; j < box.getArrayWidth(); j++) {
 				for (int k = 0; k < box.getArrayHeight(); k++) {
-					if (space[x + i][y + j][z + k] != '\u0000' || space[i][j][k] == '0') {
+					if (space[2*x + i][2*y + j][2*z + k] != '\u0000' || space[i][j][k] == '0') {
 						return false;
 					}
 				}
@@ -107,7 +107,7 @@ public class Space {
 			for (int i = 0; i < box.getArrayLength(); i++) {
 				for (int j = 0; j < box.getArrayWidth(); j++) {
 					for (int k = 0; k < box.getArrayHeight(); k++) {
-						space[x + i][y + j][z + k] = box.getName();
+						space[2*x + i][2*y + j][2*z + k] = box.getName();
 					}
 				}
 			}
@@ -138,9 +138,7 @@ public class Space {
 		for (int i = 0; i < deleteBox.getArrayLength(); i++) {
 			for (int j = 0; j < deleteBox.getArrayWidth(); j++) {
 				for (int k = 0; k < deleteBox.getArrayHeight(); k++) {
-					//System.out.println(i + " " + j + " " + k + " " + solution.size() + " " + index);
-					System.out.println(deleteBox.getX() + i + " " + deleteBox.getY() + j + " " + deleteBox.getZ() + k);
-					space[deleteBox.getX() + i][deleteBox.getY() + j][deleteBox.getZ() + k] = '\u0000';
+					space[deleteBox.getX()*2 + i][deleteBox.getY()*2 + j][deleteBox.getZ()*2 + k] = '0';
 				}
 			}
 		}
