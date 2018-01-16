@@ -28,9 +28,9 @@ public class Pentomino {
 		rotation = aRotation;
 	}
 
-	public char[][][] toArray(int aRotation, int aVersion) {
+	public char[][][] toArray() {
 
-		return rotate(flip(aVersion), aRotation);
+		return rotate(flip());
 
 	}
 

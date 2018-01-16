@@ -46,7 +46,7 @@ public class PlacedPentomino extends Pentomino{
 	}
 
 	public char[][][] getPlacedPentomino() {
-		return super.toArray(name, rotation, version);
+		return super.toArray();
 	}
 
 }
