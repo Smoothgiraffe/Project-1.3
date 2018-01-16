@@ -20,13 +20,23 @@ public class Display {
 	//xCamera and yCamera control the viewing angle of the cargo
 	//private int xCamera = -6;
 
-	private int yCamera =  1;
+	private int yCamera =  3;
 	private SimpleUniverse universe = new SimpleUniverse();
+	public BranchGroup group = null;
+
 
 	//Constructer that takes in an array filled with objects from PlacedBox
 	public Display(ArrayList<PlacedBox> boxArray){
 		this.boxArray = boxArray;
 		GUI g = new GUI();
+		print3DArray();
+	}
+
+	public void show(ArrayList<PlacedBox> boxArray){
+		this.boxArray = boxArray;
+		group.detach();
+		//universe.dispose();
+		//universe = new SimpleUniverse();
 		print3DArray();
 	}
 
@@ -37,7 +47,8 @@ public class Display {
 	*/
 	private void print3DArray(){
 		//creates the area in which the boxes are created
-		BranchGroup group = new BranchGroup();
+		group = new BranchGroup();
+		group.setCapability(BranchGroup.ALLOW_DETACH);
 
 		//sets the appearence that the coloringAttributes will be passed into for A,B, and C boxes
 		Appearance appearanceA = new Appearance();
@@ -97,9 +108,9 @@ public class Display {
 
 		//This next bit of code allows us to move and set the angle in which we view the objects in boxArray
 		Vector3f viewTranslation = new Vector3f();
-		viewTranslation.z = 15f;
+		viewTranslation.z = 20f;
 		viewTranslation.x = 0f;
-		viewTranslation.y = 2f;
+		viewTranslation.y = 8f;
 		Transform3D viewTransform = new Transform3D();
 		viewTransform.setTranslation(viewTranslation);
 
@@ -108,7 +119,7 @@ public class Display {
 		rotation.mul(viewTransform);
 
 		Transform3D rotation2 = new Transform3D();
-		rotation2.rotX(/*-Math.PI / 8*/ 0);
+		rotation2.rotX(-Math.PI / 8);
 		rotation.mul(rotation2);
 
 		//universe.getViewingPlatform().getViewPlatformTransform().setTransform(move);
@@ -125,6 +136,7 @@ public class Display {
 
 		// adds the group of objects to the Universe
 		universe.addBranchGraph(group);
+
 	}
 
 
@@ -146,8 +158,6 @@ public class Display {
 				this.setTitle("Control Unit");
 				this.setLocationRelativeTo(null);
 				this.setVisible(true);
-
-
 			}
 
 			public void createComponent(){
@@ -185,8 +195,6 @@ public class Display {
 			}
 			public void createRadio(){
 			}
-
-
 		}
 
 

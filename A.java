@@ -10,10 +10,11 @@ public class A extends Space{
 	private Doos C = new Doos(3, 3, 3, 'C');
 	private boolean solutionFound = false;
 	Doos[] boxes = {C, A, B}; //put them into an array
+	Display display = new Display(solution);
 
 	public A(){
 		fillSpace();
-		new Display(solution);
+		//new Display(solution);
 		if(!solutionFound){
 			System.out.println("no solution found");
 		}
@@ -27,16 +28,20 @@ public class A extends Space{
 						for(int l = 0; l < boxes.length; l++){
 							for(int m = 0; m < 6; m++){
 								if(fits(boxes[l].rotate(m), i, j, k)){
-									System.out.println(i + " " + j + " " + " " + k + " " + l + " " + m);
+									System.out.println(i + " " + j + " " + k + " " + l + " " + m);
 									//System.out.println(boxes[l].getName() + " " + i + " " + j + " " + k);
 									placeBoxAt(boxes[l].rotate(m), i, j, k);
+									display.show(solution);
 									//print();
 									fillSpace();
 									if(isFull()){
+										solutionFound = true;
 										return;
 									}
+									System.out.println("before " + solution.size());
 									deleteBox(solution.size() - 1);
-									//System.out.println(solution.size());
+									display.show(solution);
+									System.out.println("after" + solution.size());
 								}
 							}
 						}
@@ -45,13 +50,6 @@ public class A extends Space{
 			}
 		} else{
 			solutionFound = true;
-			for(int i = 0; i < space.length; i++) {
-				for(int j = 0; j < space[0].length; j++) {
-					for(int k = 0; k < space[0][0].length; k++) {
-						System.out.print(space[i][j][k]);
-					}
-				}
-			}
 			return;
 		}
 	}

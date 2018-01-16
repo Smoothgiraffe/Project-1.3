@@ -10,6 +10,7 @@ public class Test extends Space{
 		placeBoxAt(doos1,0,1,1);
 		placeBoxAt(doos2,1,1,1);
 		placeBoxAt(doos3,2,1,1);
+
 		placeBoxAt(doos4,0,2,1);
 		placeBoxAt(doos5,1,2,1);
 		placeBoxAt(doos6,2,2,1);

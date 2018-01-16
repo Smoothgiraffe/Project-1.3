@@ -9,9 +9,9 @@ import java.util.*;
 public class Space {
 
 	//these variables describe the cargo-space
-	protected static final double SPACELENGTH = 16.5;
-	protected static final double SPACEWIDTH = 2.5;
-	protected static final double SPACEHEIGHT = 4;
+	protected static final double SPACELENGTH = 3;
+	protected static final double SPACEWIDTH = 4;
+	protected static final double SPACEHEIGHT = 2;
 	protected static final double SPACEVOLUME = SPACELENGTH*SPACEWIDTH*SPACEHEIGHT;
 	protected static final double stopPercentage = 0.9;
 	protected static double completeBoxVolume = 0;
@@ -19,7 +19,7 @@ public class Space {
 	//x, y, and z are the coordinates where the next Box/pentomino is placed
 
 	//space is a three-dimensional array where every single spot acts as a 0.5*0.5*0.5 block.
-	protected static char[][][] space = new char[(int)SPACELENGTH*2][(int)SPACEHEIGHT*2][(int)SPACEWIDTH*2];
+	protected static char[][][] space = new char[(int)SPACELENGTH][(int)SPACEHEIGHT][(int)SPACEWIDTH];
 
 
 
@@ -82,10 +82,10 @@ public class Space {
 		if (x + box.getLength() > space.length) {
 			return false;
 		}
-		if (y + box.getWidth() > space[0].length) {
+		if (y + box.getHeight() > space[0].length) {
 			return false;
 		}
-		if (z + box.getHeight() > space[0][0].length) {
+		if (z + box.getWidth() > space[0][0].length) {
 			return false;
 		}
 		//checks for every single spot in the array to be empty
@@ -112,7 +112,7 @@ public class Space {
 		}
 		completeBoxVolume = completeBoxVolume + box.getVolume(); //update the volume
 		System.out.println("Placebox " + box.getLength() + " " + box.getWidth() + " " + box.getHeight() + " " + box.getName() + " " + x + " " + y + " " + z);
-		PlacedBox newBox = new PlacedBox(box.getLength(), box.getWidth(), box.getHeight(), box.getName(), (double) x / 2, (double) y / 2, (double) z / 2); //create new PlacedBox-Object to add to the solution
+		PlacedBox newBox = new PlacedBox(box.getLength(), box.getHeight(), box.getWidth(), box.getName(), (double) x / 2, (double) y / 2, (double) z / 2); //create new PlacedBox-Object to add to the solution
 		solution.add(newBox);
 	}
 
@@ -171,5 +171,4 @@ public class Space {
 		}
 		return true;
 	}
-
 }
