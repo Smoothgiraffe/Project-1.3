@@ -17,7 +17,6 @@ public class Space {
 	protected static double completeBoxVolume = 0;
 	protected static ArrayList<PlacedBox> solution = new ArrayList<PlacedBox>();
 	//x, y, and z are the coordinates where the next Box/pentomino is placed
-	//protected static int x, y, z = 0;
 
 	//space is a three-dimensional array where every single spot acts as a 0.5*0.5*0.5 block.
 	protected static char[][][] space = new char[(int)SPACELENGTH*2][(int)SPACEWIDTH*2][(int)SPACEHEIGHT*2];
@@ -77,22 +76,22 @@ public class Space {
 		z = coordinateZ;
 	}*/
 
-	//checks if a specific box//pentomino fits at a secific place with the coordinates x, y, and z
+	//checks if a specific box//pentomino fits at a specific place with the coordinates x, y, and z
 	public static boolean fits(Doos box, int x, int y, int z) {
 		//checks for out-of-bound-errors
-		if (x + box.getArrayLength() > space.length) {
+		if (x + box.getLength() > space.length) {
 			return false;
 		}
-		if (y + box.getArrayWidth() > space[0].length) {
+		if (y + box.getWidth() > space[0].length) {
 			return false;
 		}
-		if (z + box.getArrayHeight() > space[0][0].length) {
+		if (z + box.getHeight() > space[0][0].length) {
 			return false;
 		}
 		//checks for every single spot in the array to be empty
-		for(int i = 0; i < box.getArrayLength(); i++) {
-			for (int j = 0; j < box.getArrayWidth(); j++) {
-				for (int k = 0; k < box.getArrayHeight(); k++) {
+		for(int i = 0; i < box.getLength(); i++) {
+			for (int j = 0; j < box.getWidth(); j++) {
+				for (int k = 0; k < box.getHeight(); k++) {
 					if (space[x + i][y + j][z + k] != '\u0000' || space[i][j][k] == '0') {
 						return false;
 					}
@@ -104,16 +103,17 @@ public class Space {
 
 	//places a box at a given point with coordinates x, y, and z
 	public static void placeBoxAt(Doos box, int x, int y, int z) { //CHECK IF FITS FIRST!
-			for (int i = 0; i < box.getArrayLength(); i++) {
-				for (int j = 0; j < box.getArrayWidth(); j++) {
-					for (int k = 0; k < box.getArrayHeight(); k++) {
-						space[x + i][y + j][z + k] = box.getName();
-					}
+		for (int i = 0; i < box.getLength(); i++) {
+			for (int j = 0; j < box.getWidth(); j++) {
+				for (int k = 0; k < box.getHeight(); k++) {
+					space[x + i][y + j][z + k] = box.getName();
 				}
 			}
-			completeBoxVolume = completeBoxVolume + box.getVolume(); //update the volume
-			PlacedBox newBox = new PlacedBox(box.getArrayLength(), box.getArrayWidth(), box.getArrayHeight(), box.getName(), x, y, z); //create new PlacedBox-Object to add to the solution
-			solution.add(newBox);
+		}
+		completeBoxVolume = completeBoxVolume + box.getVolume(); //update the volume
+		System.out.println(box.getLength() + " " + box.getWidth() + " " + box.getHeight() + " " + box.getName() + " " + x + " " + y + " " + z);
+		PlacedBox newBox = new PlacedBox(box.getLength(), box.getWidth(), box.getHeight(), box.getName(), x/2, y, z/2); //create new PlacedBox-Object to add to the solution
+		solution.add(newBox);
 	}
 
 	//places a pentomino at a certain positon x, y, z
@@ -134,10 +134,10 @@ public class Space {
 	public static void deleteBox(int index) {
 		//update the space
 		PlacedBox deleteBox = solution.get(index);
-		System.out.println(deleteBox.getArrayLength() + " " + deleteBox.getArrayWidth() +  " " + deleteBox.getArrayHeight());
-		for (int i = 0; i < deleteBox.getArrayLength(); i++) {
-			for (int j = 0; j < deleteBox.getArrayWidth(); j++) {
-				for (int k = 0; k < deleteBox.getArrayHeight(); k++) {
+		System.out.println(deleteBox.getLength() + " " + deleteBox.getWidth() +  " " + deleteBox.getHeight());
+		for (int i = 0; i < deleteBox.getLength(); i++) {
+			for (int j = 0; j < deleteBox.getWidth(); j++) {
+				for (int k = 0; k < deleteBox.getHeight(); k++) {
 					//System.out.println(i + " " + j + " " + k + " " + solution.size() + " " + index);
 					System.out.println(deleteBox.getX() + i + " " + deleteBox.getY() + j + " " + deleteBox.getZ() + k);
 					space[deleteBox.getX() + i][deleteBox.getY() + j][deleteBox.getZ() + k] = '\u0000';

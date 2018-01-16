@@ -8,20 +8,18 @@ public class PlacedBox extends Doos {
 
 	//Constructor without value
 	public PlacedBox(double aLength, double aWidth, double aHeight, char aName, int aPlaceX, int aPlaceY, int aPlaceZ) {
-		super(aLength/2, aWidth/2, aHeight/2, aName);
+		super(aLength, aWidth, aHeight, aName);
 		placedX = aPlaceX;
 		placedY = aPlaceY;
 		placedZ = aPlaceZ;
-
 	}
 
 	//Constructor with value
 	public PlacedBox(double aLength, double aWidth, double aHeight, char aName, double aValue, int aPlaceX, int aPlaceY, int aPlaceZ) {
-		super(aLength/2, aWidth/2, aHeight/2,aName, aValue);
+		super(aLength, aWidth, aHeight,aName, aValue);
 		placedX = aPlaceX;
 		placedY = aPlaceY;
 		placedZ = aPlaceZ;
-
 	}
 
 	public int getX() {

@@ -5,13 +5,12 @@ import java.util.ArrayList;
 */
 public class A extends Space{
 	//initiate the three types of boxes
-	private Doos A = new Doos(1, 1, 2, 'A', 3);
-	private Doos B = new Doos(1, 1.5, 2, 'B', 4);
-	private Doos C = new Doos(1.5, 1.5, 1.5, 'C', 5);
+	private Doos A = new Doos(2, 2, 4, 'A', 3);
+	private Doos B = new Doos(2, 3, 4, 'B', 4);
+	private Doos C = new Doos(3, 3, 3, 'C', 5);
 	private boolean solutionFound = false;
-
-
 	Doos[] boxes = {A, B, C}; //put them into an array
+
 	public A(){
 		fillSpace();
 		new Display(solution);
@@ -27,13 +26,13 @@ public class A extends Space{
 					for(int k = 0; k < space[0][0].length; k++){
 						for(int l = 0; l < boxes.length; l++){
 							if(fits(boxes[l], i, j, k)){
+								System.out.println(boxes[l].getName() + " " + i + " " + j + " " + k);
 								placeBoxAt(boxes[l], i, j, k);
 								fillSpace();
 								if(isFull()){
-									System.out.println("found");
 									return;
 								}
-								deleteBox(solution.size() - 1, i, j, k);
+								deleteBox(solution.size() - 1);
 							}
 						}
 					}
@@ -41,6 +40,7 @@ public class A extends Space{
 			}
 		} else{
 			solutionFound = true;
+			return;
 		}
 	}
 	public static void main(String args[]){

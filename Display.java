@@ -66,19 +66,20 @@ public class Display {
 		it then assigns their color and visually represents them in 3D
 		*/
 		for (int i = 0; i < boxArray.size(); i++) {
+			//System.out.println("Printing " + )
 			Box box = new Box();
 			if (boxArray.get(i).getName() == 'A') {
-				box = new Box((float) boxArray.get(i).getArrayLength() / 5, (float) boxArray.get(i).getArrayHeight() / 5, (float) boxArray.get(i).getArrayWidth() / 5, appearanceA);
+				box = new Box((float) boxArray.get(i).getLength() / 5.25f, (float) boxArray.get(i).getHeight() / 5.25f, (float) boxArray.get(i).getWidth() / 5.25f, appearanceA);
 			}else if (boxArray.get(i).getName() == 'B'){
-				box = new Box((float) boxArray.get(i).getArrayLength() / 5, (float) boxArray.get(i).getArrayHeight() / 5, (float) boxArray.get(i).getArrayWidth() / 5, appearanceB);
+				box = new Box((float) boxArray.get(i).getLength() / 5.25f, (float) boxArray.get(i).getHeight() / 5.25f, (float) boxArray.get(i).getWidth() / 5.25f, appearanceB);
 			}else if (boxArray.get(i).getName() == 'C'){
-				box = new Box((float) boxArray.get(i).getArrayLength() / 5, (float) boxArray.get(i).getArrayHeight() / 5, (float) boxArray.get(i).getArrayWidth() / 5, appearanceC);
+				box = new Box((float) boxArray.get(i).getLength() / 5.25f, (float) boxArray.get(i).getHeight() / 5.25f, (float) boxArray.get(i).getWidth() / 5.25f, appearanceC);
 			}
 
 			//Sets each object in boxArray onto its own vector
 			TransformGroup tg = new TransformGroup();
 			Transform3D transform = new Transform3D();
-			Vector3f vector = new Vector3f((float)boxArray.get(i).getX() / 1.25f + (float) boxArray.get(i).getArrayLength() / 5, (float)boxArray.get(i).getY() / 1.25f  +  ((float)boxArray.get(i).getArrayHeight() / 5),  boxArray.get(i).getZ() / 1.25f + (float) boxArray.get(i).getArrayWidth() / 5);
+			Vector3f vector = new Vector3f((float)boxArray.get(i).getX() / 1.25f + (float) boxArray.get(i).getLength() / 5, (float)boxArray.get(i).getY() / 1.25f  +  ((float)boxArray.get(i).getHeight() / 5),  boxArray.get(i).getZ() / 1.25f + (float) boxArray.get(i).getWidth() / 5);
 			transform.setTranslation(vector);
 			tg.setTransform(transform);
 			tg.addChild(box);
@@ -87,7 +88,7 @@ public class Display {
 		}
 
 		Font3D font = new Font3D(new Font("font", Font.PLAIN, 1), new FontExtrusion());
-		Text3D text = new Text3D(font, "Group 13!", new Point3f(0.0f, 6.0f, 0.0f));
+		Text3D text = new Text3D(font, "Group 13!", new Point3f(0.0f, 4.0f, 0.0f));
 
 		Transform3D transform2 = new Transform3D();
 		Shape3D shape = new Shape3D();
@@ -98,7 +99,7 @@ public class Display {
 		Vector3f viewTranslation = new Vector3f();
 		viewTranslation.z = 15f;
 		viewTranslation.x = 0f;
-		viewTranslation.y = 6f;
+		viewTranslation.y = 2f;
 		Transform3D viewTransform = new Transform3D();
 		viewTransform.setTranslation(viewTranslation);
 
@@ -107,7 +108,7 @@ public class Display {
 		rotation.mul(viewTransform);
 
 		Transform3D rotation2 = new Transform3D();
-		rotation2.rotX(-Math.PI / 8);
+		rotation2.rotX(/*-Math.PI / 8*/ 0);
 		rotation.mul(rotation2);
 
 		//universe.getViewingPlatform().getViewPlatformTransform().setTransform(move);

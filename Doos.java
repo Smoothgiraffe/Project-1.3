@@ -22,9 +22,6 @@ public class Doos {
 		length = aLength;
 		width = aWidth;
 		height = aHeight;
-		arrayLength = (int) aLength *2;
-		arrayWidth = (int) aWidth *2;
-		arrayHeight = (int) aHeight *2;
 		name = aName;
 		volume = height*length*width;
 	}
@@ -34,9 +31,6 @@ public class Doos {
 		length = aLength;
 		width = aWidth;
 		height = aHeight;
-		arrayLength = (int) aLength *2;
-		arrayWidth = (int) aWidth *2;
-		arrayHeight = (int) aHeight *2;
 		name = aName;
 		value = aValue;
 		valuePerUnit = (((aValue/aHeight)/aLength)/aWidth);
@@ -48,16 +42,16 @@ public class Doos {
 		return valuePerUnit;
 	}
 
-	public int getArrayLength() {
-		return arrayLength;
+	public double getLength() {
+		return length;
 	}
 
-	public int getArrayWidth() {
-		return arrayWidth;
+	public double getWidth() {
+		return width;
 	}
 
-	public int getArrayHeight() {
-		return arrayHeight;
+	public double getHeight() {
+		return height;
 	}
 
 	public char getName() {
