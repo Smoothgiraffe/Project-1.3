@@ -90,8 +90,8 @@ public class Space {
 		}
 		//checks for every single spot in the array to be empty
 		for(int i = 0; i < box.getLength(); i++) {
-			for (int j = 0; j < box.getWidth(); j++) {
-				for (int k = 0; k < box.getHeight(); k++) {
+			for (int j = 0; j < box.getHeight(); j++) {
+				for (int k = 0; k < box.getWidth(); k++) {
 					if (space[x + i][y + j][z + k] != '\u0000' || space[i][j][k] == '0') {
 						return false;
 					}
@@ -104,8 +104,8 @@ public class Space {
 	//places a box at a given point with coordinates x, y, and z
 	public static void placeBoxAt(Doos box, int x, int y, int z) { //CHECK IF FITS FIRST!
 		for (int i = 0; i < box.getLength(); i++) {
-			for (int j = 0; j < box.getWidth(); j++) {
-				for (int k = 0; k < box.getHeight(); k++) {
+			for (int j = 0; j < box.getHeight(); j++) {
+				for (int k = 0; k < box.getWidth(); k++) {
 					space[x + i][y + j][z + k] = box.getName();
 				}
 			}
@@ -138,8 +138,8 @@ public class Space {
 		PlacedBox deleteBox = solution.get(index);
 		System.out.println("deletebox " + deleteBox.getName() + " " + deleteBox.getLength() + " " + deleteBox.getWidth() +  " " + deleteBox.getHeight());
 		for (int i = 0; i < deleteBox.getLength(); i++) {
-			for (int j = 0; j < deleteBox.getWidth(); j++) {
-				for (int k = 0; k < deleteBox.getHeight(); k++) {
+			for (int j = 0; j < deleteBox.getHeight(); j++) {
+				for (int k = 0; k < deleteBox.getWidth(); k++) {
 					//System.out.println(i + " " + j + " " + k + " " + solution.size() + " " + index);
 					space[(int) (deleteBox.getX() + i)][(int) (deleteBox.getY() + j)][(int) (deleteBox.getZ() + k)] = '\u0000';
 				}
