@@ -7,7 +7,7 @@ public class A extends Space{
 	//initiate the three types of boxes
 	private Doos A = new Doos(2, 2, 4, 'A');
 	private Doos B = new Doos(2, 3, 4, 'B');
-	private Doos C = new Doos(1, 1, 1, 'C');
+	private Doos C = new Doos(3, 3, 3, 'C');
 	private boolean solutionFound = false;
 	Doos[] boxes = {C, A, B}; //put them into an array
 
@@ -25,14 +25,19 @@ public class A extends Space{
 				for(int j = 0; j < space[0].length; j++){
 					for(int k = 0; k < space[0][0].length; k++){
 						for(int l = 0; l < boxes.length; l++){
-							if(fits(boxes[l], i, j, k)){
-								System.out.println(boxes[l].getName() + " " + i + " " + j + " " + k);
-								placeBoxAt(boxes[l], i, j, k);
-								fillSpace();
-								if(isFull()){
-									return;
+							for(int m = 0; m < 6; m++){
+								if(fits(boxes[l].rotate(m), i, j, k)){
+									System.out.println(i + " " + j + " " + " " + k + " " + l + " " + m);
+									//System.out.println(boxes[l].getName() + " " + i + " " + j + " " + k);
+									placeBoxAt(boxes[l].rotate(m), i, j, k);
+									//print();
+									fillSpace();
+									if(isFull()){
+										return;
+									}
+									deleteBox(solution.size() - 1);
+									//System.out.println(solution.size());
 								}
-								deleteBox(solution.size() - 1);
 							}
 						}
 					}
@@ -40,9 +45,29 @@ public class A extends Space{
 			}
 		} else{
 			solutionFound = true;
+			for(int i = 0; i < space.length; i++) {
+				for(int j = 0; j < space[0].length; j++) {
+					for(int k = 0; k < space[0][0].length; k++) {
+						System.out.print(space[i][j][k]);
+					}
+				}
+			}
 			return;
 		}
 	}
+
+	public void print() {
+		for(int i = 0; i < space.length; i++) {
+			for(int j = 0; j < space[0].length; j++) {
+				for(int k = 0; k < space[0][0].length; k++) {
+					System.out.print(space[i][j][k]);
+				}
+				System.out.println();
+			}
+			System.out.println();
+		}
+	}
+
 	public static void main(String args[]){
 		new A();
 	}
