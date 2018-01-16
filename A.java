@@ -9,7 +9,7 @@ public class A extends Space{
 	private Doos B = new Doos(2, 3, 4, 'B');
 	private Doos C = new Doos(3, 3, 3, 'C');
 	private boolean solutionFound = false;
-	Doos[] boxes = {C, A, B}; //put them into an array
+	Doos[] boxes = {A, B, C}; //put them into an array
 	Display display = new Display(solution);
 
 	public A(){
@@ -27,8 +27,10 @@ public class A extends Space{
 					for(int k = 0; k < space[0][0].length; k++){
 						for(int l = 0; l < boxes.length; l++){
 							for(int m = 0; m < 6; m++){
+								//System.out.println(i + " " + j + " " + k + " " + l + " " + m);
 								if(fits(boxes[l].rotate(m), i, j, k)){
-									System.out.println(i + " " + j + " " + k + " " + l + " " + m);
+									//System.out.println(boxes[l].getName());
+
 									//System.out.println(boxes[l].getName() + " " + i + " " + j + " " + k);
 									placeBoxAt(boxes[l].rotate(m), i, j, k);
 									display.show(solution);
@@ -38,10 +40,10 @@ public class A extends Space{
 										solutionFound = true;
 										return;
 									}
-									System.out.println("before " + solution.size());
+									//System.out.println("before " + solution.size());
 									deleteBox(solution.size() - 1);
 									display.show(solution);
-									System.out.println("after" + solution.size());
+									//System.out.println("after" + solution.size());
 								}
 							}
 						}

@@ -7,16 +7,16 @@ public class PlacedBox extends Doos {
 	private double placedZ;
 
 	//Constructor without value
-	public PlacedBox(double aLength, double aWidth, double aHeight, char aName, double aPlaceX, double aPlaceY, double aPlaceZ) {
-		super(aLength, aWidth, aHeight, aName);
+	public PlacedBox(double aLength, double aHeight, double aWidth, char aName, double aPlaceX, double aPlaceY, double aPlaceZ) {
+		super(aLength, aHeight, aWidth, aName);
 		placedX = aPlaceX;
 		placedY = aPlaceY;
 		placedZ = aPlaceZ;
 	}
 
 	//Constructor with value
-	public PlacedBox(double aLength, double aWidth, double aHeight, char aName, double aValue, double aPlaceX, double aPlaceY, double aPlaceZ) {
-		super(aLength, aWidth, aHeight,aName, aValue);
+	public PlacedBox(double aLength, double aHeight, double aWidth, char aName, double aValue, double aPlaceX, double aPlaceY, double aPlaceZ) {
+		super(aLength, aHeight, aWidth, aName, aValue);
 		placedX = aPlaceX;
 		placedY = aPlaceY;
 		placedZ = aPlaceZ;

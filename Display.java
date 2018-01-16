@@ -179,7 +179,6 @@ public class Display {
 				moveLeft.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e){
 						yCamera = yCamera + 1;
-						//xCamera = xCamera + 40;
 						print3DArray();
 				}
 					});
@@ -188,7 +187,6 @@ public class Display {
 
 					public void actionPerformed(ActionEvent e){
 						yCamera = yCamera - 1;
-						//xCamera = xCamera - 40;
 						print3DArray();
 				}
 					});

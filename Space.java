@@ -9,9 +9,10 @@ import java.util.*;
 public class Space {
 
 	//these variables describe the cargo-space
-	protected static final double SPACELENGTH = 3;
-	protected static final double SPACEWIDTH = 4;
-	protected static final double SPACEHEIGHT = 2;
+	protected static final double SPACELENGTH = 15;
+	protected static final double SPACEHEIGHT = 15;
+	protected static final double SPACEWIDTH = 15;
+
 	protected static final double SPACEVOLUME = SPACELENGTH*SPACEWIDTH*SPACEHEIGHT;
 	protected static final double stopPercentage = 0.9;
 	protected static double completeBoxVolume = 0;
@@ -80,19 +81,22 @@ public class Space {
 	public static boolean fits(Doos box, int x, int y, int z) {
 		//checks for out-of-bound-errors
 		if (x + box.getLength() > space.length) {
+			//System.out.println(box.getName() + " x " + x + " Length " + box.getLength());
 			return false;
 		}
 		if (y + box.getHeight() > space[0].length) {
+			//System.out.println(box.getName() + " y " + y + " height " + box.getHeight());
 			return false;
 		}
 		if (z + box.getWidth() > space[0][0].length) {
+			//System.out.println(box.getName() + " z " + z + " Width " + box.getWidth());
 			return false;
 		}
 		//checks for every single spot in the array to be empty
 		for(int i = 0; i < box.getLength(); i++) {
 			for (int j = 0; j < box.getHeight(); j++) {
 				for (int k = 0; k < box.getWidth(); k++) {
-					if (space[x + i][y + j][z + k] != '\u0000' || space[i][j][k] == '0') {
+					if (space[x + i][y + j][z + k] != '\u0000' && space[x + i][y + j][z + k] != '0') {
 						return false;
 					}
 				}
@@ -111,7 +115,7 @@ public class Space {
 			}
 		}
 		completeBoxVolume = completeBoxVolume + box.getVolume(); //update the volume
-		System.out.println("Placebox " + box.getLength() + " " + box.getWidth() + " " + box.getHeight() + " " + box.getName() + " " + x + " " + y + " " + z);
+		//System.out.println("Placebox " + box.getLength() + " " + box.getWidth() + " " + box.getHeight() + " " + box.getName() + " " + x + " " + y + " " + z);
 		PlacedBox newBox = new PlacedBox(box.getLength(), box.getHeight(), box.getWidth(), box.getName(), (double) x / 2, (double) y / 2, (double) z / 2); //create new PlacedBox-Object to add to the solution
 		solution.add(newBox);
 	}
@@ -136,7 +140,7 @@ public class Space {
 	public static void deleteBox(int index) {
 		//update the space
 		PlacedBox deleteBox = solution.get(index);
-		System.out.println("deletebox " + deleteBox.getName() + " " + deleteBox.getLength() + " " + deleteBox.getWidth() +  " " + deleteBox.getHeight());
+		//System.out.println("deletebox " + deleteBox.getName() + " " + deleteBox.getLength() + " " + deleteBox.getWidth() +  " " + deleteBox.getHeight());
 		for (int i = 0; i < deleteBox.getLength(); i++) {
 			for (int j = 0; j < deleteBox.getHeight(); j++) {
 				for (int k = 0; k < deleteBox.getWidth(); k++) {
