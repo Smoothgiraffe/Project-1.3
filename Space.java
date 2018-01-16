@@ -112,17 +112,19 @@ public class Space {
 		}
 		completeBoxVolume = completeBoxVolume + box.getVolume(); //update the volume
 		System.out.println("Placebox " + box.getLength() + " " + box.getWidth() + " " + box.getHeight() + " " + box.getName() + " " + x + " " + y + " " + z);
-		PlacedBox newBox = new PlacedBox(box.getLength(), box.getWidth(), box.getHeight(), box.getName(),(double) x / 2, (double) y / 2, (double) z / 2); //create new PlacedBox-Object to add to the solution
+		PlacedBox newBox = new PlacedBox(box.getLength(), box.getWidth(), box.getHeight(), box.getName(), (double) x / 2, (double) y / 2, (double) z / 2); //create new PlacedBox-Object to add to the solution
 		solution.add(newBox);
 	}
 
 	//places a pentomino at a certain positon x, y, z
-	/*public static void placePentominoAt(char pentomino, int rotation, int version, int x, int y, int z) {
-		char[][][] pent = Pentomino.toArray(pentomino, rotation, version);
-		for(int i = 0; i < pent.length; i++){
-			for(int j = 0; j < pent[0].length; j++) {
-				for(int k = 0; k < pent[0][0].length; k++) {
-					if(pent[i][j][k] != '\u0000' || space[i][j][k] == '0') {
+	/*public static void placePentominoAt(Pentomino pent, int rotation, int version, int x, int y, int z) {
+		pent.setFliptation(version);
+		pent.setRotation(rotation);
+		char[][][] pentArray = Pentomino.toArray();
+		for(int i = 0; i < pentArray.length; i++){
+			for(int j = 0; j < pentArray[0].length; j++) {
+				for(int k = 0; k < pentArray[0][0].length; k++) {
+					if(pentArray[i][j][k] != '\u0000' || space[i][j][k] == '0') {
 						space[x + i][y + j][z + k] = pent[i][j][k];
 					}
 				}
