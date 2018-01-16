@@ -18,7 +18,7 @@ public class Doos {
 	protected double value;
 
 	//Constructor without value
-	public Doos(double aLength, double aWidth, double aHeight, char aName) {
+	public Doos(double aLength, double aHeight, double aWidth, char aName) {
 		length = aLength;
 		width = aWidth;
 		height = aHeight;
@@ -27,7 +27,7 @@ public class Doos {
 	}
 
 	//Constructor with value
-	public Doos(double aLength, double aWidth, double aHeight, char aName, double aValue) {
+	public Doos(double aLength, double aHeight, double aWidth, char aName, double aValue) {
 		length = aLength;
 		width = aWidth;
 		height = aHeight;
