@@ -85,12 +85,12 @@ public class Doos {
 		return rotatedBox;
 	}
 
-	/*
+/*
 	public char[][][] returnAsArray() { //returns a box as an array for the cargo space
-		char[][][] arrayBox = new char[length*2][width*2][height*2];
+		char[][][] arrayBox = new char[(int) height][(int) width][(int) length];
 
 		for (int i = 0; i < arrayBox.length; i++) {
-			for (int j = 0; j < arrayBox[i].length, j++) {
+			for (int j = 0; j < arrayBox[i].length; j++) {
 				for (int k = 0; k < arrayBox[i][j].length; k++) {
 					arrayBox[i][j][k] = name;
 				}
@@ -98,6 +98,5 @@ public class Doos {
 		}
 		return arrayBox;
 	}
-	*/
-
+*/
 }
