@@ -70,9 +70,9 @@ public class Doos {
 	public Doos rotate(int rotation) {
 		Doos rotatedBox = null;
 		if (rotation == 0) {
-			rotatedBox = new Doos(length, width, height, name, value);
-		} else if (rotation == 1) {
 			rotatedBox = new Doos(length, height, width, name, value);
+		} else if (rotation == 1) {
+			rotatedBox = new Doos(length, width, height, name, value);
 		} else if (rotation == 2) {
 			rotatedBox = new Doos(width, length, height, name, value);
 		} else if (rotation == 3) {
