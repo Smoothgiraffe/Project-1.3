@@ -107,9 +107,9 @@ public class Space {
 
 	//places a box at a given point with coordinates x, y, and z
 	public static void placeBoxAt(Doos box, int x, int y, int z) { //CHECK IF FITS FIRST!
-		for (int i = 0; i < box.getHeight(); i++) {
-			for (int j = 0; j < box.getWidth(); j++) {
-				for (int k = 0; k < box.getLength(); k++) {
+		for (int i = 0; i < box.getLength(); i++) {
+			for (int j = 0; j < box.getHeight(); j++) {
+				for (int k = 0; k < box.getWidth(); k++) {
 					space[x + i][y + j][z + k] = box.getName();
 				}
 			}
