@@ -9,9 +9,9 @@ import java.util.*;
 public class CargoSpace {
 
 	//these variables describe the cargo-space
-	protected static final double SPACELENGTH = 15;
-	protected static final double SPACEHEIGHT = 15;
-	protected static final double SPACEWIDTH = 15;
+	protected static final double SPACELENGTH = 4;
+	protected static final double SPACEHEIGHT = 4;
+	protected static final double SPACEWIDTH = 4;
 
 	protected static final double SPACEVOLUME = SPACELENGTH*SPACEWIDTH*SPACEHEIGHT;
 	protected static final double stopPercentage = 0.9;
@@ -21,8 +21,6 @@ public class CargoSpace {
 
 	//space is a three-dimensional array where every single spot acts as a 0.5*0.5*0.5 block.
 	protected static char[][][] space = new char[(int)SPACELENGTH][(int)SPACEHEIGHT][(int)SPACEWIDTH];
-
-
 
 	/*public static Pentomino[] sortPentominoes(Pentomino[] pentomino) {
 		Pentomino[] newPentomino = new Pentomino[pentomino.length];
@@ -96,12 +94,15 @@ public class CargoSpace {
 		for(int i = 0; i < box.getLength(); i++) {
 			for (int j = 0; j < box.getHeight(); j++) {
 				for (int k = 0; k < box.getWidth(); k++) {
+					//System.out.println((space[x + i][y + j][z + k]+ " " + x + i + " " + y + j + " " + z + k));
 					if (space[x + i][y + j][z + k] != '\u0000' && space[x + i][y + j][z + k] != '0') {
+						//System.out.println(false);
 						return false;
 					}
 				}
 			}
 		}
+
 		return true;
 	}
 
@@ -174,5 +175,18 @@ public class CargoSpace {
 			}
 		}
 		return true;
+	}
+
+	public static void print() {
+		for(int j = 0; j < space[0].length; j++) {
+			for(int i = 0; i < space.length; i++) {
+				for(int k = 0; k < space[0][0].length; k++) {
+					System.out.print(space[i][j][k]);
+				}
+				System.out.println();
+			}
+			System.out.println();
+		}
+		System.out.println("length " + space.length + " heigth " + space[0].length + " width " + space[0][0].length);
 	}
 }

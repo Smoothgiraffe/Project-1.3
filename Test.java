@@ -1,4 +1,4 @@
-public class Test extends Space{
+public class Test extends CargoSpace{
 	public static void main(String[] args) {
 		Doos doos1 = new Doos(1,1,2,'A');
 		Doos doos2 = new Doos(1,1,1,'B');
@@ -14,6 +14,10 @@ public class Test extends Space{
 		placeBoxAt(doos4,0,2,1);
 		placeBoxAt(doos5,1,2,1);
 		placeBoxAt(doos6,2,2,1);
+		print();
+		System.out.println("after");
+		deleteBox(solution.size() -1);
+		print();
 
 		new Display(solution);
 	}

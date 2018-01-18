@@ -20,7 +20,7 @@ public class Display {
 	//xCamera and yCamera control the viewing angle of the cargo
 	//private int xCamera = -6;
 
-	private int yCamera =  3;
+	private int yCamera =  -1;
 	private SimpleUniverse universe = new SimpleUniverse();
 	public BranchGroup group = null;
 
@@ -197,8 +197,8 @@ public class Display {
 
 
 	public static void main(String[] args){
-		PlacedBox box = new PlacedBox( 2,2,6,'A',0,0,0);
-		PlacedBox box1 = new PlacedBox( 2,4,4,'B',0,0,1);
+		PlacedBox box = new PlacedBox( 2,6,2,'A',0,0,0);
+		PlacedBox box1 = new PlacedBox( 2,4,2,'B',0,0,1);
 		PlacedBox box2 = new PlacedBox( 2,2,2,'C',1,0,0);
 		PlacedBox box3 = new PlacedBox( 2,2,2,'C',1,2,0);
 		ArrayList array = new ArrayList();

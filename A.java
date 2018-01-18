@@ -14,6 +14,7 @@ public class A extends CargoSpace{
 
 	public A(){
 		fillSpace();
+		print();
 		//new Display(solution);
 		if(!solutionFound){
 			System.out.println("no solution found");
@@ -30,13 +31,13 @@ public class A extends CargoSpace{
 								//System.out.println(i + " " + j + " " + k + " " + l + " " + m);
 								if(fits(boxes[l].rotate(m), i, j, k)){
 									//System.out.println(boxes[l].getName());
-
 									//System.out.println(boxes[l].getName() + " " + i + " " + j + " " + k);
 									placeBoxAt(boxes[l].rotate(m), i, j, k);
 									display.show(solution);
 									//print();
 									fillSpace();
 									if(isFull()){
+										System.out.println("full");
 										solutionFound = true;
 										return;
 									}
@@ -53,18 +54,6 @@ public class A extends CargoSpace{
 		} else{
 			solutionFound = true;
 			return;
-		}
-	}
-
-	public void print() {
-		for(int i = 0; i < space.length; i++) {
-			for(int j = 0; j < space[0].length; j++) {
-				for(int k = 0; k < space[0][0].length; k++) {
-					System.out.print(space[i][j][k]);
-				}
-				System.out.println();
-			}
-			System.out.println();
 		}
 	}
 

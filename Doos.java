@@ -9,9 +9,6 @@ public class Doos {
 	protected double length;
 	protected double width;
 	protected double height;
-	protected int arrayLength;
-	protected int arrayWidth;
-	protected int arrayHeight;
 	protected char name;
 	protected double valuePerUnit;
 	protected double volume;
