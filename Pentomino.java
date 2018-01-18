@@ -13,6 +13,9 @@ public class Pentomino {
 
 	public Pentomino(char aName) {
 		name = aName;
+		if(name != 'P' && name != 'L' && name != 'T') {
+			System.out.println("The pentomino with the name " + name + " was not initiated right.");
+		}
 	}
 
 	public Pentomino(char aName, double aValue) {
@@ -20,11 +23,9 @@ public class Pentomino {
 		value = aValue;
 	}
 
-	public void setFliptation(int flipTation) {
+	//Don't forget: 0 <= flipTation <= 3 and 0 <= aRotation <= 5
+	public void setVersion(int flipTation, int aRotation) {
 		flipVersion = flipTation;
-	}
-
-	public void setRotation(int aRotation) {
 		rotation = aRotation;
 	}
 
@@ -35,7 +36,7 @@ public class Pentomino {
 	}
 
 	//flips the pentomino such as it still has the same dimensions, can go from 0 to 3
-	public char[][][] flip() {
+	private char[][][] flip() {
 		char[][][] originalArray;
 
 		if(name == 'P') {
@@ -46,6 +47,7 @@ public class Pentomino {
 			originalArray = getPentT();
 		} else {
 			//You land here if the name of the pentomino is not P, L or T. That's wrong!
+			System.out.println();
 			return null;
 		}
 
@@ -85,7 +87,7 @@ public class Pentomino {
 	}
 
 	//rotates a pentomino.
-	public char[][][] rotate(char[][][] flippedPent) {
+	private char[][][] rotate(char[][][] flippedPent) {
 		if(rotation == 0) {
 			return flippedPent;
 		} else if(rotation == 1) {
