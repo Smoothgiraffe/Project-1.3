@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /*
 	Is it possible to fill the complete cargo space with A, B and/or C parcels, without having any gaps?
 */
-public class A extends Space{
+public class A extends CargoSpace{
 	//initiate the three types of boxes
 	private Doos A = new Doos(2, 2, 4, 'A');
 	private Doos B = new Doos(2, 3, 4, 'B');

@@ -6,7 +6,7 @@ import java.util.*;
 	It is able to find the coordinates for a new box, place it in there, keep track of the steps made, how full the space is, and more.
 */
 
-public class Space {
+public class CargoSpace {
 
 	//these variables describe the cargo-space
 	protected static final double SPACELENGTH = 15;

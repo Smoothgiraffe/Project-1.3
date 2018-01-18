@@ -6,7 +6,7 @@
 	When there is no space for the most valuable box, the second-most valueable box is considered, and so on.
 */
 
-public class B extends Space{
+public class B extends CargoSpace{
 
 	public static void main(String[] args) {
 
