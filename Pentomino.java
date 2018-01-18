@@ -69,7 +69,7 @@ public class Pentomino {
 		} else if(flipVersion == 2) {
 			for(int i = 0; i < rotateArray.length; i++) {
 				for(int j = 0; j < rotateArray[0].length; j++) {
-					rotateArray[i][j] = tempArray[i][tempArray[0].length];
+					rotateArray[i][j] = tempArray[i][tempArray[0].length - j - 1];
 				}
 			}
 			char[][][] result = {rotateArray};
@@ -77,7 +77,7 @@ public class Pentomino {
 		} else if(flipVersion == 3) {
 			for(int i = 0; i < rotateArray.length; i++) {
 				for(int j = 0; j < rotateArray[0].length; j++) {
-					rotateArray[i][j] = tempArray[tempArray.length - i - 1][tempArray[0].length];
+					rotateArray[i][j] = tempArray[tempArray.length - i - 1][tempArray[0].length - j - 1];
 				}
 			}
 			char[][][] result = {rotateArray};
