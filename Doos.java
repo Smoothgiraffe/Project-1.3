@@ -87,7 +87,7 @@ public class Doos {
 
 /*
 	public char[][][] returnAsArray() { //returns a box as an array for the cargo space
-		char[][][] arrayBox = new char[(int) height][(int) width][(int) length];
+		char[][][] arrayBox = new char[(int) length][(int) height][(int) width];
 
 		for (int i = 0; i < arrayBox.length; i++) {
 			for (int j = 0; j < arrayBox[i].length; j++) {
