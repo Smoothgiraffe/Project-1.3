@@ -5,11 +5,11 @@ import java.util.ArrayList;
 */
 public class A extends CargoSpace{
 	//initiate the three types of boxes
-	private Doos A = new Doos(2, 2, 4, 'A');
-	private Doos B = new Doos(2, 3, 4, 'B');
-	private Doos C = new Doos(3, 3, 3, 'C');
+	private Parcel A = new Parcel(2, 2, 4, 'A');
+	private Parcel B = new Parcel(2, 3, 4, 'B');
+	private Parcel C = new Parcel(3, 3, 3, 'C');
 	private boolean solutionFound = false;
-	Doos[] boxes = {A, B, C}; //put them into an array
+	Parcel[] boxes = {A, B, C}; //put them into an array
 
 
 	public A(){

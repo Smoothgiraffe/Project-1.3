@@ -16,7 +16,7 @@ public class CargoSpace {
 	protected static final double SPACEVOLUME = SPACELENGTH*SPACEWIDTH*SPACEHEIGHT;
 	protected static final double stopPercentage = 0.9;
 	protected static double completeBoxVolume = 0;
-	protected static ArrayList<PlacedBox> solution = new ArrayList<PlacedBox>();
+	protected static ArrayList<PlacedParcel> solution = new ArrayList<PlacedParcel>();
 	//x, y, and z are the coordinates where the next Box/pentomino is placed
 
 	//space is a three-dimensional array where every single spot acts as a 0.5*0.5*0.5 block.
@@ -76,7 +76,7 @@ public class CargoSpace {
 	}*/
 
 	//checks if a specific box//pentomino fits at a specific place with the coordinates x, y, and z
-	public static boolean fits(Doos box, int x, int y, int z) {
+	public static boolean fits(Parcel box, int x, int y, int z) {
 		//checks for out-of-bound-errors
 		if (x + box.getLength() > space.length) {
 			//System.out.println(box.getName() + " x " + x + " Length " + box.getLength());
@@ -107,7 +107,7 @@ public class CargoSpace {
 	}
 
 	//places a box at a given point with coordinates x, y, and z
-	public static void placeBoxAt(Doos box, int x, int y, int z) { //CHECK IF FITS FIRST!
+	public static void placeBoxAt(Parcel box, int x, int y, int z) { //CHECK IF FITS FIRST!
 		for (int i = 0; i < box.getLength(); i++) {
 			for (int j = 0; j < box.getHeight(); j++) {
 				for (int k = 0; k < box.getWidth(); k++) {
@@ -117,7 +117,7 @@ public class CargoSpace {
 		}
 		completeBoxVolume = completeBoxVolume + box.getVolume(); //update the volume
 		//System.out.println("Placebox " + box.getLength() + " " + box.getWidth() + " " + box.getHeight() + " " + box.getName() + " " + x + " " + y + " " + z);
-		PlacedBox newBox = new PlacedBox(box.getLength(), box.getHeight(), box.getWidth(), box.getName(), (double) x / 2, (double) y / 2, (double) z / 2); //create new PlacedBox-Object to add to the solution
+		PlacedParcel newBox = new PlacedParcel(box.getLength(), box.getHeight(), box.getWidth(), box.getName(), (double) x / 2, (double) y / 2, (double) z / 2); //create new PlacedParcel-Object to add to the solution
 		solution.add(newBox);
 	}
 
@@ -140,7 +140,7 @@ public class CargoSpace {
 	//deletes the last box in the solution-Array and updates the space accordingly
 	public static void deleteBox(int index) {
 		//update the space
-		PlacedBox deleteBox = solution.get(index);
+		PlacedParcel deleteBox = solution.get(index);
 		//System.out.println("deletebox " + deleteBox.getName() + " " + deleteBox.getLength() + " " + deleteBox.getWidth() +  " " + deleteBox.getHeight());
 		for (int i = 0; i < deleteBox.getLength(); i++) {
 			for (int j = 0; j < deleteBox.getHeight(); j++) {

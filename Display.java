@@ -12,11 +12,11 @@ import java.awt.event.*;
 import java.util.*;
 
 /*
-This class takes the objects recieved from the PlacedBox class as a parameter
+This class takes the objects recieved from the PlacedParcel class as a parameter
 and then visually represents them in three dimensions
 */
 public class Display {
-	ArrayList<PlacedBox> boxArray = new ArrayList<PlacedBox>();
+	ArrayList<PlacedParcel> boxArray = new ArrayList<PlacedParcel>();
 	//xCamera and yCamera control the viewing angle of the cargo
 	//private int xCamera = -6;
 
@@ -25,14 +25,14 @@ public class Display {
 	public BranchGroup group = null;
 
 
-	//Constructer that takes in an array filled with objects from PlacedBox
-	public Display(ArrayList<PlacedBox> boxArray){
+	//Constructer that takes in an array filled with objects from PlacedParcel
+	public Display(ArrayList<PlacedParcel> boxArray){
 		this.boxArray = boxArray;
 		GUI g = new GUI();
 		print3DArray();
 	}
 
-	public void show(ArrayList<PlacedBox> boxArray){
+	public void show(ArrayList<PlacedParcel> boxArray){
 		this.boxArray = boxArray;
 		group.detach();
 		//universe.dispose();
@@ -197,10 +197,10 @@ public class Display {
 
 
 	public static void main(String[] args){
-		PlacedBox box = new PlacedBox( 2,6,2,'A',0,0,0);
-		PlacedBox box1 = new PlacedBox( 2,4,2,'B',0,0,1);
-		PlacedBox box2 = new PlacedBox( 2,2,2,'C',1,0,0);
-		PlacedBox box3 = new PlacedBox( 2,2,2,'C',1,2,0);
+		PlacedParcel box = new PlacedParcel( 2,6,2,'A',0,0,0);
+		PlacedParcel box1 = new PlacedParcel( 2,4,2,'B',0,0,1);
+		PlacedParcel box2 = new PlacedParcel( 2,2,2,'C',1,0,0);
+		PlacedParcel box3 = new PlacedParcel( 2,2,2,'C',1,2,0);
 		ArrayList array = new ArrayList();
 		array.add(box);
 		array.add(box1);

@@ -11,11 +11,11 @@ public class B extends CargoSpace{
 	public static void main(String[] args) {
 
 		//initiate the three types of boxes
-		Doos A = new Doos(1, 1, 2, 'A');
-		Doos B = new Doos(1, 1.5, 2, 'B');
-		Doos C = new Doos(1.5, 1.5, 1.5, 'C');
+		Parcel A = new Parcel(1, 1, 2, 'A');
+		Parcel B = new Parcel(1, 1.5, 2, 'B');
+		Parcel C = new Parcel(1.5, 1.5, 1.5, 'C');
 
-		Doos[] boxes = {A, B, C}; //put them into an array
+		Parcel[] boxes = {A, B, C}; //put them into an array
 		sortBoxes(boxes); //sort the boxes by value
 
 		while(!isFullEnough()) {
@@ -23,8 +23,8 @@ public class B extends CargoSpace{
 		}
 	}
  //sorts an array of boxes after value per unit and returns them
-  public static Doos[] sortBoxes(Doos[] boxes) {
-	Doos[] newBoxes = new Doos[boxes.length];
+  public static Parcel[] sortBoxes(Parcel[] boxes) {
+	Parcel[] newBoxes = new Parcel[boxes.length];
 	if (boxes[0].getValuePerUnit() >= boxes[1].getValuePerUnit() && boxes[0].getValuePerUnit() >= boxes[2].getValuePerUnit()) {
 	  newBoxes[0] = boxes[0];
 	  if (boxes[1].getValuePerUnit() >= boxes[2].getValuePerUnit()) {

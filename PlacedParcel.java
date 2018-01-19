@@ -1,13 +1,13 @@
 /*
 	This class makes a new box which is already placed and is able to return its x, y and z-coordinates
 */
-public class PlacedBox extends Doos {
+public class PlacedParcel extends Parcel {
 	private double placedX;
 	private double placedY;
 	private double placedZ;
 
 	//Constructor without value
-	public PlacedBox(double aLength, double aHeight, double aWidth, char aName, double aPlaceX, double aPlaceY, double aPlaceZ) {
+	public PlacedParcel(double aLength, double aHeight, double aWidth, char aName, double aPlaceX, double aPlaceY, double aPlaceZ) {
 		super(aLength, aHeight, aWidth, aName);
 		placedX = aPlaceX;
 		placedY = aPlaceY;
@@ -15,7 +15,7 @@ public class PlacedBox extends Doos {
 	}
 
 	//Constructor with value
-	public PlacedBox(double aLength, double aHeight, double aWidth, char aName, double aValue, double aPlaceX, double aPlaceY, double aPlaceZ) {
+	public PlacedParcel(double aLength, double aHeight, double aWidth, char aName, double aValue, double aPlaceX, double aPlaceY, double aPlaceZ) {
 		super(aLength, aHeight, aWidth, aName, aValue);
 		placedX = aPlaceX;
 		placedY = aPlaceY;
