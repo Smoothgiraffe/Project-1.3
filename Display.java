@@ -139,7 +139,9 @@ public class Display {
 
 	}
 
-
+		/*
+		Gui is for creating a little popup window with camera controls
+		 */
 		class GUI extends JFrame{
 			/*
 			This class creates a seperate JFrame that is our user interface

@@ -17,7 +17,6 @@ public class CargoSpace {
 	protected static final double stopPercentage = 0.9;
 	protected static double completeBoxVolume = 0;
 	protected static ArrayList<PlacedParcel> solution = new ArrayList<PlacedParcel>();
-	//x, y, and z are the coordinates where the next Box/pentomino is placed
 
 	//space is a three-dimensional array where every single spot acts as a 0.5*0.5*0.5 block.
 	protected static char[][][] space = new char[(int)SPACELENGTH][(int)SPACEHEIGHT][(int)SPACEWIDTH];
@@ -116,7 +115,7 @@ public class CargoSpace {
 			}
 		}
 		completeBoxVolume = completeBoxVolume + box.getVolume(); //update the volume
-		//System.out.println("Placebox " + box.getLength() + " " + box.getWidth() + " " + box.getHeight() + " " + box.getName() + " " + x + " " + y + " " + z);
+		
 		PlacedParcel newBox = new PlacedParcel(box.getLength(), box.getHeight(), box.getWidth(), box.getName(), (double) x / 2, (double) y / 2, (double) z / 2); //create new PlacedParcel-Object to add to the solution
 		solution.add(newBox);
 	}

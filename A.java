@@ -9,7 +9,7 @@ public class A extends CargoSpace{
 	private Parcel B = new Parcel(2, 3, 4, 'B');
 	private Parcel C = new Parcel(3, 3, 3, 'C');
 	private boolean solutionFound = false;
-	Parcel[] boxes = {A, B, C}; //put them into an array
+	Parcel[] parcels = {A, B, C}; //put them into an array
 
 
 	public A(){
@@ -21,30 +21,27 @@ public class A extends CargoSpace{
 		}
 	}
 
+	/*
+	Loop through all of the space and all parcels and their rotation, see if they fit and then place them
+	After placing, call itself recursively, after backtracking delete the box and then continue the loop
+	 */
 	private void fillSpace(){
 		if(!isFull()) {
 			for(int i = 0; i < space.length; i++){
 				for(int j = 0; j < space[0].length; j++){
 					for(int k = 0; k < space[0][0].length; k++){
-						for(int l = 0; l < boxes.length; l++){
+						for(int l = 0; l < parcels.length; l++){
 							for(int m = 0; m < 6; m++){
-								//System.out.println(i + " " + j + " " + k + " " + l + " " + m);
-								if(fits(boxes[l].rotate(m), i, j, k)){
-									//System.out.println(boxes[l].getName());
-									//System.out.println(boxes[l].getName() + " " + i + " " + j + " " + k);
-									placeBoxAt(boxes[l].rotate(m), i, j, k);
-									//display.show(solution);
-									//print();
+								if(fits(parcels[l].rotate(m), i, j, k)){
+									placeBoxAt(parcels[l].rotate(m), i, j, k);
 									fillSpace();
 									if(isFull()){
-										//System.out.println("full");
 										solutionFound = true;
 										return;
 									}
-									//System.out.println("before " + solution.size());
 									deleteBox(solution.size() - 1);
 									//display.show(solution);
-									//System.out.println("after" + solution.size());
+
 								}
 							}
 						}
