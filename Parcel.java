@@ -1,5 +1,5 @@
 /*
-* The class Parcel is called for creating parcel objects with customizable sizes, names and, if needed value
+* The class Parcel is called for creating parcel objects with customizable sizes, names and if needed value
 * The parcels can be returned in a rotated state
 */
 

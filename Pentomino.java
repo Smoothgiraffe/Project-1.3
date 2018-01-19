@@ -1,3 +1,7 @@
+/*
+	The class Pentomino is called for making L, P and T Pentominoes. They are able to store their rotation and flipVersion.
+	The pentominoes can also return a three dimensional array that is rotated and flipped accordingly
+*/
 public class Pentomino {
 
 	protected char name;
@@ -11,6 +15,7 @@ public class Pentomino {
 	static char[][][] pentL = {{{'l','0','0','0',},{'l','l','l','l'}}};
 	static char[][][] pentT = {{{'t','t','t'},{'0','t','0'},{'0','t','0'}}};
 
+	//Costructor without value
 	public Pentomino(char aName) {
 		name = aName;
 		if(name != 'P' && name != 'L' && name != 'T') {
@@ -18,17 +23,25 @@ public class Pentomino {
 		}
 	}
 
+	//Constructor with value
 	public Pentomino(char aName, double aValue) {
 		name = aName;
+		if(name != 'P' && name != 'L' && name != 'T') {
+			System.out.println("The pentomino with the name " + name + " was not initiated right.");
+		}
 		value = aValue;
 	}
 
-	//Don't forget: 0 <= flipTation <= 3 and 0 <= aRotation <= 5
+	/*
+		Sets the flipVersion and rotation
+		Don't forget: 0 <= flipTation <= 3 and 0 <= aRotation <= 5
+	*/
 	public void setVersion(int flipTation, int aRotation) {
 		flipVersion = flipTation;
 		rotation = aRotation;
 	}
 
+	//returns the pentomino with the right flipVersion and rotation
 	public char[][][] toArray() {
 
 		return rotate(flip());
