@@ -9,9 +9,9 @@ import java.util.*;
 public class CargoSpace {
 
 	//these variables describe the cargo-space
-	protected static final double SPACELENGTH = 4;
-	protected static final double SPACEHEIGHT = 4;
-	protected static final double SPACEWIDTH = 4;
+	protected static final double SPACELENGTH = 6;
+	protected static final double SPACEHEIGHT = 5;
+	protected static final double SPACEWIDTH = 7;
 
 	protected static final double SPACEVOLUME = SPACELENGTH*SPACEWIDTH*SPACEHEIGHT;
 	protected static final double stopPercentage = 0.9;
@@ -146,7 +146,7 @@ public class CargoSpace {
 			for (int j = 0; j < deleteBox.getHeight(); j++) {
 				for (int k = 0; k < deleteBox.getWidth(); k++) {
 					//System.out.println(i + " " + j + " " + k + " " + solution.size() + " " + index);
-					space[(int) (deleteBox.getX() + i)][(int) (deleteBox.getY() + j)][(int) (deleteBox.getZ() + k)] = '\u0000';
+					space[(int) (deleteBox.getX()*2 + i)][(int) (deleteBox.getY()*2 + j)][(int) (deleteBox.getZ()*2 + k)] = '\u0000';
 				}
 			}
 		}

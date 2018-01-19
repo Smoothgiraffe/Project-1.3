@@ -10,12 +10,12 @@ public class A extends CargoSpace{
 	private Doos C = new Doos(3, 3, 3, 'C');
 	private boolean solutionFound = false;
 	Doos[] boxes = {A, B, C}; //put them into an array
-	Display display = new Display(solution);
+
 
 	public A(){
 		fillSpace();
 		print();
-		//new Display(solution);
+		Display display = new Display(solution);
 		if(!solutionFound){
 			System.out.println("no solution found");
 		}
@@ -33,17 +33,17 @@ public class A extends CargoSpace{
 									//System.out.println(boxes[l].getName());
 									//System.out.println(boxes[l].getName() + " " + i + " " + j + " " + k);
 									placeBoxAt(boxes[l].rotate(m), i, j, k);
-									display.show(solution);
+									//display.show(solution);
 									//print();
 									fillSpace();
 									if(isFull()){
-										System.out.println("full");
+										//System.out.println("full");
 										solutionFound = true;
 										return;
 									}
 									//System.out.println("before " + solution.size());
 									deleteBox(solution.size() - 1);
-									display.show(solution);
+									//display.show(solution);
 									//System.out.println("after" + solution.size());
 								}
 							}

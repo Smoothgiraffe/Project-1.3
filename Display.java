@@ -20,7 +20,7 @@ public class Display {
 	//xCamera and yCamera control the viewing angle of the cargo
 	//private int xCamera = -6;
 
-	private int yCamera =  -1;
+	private int yCamera =  1;
 	private SimpleUniverse universe = new SimpleUniverse();
 	public BranchGroup group = null;
 
@@ -109,7 +109,7 @@ public class Display {
 		//This next bit of code allows us to move and set the angle in which we view the objects in boxArray
 		Vector3f viewTranslation = new Vector3f();
 		viewTranslation.z = 20f;
-		viewTranslation.x = 0f;
+		viewTranslation.x = 5f;
 		viewTranslation.y = 8f;
 		Transform3D viewTransform = new Transform3D();
 		viewTransform.setTranslation(viewTranslation);
