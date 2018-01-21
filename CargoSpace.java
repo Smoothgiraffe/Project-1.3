@@ -105,6 +105,37 @@ public class CargoSpace {
 		return true;
 	}
 
+	//checks if a specific box//pentomino fits at a specific place with the coordinates x, y, and z
+	public static boolean fits(char[][][] pentomino, int x, int y, int z) {
+		//checks for out-of-bound-errors
+		if (x + pentomino.length > space.length) {
+			//System.out.println(box.getName() + " x " + x + " Length " + box.getLength());
+			return false;
+		}
+		if (y + pentomino[0].length > space[0].length) {
+			//System.out.println(box.getName() + " y " + y + " height " + box.getHeight());
+			return false;
+		}
+		if (z + pentomino[0][0].length > space[0][0].length) {
+			//System.out.println(box.getName() + " z " + z + " Width " + box.getWidth());
+			return false;
+		}
+		//checks for every single spot in the array to be empty
+		for(int i = 0; i < pentomino.length; i++) {
+			for (int j = 0; j < pentomino[0].length; j++) {
+				for (int k = 0; k < pentomino[0][0].length; k++) {
+					//System.out.println((space[x + i][y + j][z + k]+ " " + x + i + " " + y + j + " " + z + k));
+					if (space[x + i][y + j][z + k] != '\u0000' && space[x + i][y + j][z + k] != '0' && pentomino[i][j][k] != '\u0000' && pentomino[i][j][k] != '0') {
+						//System.out.println(false);
+						return false;
+					}
+				}
+			}
+		}
+
+		return true;
+	}
+
 	//places a box at a given point with coordinates x, y, and z
 	public static void placeBoxAt(Parcel box, int x, int y, int z) { //CHECK IF FITS FIRST!
 		for (int i = 0; i < box.getLength(); i++) {
@@ -115,7 +146,7 @@ public class CargoSpace {
 			}
 		}
 		completeBoxVolume = completeBoxVolume + box.getVolume(); //update the volume
-		
+
 		PlacedParcel newBox = new PlacedParcel(box.getLength(), box.getHeight(), box.getWidth(), box.getName(), (double) x / 2, (double) y / 2, (double) z / 2); //create new PlacedParcel-Object to add to the solution
 		solution.add(newBox);
 	}

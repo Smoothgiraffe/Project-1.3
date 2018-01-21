@@ -2,6 +2,9 @@ import java.util.ArrayList;
 
 /*
 	Is it possible to fill the complete cargo space with A, B and/or C parcels, without having any gaps?
+
+	A class that is made to solve exercise B.
+	It utilizes a so-called backtrack algorithm, where we try every single possibility.
 */
 public class A extends CargoSpace{
 	//initiate the three types of boxes
@@ -17,7 +20,7 @@ public class A extends CargoSpace{
 		print();
 		Display display = new Display(solution);
 		if(!solutionFound){
-			System.out.println("no solution found");
+			System.out.println("No solution found!");
 		}
 	}
 
