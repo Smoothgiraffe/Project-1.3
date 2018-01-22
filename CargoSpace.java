@@ -9,12 +9,12 @@ import java.util.*;
 public class CargoSpace {
 
 	//these variables describe the cargo-space
-	protected static final double SPACELENGTH = 6;
-	protected static final double SPACEHEIGHT = 5;
-	protected static final double SPACEWIDTH = 7;
+	protected static final double SPACELENGTH = 11;
+	protected static final double SPACEHEIGHT = 4;
+	protected static final double SPACEWIDTH = 5;
 
 	protected static final double SPACEVOLUME = SPACELENGTH*SPACEWIDTH*SPACEHEIGHT;
-	protected static final double stopPercentage = 0.9;
+	protected static final double stopPercentage = 0.6;
 	protected static double cargoVolume = 0;
 	protected static double cargoValue = 0;
 	protected static ArrayList<PlacedParcel> solution = new ArrayList<PlacedParcel>();
