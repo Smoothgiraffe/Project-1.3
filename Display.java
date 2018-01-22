@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
+
 /*
 This class takes the objects recieved from the PlacedParcel class as a parameter
 and then visually represents them in three dimensions
@@ -18,9 +19,10 @@ and then visually represents them in three dimensions
 public class Display {
 	ArrayList<PlacedParcel> boxArray = new ArrayList<PlacedParcel>();
 	//xCamera and yCamera control the viewing angle of the cargo
-	//private int xCamera = -6;
-
+	private float deltaX = 0;
+	private int xCamera = -4;
 	private int yCamera =  1;
+
 	private SimpleUniverse universe = new SimpleUniverse();
 	public BranchGroup group = null;
 
@@ -65,9 +67,12 @@ public class Display {
 		Color3f colorB = new Color3f(Color.red);
 		Color3f colorC = new Color3f(Color.green);
 
+		//creates 3 colortribute objects using the colors
 		coloringAttributesA.setColor(colorA);
 		coloringAttributesB.setColor(colorB);
 		coloringAttributesC.setColor(colorC);
+
+		//creates appreance objects using the coloringAtributes objects
 		appearanceA.setColoringAttributes(coloringAttributesA);
 		appearanceB.setColoringAttributes(coloringAttributesB);
 		appearanceC.setColoringAttributes(coloringAttributesC);
@@ -76,15 +81,15 @@ public class Display {
 		This for loop goes throgh the indexes of boxArray and looks to see if they are of A,B, or C type,
 		it then assigns their color and visually represents them in 3D
 		*/
+		float spacing = 1.08f;
 		for (int i = 0; i < boxArray.size(); i++) {
-			//System.out.println("Printing " + )
 			Box box = new Box();
 			if (boxArray.get(i).getName() == 'A') {
-				box = new Box((float) boxArray.get(i).getLength() / 5.25f, (float) boxArray.get(i).getHeight() / 5.25f, (float) boxArray.get(i).getWidth() / 5.25f, appearanceA);
+				box = new Box((float) boxArray.get(i).getLength() / (5f * spacing), (float) boxArray.get(i).getHeight() / (5f * spacing), (float) boxArray.get(i).getWidth() / (5f * spacing), appearanceA);
 			}else if (boxArray.get(i).getName() == 'B'){
-				box = new Box((float) boxArray.get(i).getLength() / 5.25f, (float) boxArray.get(i).getHeight() / 5.25f, (float) boxArray.get(i).getWidth() / 5.25f, appearanceB);
+				box = new Box((float) boxArray.get(i).getLength() / (5f * spacing), (float) boxArray.get(i).getHeight() / (5f * spacing), (float) boxArray.get(i).getWidth() / (5f * spacing), appearanceB);
 			}else if (boxArray.get(i).getName() == 'C'){
-				box = new Box((float) boxArray.get(i).getLength() / 5.25f, (float) boxArray.get(i).getHeight() / 5.25f, (float) boxArray.get(i).getWidth() / 5.25f, appearanceC);
+				box = new Box((float) boxArray.get(i).getLength() / (5f * spacing), (float) boxArray.get(i).getHeight() / (5f * spacing), (float) boxArray.get(i).getWidth() / (5f * spacing), appearanceC);
 			}
 
 			//Sets each object in boxArray onto its own vector
@@ -99,7 +104,7 @@ public class Display {
 		}
 
 		Font3D font = new Font3D(new Font("font", Font.PLAIN, 1), new FontExtrusion());
-		Text3D text = new Text3D(font, "Group 13!", new Point3f(0.0f, 4.0f, 0.0f));
+		Text3D text = new Text3D(font, "Group 13!", new Point3f(0.0f, 3.5f, 0.0f));
 
 		Transform3D transform2 = new Transform3D();
 		Shape3D shape = new Shape3D();
@@ -109,7 +114,7 @@ public class Display {
 		//This next bit of code allows us to move and set the angle in which we view the objects in boxArray
 		Vector3f viewTranslation = new Vector3f();
 		viewTranslation.z = 20f;
-		viewTranslation.x = 5f;
+		viewTranslation.x = deltaX;
 		viewTranslation.y = 8f;
 		Transform3D viewTransform = new Transform3D();
 		viewTransform.setTranslation(viewTranslation);
@@ -119,7 +124,7 @@ public class Display {
 		rotation.mul(viewTransform);
 
 		Transform3D rotation2 = new Transform3D();
-		rotation2.rotX(-Math.PI / 8);
+		rotation2.rotX(xCamera * Math.PI / 32);
 		rotation.mul(rotation2);
 
 		//universe.getViewingPlatform().getViewPlatformTransform().setTransform(move);
@@ -142,60 +147,55 @@ public class Display {
 		/*
 		Gui is for creating a little popup window with camera controls
 		 */
-		class GUI extends JFrame{
-			/*
-			This class creates a seperate JFrame that is our user interface
-			using buttons to change the viewing angle of the objects that
-			were represented in 3D
-			*/
-			private int frameWidth = 300;
-			private int frameHeight = 300;
-			private JButton moveLeft;
-			private JButton moveRight;
-			public GUI(){
-				createComponent();
+	class GUI extends JFrame implements KeyListener{
+		/*
+		This class creates a seperate JFrame that is our user interface
+		using buttons to change the viewing angle of the objects that
+		were represented in 3D
+		*/
+		private int frameWidth = 1;
+		private int frameHeight = 1;
+		//private JButton moveLeft;
+		//private JButton moveRight;
+		public GUI(){
 
-				this.setSize(frameWidth, frameHeight);
-				this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				this.setTitle("Control Unit");
-				this.setLocationRelativeTo(null);
-				this.setVisible(true);
+			//position the window in the top right corner
+			GraphicsDevice screen = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+			int x = (int) screen.getDefaultConfiguration().getBounds().getMaxX() - frameWidth - 70;
+			this.setLocation(x, 0);
+
+			this.setSize(frameWidth, frameHeight);
+			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			this.setTitle("Control Unit");
+			this.setVisible(true);
+			addKeyListener(this);
+		}
+		@Override
+		public void keyPressed(KeyEvent e) {
+			if(e.getKeyCode() == KeyEvent.VK_LEFT){
+				yCamera += 1;
+				print3DArray();
 			}
-
-			public void createComponent(){
-				createButtons();
-				createRadio();
-
-				JPanel panel = new JPanel();
-				panel.setLayout(new BorderLayout());
-
-				panel.add(moveLeft, BorderLayout.WEST);
-				panel.add(moveRight, BorderLayout.EAST);
-				this.add(panel);
+			if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+				yCamera -= 1;
+				print3DArray();
 			}
-
-			public void createButtons(){
-				 moveLeft = new JButton("Left 90");
-				 moveRight = new JButton("Right 90");
-
-				moveLeft.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e){
-						yCamera = yCamera + 1;
-						print3DArray();
-				}
-					});
-
-				moveRight.addActionListener(new ActionListener() {
-
-					public void actionPerformed(ActionEvent e){
-						yCamera = yCamera - 1;
-						print3DArray();
-				}
-					});
+			if(e.getKeyCode() == KeyEvent.VK_DOWN){
+				deltaX += 1;
+				print3DArray();
 			}
-			public void createRadio(){
+			if(e.getKeyCode() == KeyEvent.VK_UP){
+				deltaX -= 1;
+				print3DArray();
 			}
 		}
+		@Override
+		public void keyReleased(KeyEvent e) {
+		}
+		@Override
+		public void keyTyped(KeyEvent e) {
+		}
+	}
 
 
 	public static void main(String[] args){
