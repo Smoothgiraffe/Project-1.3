@@ -3,9 +3,9 @@
 */
 
 public class D extends CargoSpace{
-	private Pentomino l = new Pentomino('l');
-	private Pentomino t = new Pentomino('t');
-	private Pentomino p = new Pentomino('p');
+	private Pentomino l = new Pentomino('l', 3);
+	private Pentomino t = new Pentomino('t', 4);
+	private Pentomino p = new Pentomino('p', 5);
 	private boolean solutionFound = false;
 	Pentomino[] pents = {l, t, p}; //put them into an array
 
