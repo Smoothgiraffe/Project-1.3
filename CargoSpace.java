@@ -198,7 +198,7 @@ public class CargoSpace {
 		return true;
 	}
 
-	//prints the entire cargo-space
+
 	public static boolean isValuaBleEnough(double maxValue){
 		if(cargoValue > (maxValue * stopPercentage)){
 			return true;
@@ -206,6 +206,7 @@ public class CargoSpace {
 		return false;
 	}
 
+	//prints the entire cargo-space in array form
 	public static void print() {
 		for(int j = 0; j < space[0].length; j++) {
 			for(int i = 0; i < space.length; i++) {
