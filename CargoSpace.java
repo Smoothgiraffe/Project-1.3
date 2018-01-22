@@ -98,8 +98,9 @@ public class CargoSpace {
 		cargoVolume = cargoVolume + box.getVolume(); //update the volume
 		cargoValue = cargoValue + box.getValue(); //update the value
 
-		PlacedParcel newBox = new PlacedParcel(box.getLength(), box.getHeight(), box.getWidth(), box.getName(), (double) x / 2, (double) y / 2, (double) z / 2); //create new PlacedParcel-Object to add to the solution
-		solution.add(newBox);
+		//create new PlacedParcel-Object to add to the solution
+		PlacedParcel newBox = new PlacedParcel(box.getLength(), box.getHeight(), box.getWidth(), box.getName(), (double) x / 2, (double) y / 2, (double) z / 2);
+		solution.add(newBox); //add it to solution
 	}
 
 	public static void placePentominoAt(Pentomino pentomino, int x, int y, int z) {
@@ -116,9 +117,10 @@ public class CargoSpace {
 		cargoVolume = cargoVolume + 5; //update the volume
 		cargoValue = cargoValue + pentomino.getValue(); //update the value
 
+		//create new PlacedPentomino-Object to add to the solution
 		PlacedPentomino newPent = new PlacedPentomino(pentomino.getName(), (double) x / 2, (double) y / 2, (double) z / 2);
 		newPent.setVersion(pentomino.getFlipVersion(), pentomino.getRotation());
-		pentSolution.add(newPent);
+		pentSolution.add(newPent); //add it to pent solution
 	}
 
 	//places a pentomino at a certain positon x, y, z
@@ -153,7 +155,7 @@ public class CargoSpace {
         cargoVolume = cargoVolume - deleteBox.getVolume(); //update the volume
 				cargoValue = cargoValue - deleteBox.getValue(); //update the value
 		//update the arrayList
-		solution.remove(index);
+		solution.remove(index); //delete it from the solution
 	}
 
 	public void deletePentomino(int index) {
@@ -169,9 +171,9 @@ public class CargoSpace {
 				}
 			}
 		}
-		cargoVolume = cargoVolume - 5;
-		cargoValue = cargoValue - deletePent.getValue();
-		pentSolution.remove(index);
+		cargoVolume = cargoVolume - 5; //update the volume
+		cargoValue = cargoValue - deletePent.getValue(); //update the value
+		pentSolution.remove(index); //delete it from the pent solution
 	}
 
 	//returns true if a certain percentage of the cargo-space is full (for exercise b and d)
@@ -196,6 +198,7 @@ public class CargoSpace {
 		return true;
 	}
 
+	//prints the entire cargo-space
 	public static void print() {
 		for(int j = 0; j < space[0].length; j++) {
 			for(int i = 0; i < space.length; i++) {
