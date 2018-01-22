@@ -20,6 +20,7 @@ public class D extends CargoSpace{
 		}
 	}
 
+	//sort the pentominoes in descending order and return a sorted array
 	public static Pentomino[] sortPentominoes(Pentomino[] pentomino) {
 		Pentomino[] newPentomino = new Pentomino[pentomino.length];
 		if (pentomino[0].getValue() >= pentomino[1].getValue() && pentomino[0].getValue() >= pentomino[2].getValue()) {
@@ -89,7 +90,6 @@ public class D extends CargoSpace{
 		}
 	}
 
-	public static void main(String args[]){
-		new C();
+	public static void main(String args[]){new D();
 	}
 }
