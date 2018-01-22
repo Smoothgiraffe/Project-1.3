@@ -21,7 +21,7 @@ public class B extends CargoSpace{
 		sortBoxes(parcels);
 		fillSpace();
 		print();
-		
+		System.out.println("The value of the entire cargo is " + cargoValue + ".");
 		Display display = new Display(solution);
 		if(!solutionFound){
 			System.out.println("No solution found!");
