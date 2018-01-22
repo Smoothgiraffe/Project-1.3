@@ -209,6 +209,24 @@ public class CargoSpace {
 		solution.remove(index);
 	}
 
+	public void deletePentomino(int index) {
+		//update the space
+		PlacedPentomino deletePent = pentSolution.get(index);
+		char[][][] pentArray = deletePent.toArray();
+		for(int i = 0; i < pentArray.length; i++) {
+			for(int j = 0; j < pentArray[0].length; j++) {
+				for(int k = 0; k < pentArray[0][0].length; k++) {
+					if(pentArray[i][j][k] != '0' && pentArray[i][j][k] != '\u0000') {
+						space[(int) (deletePent.getX()*2 + i)][(int) (deletePent.getY()*2 + j)][(int) (deletePent.getZ()*2 +k)] = '\u0000';
+					}
+				}
+			}
+		}
+		cargoVolume = cargoVolume - 5;
+		cargoValue = cargoValue - deletePent.getValue();
+		pentSolution.remove(index);
+	}
+
 	//returns true if a certain percentage of the cargo-space is full (for exercise b and d)
 	public static boolean isFullEnough() {
 		if (cargoVolume >= stopPercentage*SPACEVOLUME) {

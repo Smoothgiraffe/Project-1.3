@@ -48,6 +48,12 @@ public class Pentomino {
 
 	}
 
+	public Pentomino clone() {
+		Pentomino clonePent = new Pentomino(name);
+		clonePent.setVersion(getFlipVersion(), getRotation());
+		return clonePent;
+	}
+
 	//flips the pentomino such as it still has the same dimensions, can go from 0 to 3
 	private char[][][] flip() {
 		char[][][] originalArray;
