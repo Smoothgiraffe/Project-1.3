@@ -18,7 +18,7 @@ public class B extends CargoSpace{
 	Parcel[] parcels = {A, B, C}; //put them into an array
 
 	public B() {
-		sortBoxes();
+		sortBoxes(parcels);
 		fillSpace();
 		print();
 		Display display = new Display(solution);
@@ -77,7 +77,6 @@ public class B extends CargoSpace{
 									}
 									deleteBox(solution.size() - 1);
 									//display.show(solution);
-
 								}
 							}
 						}
