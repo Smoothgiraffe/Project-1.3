@@ -1,6 +1,7 @@
 /*
 	The class Pentomino is called for making L, P and T Pentominoes. They are able to store their rotation and flipVersion.
-	The pentominoes can also return a three dimensional array that is rotated and flipped accordingly
+	The pentominoes can also return a three dimensional array that is rotated and flipped accordingly.
+	It can also copy the pentomino.
 */
 public class Pentomino {
 
@@ -18,6 +19,7 @@ public class Pentomino {
 	//Costructor without value
 	public Pentomino(char aName) {
 		name = aName;
+		//wrong name will give an error:
 		if(name != 'p' && name != 'l' && name != 't') {
 			System.out.println("The pentomino with the name " + name + " was not initiated right.");
 		}
@@ -26,6 +28,7 @@ public class Pentomino {
 	//Constructor with value
 	public Pentomino(char aName, double aValue) {
 		name = aName;
+		//wrong name will give an error:
 		if(name != 'p' && name != 'l' && name != 't') {
 			System.out.println("The pentomino with the name " + name + " was not initiated right.");
 		}
@@ -34,7 +37,7 @@ public class Pentomino {
 
 	/*
 		Sets the flipVersion and rotation
-		Don't forget: 0 <= flipTation <= 3 and 0 <= aRotation <= 5
+		Note: 0 <= flipTation <= 3, and 0 <= aRotation <= 5
 	*/
 	public void setVersion(int flipTation, int aRotation) {
 		flipVersion = flipTation;
@@ -43,18 +46,17 @@ public class Pentomino {
 
 	//returns the pentomino with the right flipVersion and rotation
 	public char[][][] toArray() {
-
 		return rotate(flip());
-
 	}
 
+	//creates a new pentomino objects to avoid the changing state of a pentomino in only 1 object
 	public Pentomino clone() {
 		Pentomino clonePent = new Pentomino(name);
 		clonePent.setVersion(getFlipVersion(), getRotation());
 		return clonePent;
 	}
 
-	//flips the pentomino such as it still has the same dimensions, can go from 0 to 3
+	//flips the pentomino such that it still has the same dimensions, can go from 0 to 3
 	private char[][][] flip() {
 		char[][][] originalArray;
 
@@ -65,16 +67,16 @@ public class Pentomino {
 		} else if(name == 't') {
 			originalArray = getPentT();
 		} else {
-			//You land here if the name of the pentomino is not P, L or T. That's wrong!
-			System.out.println();
+			//Wrong name:
+			System.out.println("The  name of the pentomino is not initiated right.");
 			return null;
 		}
 
-		flipVersion = flipVersion;
-
+		//create two new matrixes to rotate the original one
 		char[][] tempArray = originalArray[0];
 		char[][] rotateArray = new char[tempArray.length][tempArray[0].length];
 
+		//for a different flip version, change the original matrix in 5 different ways (the first version stays the same)
 		if(flipVersion == 0) {
 			return originalArray;
 		} else if(flipVersion == 1) {
@@ -107,6 +109,7 @@ public class Pentomino {
 
 	//rotates a pentomino.
 	private char[][][] rotate(char[][][] flippedPent) {
+		//for a different rotate version, change the original matrix in 5 different ways (the first version stays the same)
 		if(rotation == 0) {
 			return flippedPent;
 		} else if(rotation == 1) {
@@ -162,6 +165,8 @@ public class Pentomino {
 		}
 		return null;
 	}
+
+	//Next the getters:
 
 	public double getVolume() {
 		return volume;

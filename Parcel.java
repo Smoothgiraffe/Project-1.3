@@ -1,6 +1,6 @@
 /*
-* The class Parcel is called for creating parcel objects with customizable sizes, names and if needed value
-* The parcels can be returned in a rotated state
+	The class Parcel is called for creating parcel objects with customizable sizes, names and if needed value
+	The parcels can be returned in a rotated state
 */
 
 public class Parcel {
@@ -33,6 +33,27 @@ public class Parcel {
 		volume = height*length*width;
 	}
 
+	//Returns the box which is rotated based on the number, numbers from 0 to 5 can be used (6 rotations are possible)
+	public Parcel rotate(int rotation) {
+		Parcel rotatedBox = null;
+		if (rotation == 0) {
+			rotatedBox = new Parcel(length, height, width, name, value);
+		} else if (rotation == 1) {
+			rotatedBox = new Parcel(length, width, height, name, value);
+		} else if (rotation == 2) {
+			rotatedBox = new Parcel(width, length, height, name, value);
+		} else if (rotation == 3) {
+			rotatedBox = new Parcel(width, height, length, name, value);
+		} else if (rotation == 4) {
+			rotatedBox = new Parcel(height, width, length, name, value);
+		} else if (rotation == 5) {
+			rotatedBox = new Parcel(height, length, width, name, value);
+		}
+		return rotatedBox;
+	}
+
+	//Next the getters:
+
 	//Calculates the value per unit (1x1x1 square)
 	public double getValuePerUnit() {
 		return valuePerUnit;
@@ -61,24 +82,4 @@ public class Parcel {
 	public double getVolume() {
 		return volume;
 	}
-
-	//Returns the box which is rotated based on the number, numbers from 0 to 5 can be used (6 rotations are possible)
-	public Parcel rotate(int rotation) {
-		Parcel rotatedBox = null;
-		if (rotation == 0) {
-			rotatedBox = new Parcel(length, height, width, name, value);
-		} else if (rotation == 1) {
-			rotatedBox = new Parcel(length, width, height, name, value);
-		} else if (rotation == 2) {
-			rotatedBox = new Parcel(width, length, height, name, value);
-		} else if (rotation == 3) {
-			rotatedBox = new Parcel(width, height, length, name, value);
-		} else if (rotation == 4) {
-			rotatedBox = new Parcel(height, width, length, name, value);
-		} else if (rotation == 5) {
-			rotatedBox = new Parcel(height, length, width, name, value);
-		}
-		return rotatedBox;
-	}
-
 }

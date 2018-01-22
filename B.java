@@ -2,10 +2,9 @@ import java.util.ArrayList;
 
 /*
 	If parcels of type A, B and C represent values of 3, 4 and 5 units respectively, then what is the maximum value that you can store in your cargo-space?
-
-	A class that is made to solve exercise b.
+	A class that is made to solve exercise B.
 	It utilizes a so-called greedy algorithm, where we take the most valuable box first and then put it into the cargo space as often as possible.
-	When there is no space for the most valuable box, the second-most valueable box is considered, and so on.
+	When there is no space for the most valuable box, the second-most valuable box is considered, and so on.
 */
 
 public class B extends CargoSpace{
@@ -28,7 +27,7 @@ public class B extends CargoSpace{
 		}
 	}
 
-	//sorts an array of boxes after value per unit and returns them
+	//sorts an array of boxes by value per unit in descending order and returns them
    public static Parcel[] sortBoxes(Parcel[] boxes) {
  	Parcel[] newBoxes = new Parcel[boxes.length];
  	if (boxes[0].getValuePerUnit() >= boxes[1].getValuePerUnit() && boxes[0].getValuePerUnit() >= boxes[2].getValuePerUnit()) {
@@ -62,6 +61,10 @@ public class B extends CargoSpace{
  	return newBoxes;
    }
 
+	/*
+     Loop through all of the cargo-space and all parcels and their rotation, see if they fit and then place them
+     Start with placing the first parcel of the sorted array, if it doesn't fit anymore go to the next parcel in the array
+      */
 	private void fillSpace(){
 		if(!isFullEnough()) {
 			for(int i = 0; i < space.length; i++){

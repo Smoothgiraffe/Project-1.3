@@ -1,6 +1,6 @@
 /*
 	This class makes a new parcel which is already placed and is able to return its x, y and z-coordinates
-	Is used for space so the cargo space to make it hold every placed Parcel up to the current point
+	Is used for CargoSpace to make it keep every placedParcel up to the current point
 */
 public class PlacedParcel extends Parcel {
 	private double placedX;
@@ -22,6 +22,8 @@ public class PlacedParcel extends Parcel {
 		placedY = aPlaceY;
 		placedZ = aPlaceZ;
 	}
+
+	//Next the getters:
 
 	public double getX() {
 		return placedX;
