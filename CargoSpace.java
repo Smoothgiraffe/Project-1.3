@@ -9,9 +9,9 @@ import java.util.*;
 public class CargoSpace {
 
 	//these variables describe the cargo-space
-	protected static final double SPACELENGTH = 2;
-	protected static final double SPACEHEIGHT = 3;
-	protected static final double SPACEWIDTH = 5;
+	protected static final double SPACELENGTH = 4;
+	protected static final double SPACEHEIGHT = 5;
+	protected static final double SPACEWIDTH = 4;
 
 	protected static final double SPACEVOLUME = SPACELENGTH*SPACEWIDTH*SPACEHEIGHT;
 	protected static final double stopPercentage = 0.6;
@@ -22,7 +22,7 @@ public class CargoSpace {
 
 	//space is a three-dimensional array where every single spot acts as a 0.5*0.5*0.5 block.
 	protected static char[][][] space = new char[(int)SPACELENGTH][(int)SPACEHEIGHT][(int)SPACEWIDTH];
-	
+
 	//checks if a specific box//pentomino fits at a specific place with the coordinates x, y, and z
 	public static boolean fits(Parcel box, int x, int y, int z) {
 		//checks for out-of-bound-errors
@@ -194,6 +194,13 @@ public class CargoSpace {
 			}
 		}
 		return true;
+	}
+
+	public static boolean isValuaBleEnough(double maxValue){
+		if(cargoValue > (maxValue * stopPercentage)){
+			return true;
+		}
+		return false;
 	}
 
 	public static void print() {

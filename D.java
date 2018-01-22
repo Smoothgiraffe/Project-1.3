@@ -8,10 +8,12 @@ public class D extends CargoSpace{
 	private Pentomino p = new Pentomino('p', 5);
 	private boolean solutionFound = false;
 	Pentomino[] pents = {l, t, p}; //put them into an array
-
+	private Pentomino[] sortedPents;
+	private double maxValue;
 
 	public D(){
 		Pentomino[] sortedPents = sortPentominoes(pents);
+		maxValue = sortedPents[0].getValue() / 5 * SPACELENGTH * SPACEHEIGHT * SPACEWIDTH;
 		fillSpace();
 		print();
 		Display display = new Display(solution);
@@ -58,7 +60,7 @@ public class D extends CargoSpace{
 	After placing, call itself recursively, after backtracking delete the box and then continue the loop
 	 */
 	private void fillSpace(){
-		if(!isFullEnough()) {
+		if(!isValuaBleEnough(maxValue)) {
 			for(int i = 0; i < space.length; i++){
 				for(int j = 0; j < space[0].length; j++){
 					for(int k = 0; k < space[0][0].length; k++){
@@ -70,7 +72,7 @@ public class D extends CargoSpace{
 									if(fits(clone, i, j, k)){
 										placePentominoAt(clone, i, j, k);
 										fillSpace();
-										if(isFullEnough()){
+										if(isValuaBleEnough(maxValue)){
 											solutionFound = true;
 											return;
 										}

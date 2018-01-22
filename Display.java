@@ -31,12 +31,14 @@ public class Display {
 
 	//Constructer that takes in an array filled with objects from PlacedParcel
 	public Display(ArrayList boxArray){
-		if(boxArray.get(0) instanceof PlacedParcel){
-			this.boxArray = boxArray;
-		}
-		if(boxArray.get(0) instanceof PlacedPentomino){
-			this.boxArray = PentToBox.convert(boxArray);
-			spacing = 1;
+		if(boxArray.size() > 0) {
+			if (boxArray.get(0) instanceof PlacedParcel) {
+				this.boxArray = boxArray;
+			}
+			if (boxArray.get(0) instanceof PlacedPentomino) {
+				this.boxArray = PentToBox.convert(boxArray);
+				spacing = 1;
+			}
 		}
 		GUI g = new GUI();
 		print3DArray();
