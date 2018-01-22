@@ -18,7 +18,7 @@ public class Pentomino {
 	//Costructor without value
 	public Pentomino(char aName) {
 		name = aName;
-		if(name != 'P' && name != 'L' && name != 'T') {
+		if(name != 'p' && name != 'l' && name != 't') {
 			System.out.println("The pentomino with the name " + name + " was not initiated right.");
 		}
 	}
@@ -26,7 +26,7 @@ public class Pentomino {
 	//Constructor with value
 	public Pentomino(char aName, double aValue) {
 		name = aName;
-		if(name != 'P' && name != 'L' && name != 'T') {
+		if(name != 'p' && name != 'l' && name != 't') {
 			System.out.println("The pentomino with the name " + name + " was not initiated right.");
 		}
 		value = aValue;
@@ -52,11 +52,11 @@ public class Pentomino {
 	private char[][][] flip() {
 		char[][][] originalArray;
 
-		if(name == 'P') {
+		if(name == 'p') {
 			originalArray = getPentP();
-		} else if(name == 'L') {
+		} else if(name == 'l') {
 			originalArray = getPentL();
-		} else if(name == 'T') {
+		} else if(name == 't') {
 			originalArray = getPentT();
 		} else {
 			//You land here if the name of the pentomino is not P, L or T. That's wrong!
