@@ -15,7 +15,7 @@ public class C extends CargoSpace{
 		print();
 		Display display = new Display(solution);
 		if(!solutionFound){
-			System.out.println("No solution found!");
+		System.out.println("No solution found!");
 		}
 	}
 
@@ -56,6 +56,6 @@ public class C extends CargoSpace{
 	}
 
 	public static void main(String args[]){
-		new A();
+		new C();
 	}
 }
