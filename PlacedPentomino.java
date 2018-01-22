@@ -30,19 +30,15 @@ public class PlacedPentomino extends Pentomino{
 		return rotation;
 	}
 
-	public int getVersion() {
-		return version;
-	}
-
-	public int getX() {
+	public double getX() {
 		return placedX;
 	}
 
-	public int getY() {
+	public double getY() {
 		return placedY;
 	}
 
-	public int getZ() {
+	public double getZ() {
 		return placedZ;
 	}
 
