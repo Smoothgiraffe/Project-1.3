@@ -21,15 +21,23 @@ public class Display {
 	//xCamera and yCamera control the viewing angle of the cargo
 	private float deltaX = 0;
 	private int xCamera = -4;
-	private int yCamera =  1;
+	private int yCamera = 1;
+
+	private float spacing = 1.08f;
 
 	private SimpleUniverse universe = new SimpleUniverse();
 	public BranchGroup group = null;
 
 
 	//Constructer that takes in an array filled with objects from PlacedParcel
-	public Display(ArrayList<PlacedParcel> boxArray){
-		this.boxArray = boxArray;
+	public Display(ArrayList boxArray){
+		if(boxArray.get(0) instanceof PlacedParcel){
+			this.boxArray = boxArray;
+		}
+		if(boxArray.get(0) instanceof PlacedPentomino){
+			this.boxArray = PentToBox.convert(boxArray);
+			spacing = 1;
+		}
 		GUI g = new GUI();
 		print3DArray();
 	}
@@ -81,7 +89,6 @@ public class Display {
 		This for loop goes throgh the indexes of boxArray and looks to see if they are of A,B, or C type,
 		it then assigns their color and visually represents them in 3D
 		*/
-		float spacing = 1.08f;
 		for (int i = 0; i < boxArray.size(); i++) {
 			Box box = new Box();
 			if (boxArray.get(i).getName() == 'A') {
@@ -208,6 +215,8 @@ public class Display {
 		array.add(box1);
 		array.add(box2);
 		array.add(box3);
+
+
 
 		new Display(array);
 	}

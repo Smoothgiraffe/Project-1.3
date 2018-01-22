@@ -7,13 +7,13 @@ public class C extends CargoSpace{
 	private Pentomino t = new Pentomino('t');
 	private Pentomino p = new Pentomino('p');
 	private boolean solutionFound = false;
-	Pentomino[] pents = {l, t, p}; //put them into an array
+	Pentomino[] pents = {p, t, l}; //put them into an array
 
 
 	public C(){
 		fillSpace();
 		print();
-		Display display = new Display(solution);
+		Display display = new Display(pentSolution);
 		if(!solutionFound){
 		System.out.println("No solution found!");
 		}

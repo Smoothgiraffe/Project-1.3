@@ -1,6 +1,6 @@
 public class Test extends CargoSpace{
 	public static void main(String[] args) {
-		Parcel doos1 = new Parcel(1,1,1,'A');
+		/*Parcel doos1 = new Parcel(1,1,1,'A');
 		Parcel doos2 = new Parcel(1,1,1,'B');
 		Parcel doos3 = new Parcel(1,1,1, 'C');
 		Parcel doos4 = new Parcel(1,1,2, 'C');
@@ -18,8 +18,10 @@ public class Test extends CargoSpace{
 		new Display(solution);
 		System.out.println();
 		deleteBox(solution.size() -1);
-		print();
+		print();*/
 
-		new Display(solution);
+		placePentominoAt(new Pentomino('l'), 0, 0,0);
+		placePentominoAt(new Pentomino('p'), 1, 0,0);
+		new Display(pentSolution);
 	}
 }
