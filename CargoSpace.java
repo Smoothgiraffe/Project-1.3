@@ -15,7 +15,8 @@ public class CargoSpace {
 
 	protected static final double SPACEVOLUME = SPACELENGTH*SPACEWIDTH*SPACEHEIGHT;
 	protected static final double stopPercentage = 0.9;
-	protected static double completeBoxVolume = 0;
+	protected static double cargoVolume = 0;
+	protected static double cargoValue = 0;
 	protected static ArrayList<PlacedParcel> solution = new ArrayList<PlacedParcel>();
 
 	//space is a three-dimensional array where every single spot acts as a 0.5*0.5*0.5 block.
@@ -145,7 +146,8 @@ public class CargoSpace {
 				}
 			}
 		}
-		completeBoxVolume = completeBoxVolume + box.getVolume(); //update the volume
+		cargoVolume = cargoVolume + box.getVolume(); //update the volume
+		cargoValue = cargoValue + box.getValue(); //update the value
 
 		PlacedParcel newBox = new PlacedParcel(box.getLength(), box.getHeight(), box.getWidth(), box.getName(), (double) x / 2, (double) y / 2, (double) z / 2); //create new PlacedParcel-Object to add to the solution
 		solution.add(newBox);
@@ -180,14 +182,15 @@ public class CargoSpace {
 				}
 			}
 		}
-        completeBoxVolume = completeBoxVolume - deleteBox.getVolume(); //update the volume
+        cargoVolume = cargoVolume - deleteBox.getVolume(); //update the volume
+				cargoValue = cargoValue - deleteBox.getValue(); //update the value
 		//update the arrayList
 		solution.remove(index);
 	}
 
 	//returns true if a certain percentage of the cargo-space is full (for exercise b and d)
 	public static boolean isFullEnough() {
-		if (completeBoxVolume >= stopPercentage*SPACEVOLUME) {
+		if (cargoVolume >= stopPercentage*SPACEVOLUME) {
 			return true;
 		}
 		return false;

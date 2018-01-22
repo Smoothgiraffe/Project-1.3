@@ -21,6 +21,7 @@ public class B extends CargoSpace{
 		sortBoxes(parcels);
 		fillSpace();
 		print();
+		
 		Display display = new Display(solution);
 		if(!solutionFound){
 			System.out.println("No solution found!");
