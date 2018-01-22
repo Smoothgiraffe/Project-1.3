@@ -18,6 +18,7 @@ public class CargoSpace {
 	protected static double cargoVolume = 0;
 	protected static double cargoValue = 0;
 	protected static ArrayList<PlacedParcel> solution = new ArrayList<PlacedParcel>();
+	protected static ArrayList<PlacedPentomino> pentSolution = new ArrayList<PlacedPentomino>();
 
 	//space is a three-dimensional array where every single spot acts as a 0.5*0.5*0.5 block.
 	protected static char[][][] space = new char[(int)SPACELENGTH][(int)SPACEHEIGHT][(int)SPACEWIDTH];
@@ -107,7 +108,8 @@ public class CargoSpace {
 	}
 
 	//checks if a specific box//pentomino fits at a specific place with the coordinates x, y, and z
-	public static boolean fits(char[][][] pentomino, int x, int y, int z) {
+	public static boolean fits(Pentomino pent, int x, int y, int z) {
+		char[][][] pentomino = pent.toArray();
 		//checks for out-of-bound-errors
 		if (x + pentomino.length > space.length) {
 			//System.out.println(box.getName() + " x " + x + " Length " + box.getLength());
@@ -151,6 +153,25 @@ public class CargoSpace {
 
 		PlacedParcel newBox = new PlacedParcel(box.getLength(), box.getHeight(), box.getWidth(), box.getName(), (double) x / 2, (double) y / 2, (double) z / 2); //create new PlacedParcel-Object to add to the solution
 		solution.add(newBox);
+	}
+
+	public static void placePentominoAt(Pentomino pentomino, int x, int y, int z) {
+		char[][][] pent = pentomino.toArray();
+		for (int i = 0; i < pent.length; i++) {
+			for (int j = 0; j < pent[0].length; j++) {
+				for (int k = 0; k < pent[0][0].length; k++) {
+					if(pent[i][j][k] != '0' && pent[i][j][k] != '\u0000') {
+						space[x + i][y + j][z + k] = pentomino.getName();
+					}
+				}
+			}
+		}
+		cargoVolume = cargoVolume + 5; //update the volume
+		cargoValue = cargoValue + pentomino.getValue(); //update the value
+
+		PlacedPentomino newPent = new PlacedPentomino(pentomino.getName(), (double) x / 2, (double) y / 2, (double) z / 2);
+		newPent.setVersion(pentomino.getFlipVersion(), pentomino.getRotation());
+		pentSolution.add(newPent);
 	}
 
 	//places a pentomino at a certain positon x, y, z

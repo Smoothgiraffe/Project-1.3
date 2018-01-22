@@ -165,6 +165,14 @@ public class Pentomino {
 		return name;
 	}
 
+	public int getRotation() {
+		return rotation;
+	}
+
+	public int getFlipVersion() {
+		return flipVersion;
+	}
+
 	public double getValue() {
 		return value;
 	}
