@@ -18,7 +18,7 @@ public class B extends CargoSpace{
 	Parcel[] parcels = {A, B, C}; //put them into an array
 
 	public B() {
-		sortBoxes(parcels);
+		Parcel[] sortedParcels = sortBoxes(parcels);
 		fillSpace();
 		print();
 		System.out.println("The value of the entire cargo is " + cargoValue + ".");
@@ -69,8 +69,8 @@ public class B extends CargoSpace{
 					for(int k = 0; k < space[0][0].length; k++){
 						for(int l = 0; l < parcels.length; l++){
 							for(int m = 0; m < 6; m++){
-								if(fits(parcels[l].rotate(m), i, j, k)){
-									placeBoxAt(parcels[l].rotate(m), i, j, k);
+								if(fits(sortedParcels[l].rotate(m), i, j, k)){
+									placeBoxAt(sortedParcels[l].rotate(m), i, j, k);
 									fillSpace();
 									if(isFull()){
 										solutionFound = true;
