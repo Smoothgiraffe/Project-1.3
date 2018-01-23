@@ -10,14 +10,12 @@ import java.util.ArrayList;
 public class B extends CargoSpace{
 
 	//initiate the three types of boxes
-	private Parcel A = new Parcel(2, 2, 4,'A', 3);
-	private Parcel B = new Parcel(2, 3, 4, 'B', 4);
-	private Parcel C = new Parcel(3, 3, 3, 'C', 5);
 	private boolean solutionFound = false;
-	Parcel[] parcels = {A, B, C}; //put them into an array
+	Parcel[] parcels = null; //put them into an array
 	Parcel[] sortedParcels;
 
-	public B() {
+	public B(Parcel[] parcels){
+		this.parcels = parcels;
 		sortedParcels = sortBoxes(parcels);
 		fillSpace();
 		print();
@@ -96,8 +94,11 @@ public class B extends CargoSpace{
 
 
 	public static void main(String[] args) {
-
-		new B();
+	 Parcel A = new Parcel(2, 2, 4,'A', 3);
+	 Parcel B = new Parcel(2, 3, 4, 'B', 4);
+	 Parcel C = new Parcel(3, 3, 3, 'C', 5);
+	 Parcel[] parcels = {A,B,C};
+		new B(parcels);
 
 	}
 }
