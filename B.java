@@ -15,6 +15,7 @@ public class B extends CargoSpace{
 	private Parcel C = new Parcel(3, 3, 3, 'C', 5);
 	private boolean solutionFound = false;
 	Parcel[] parcels = {A, B, C}; //put them into an array
+	Parcel[] sortedParcels;
 
 	public B() {
 		sortedParcels = sortBoxes(parcels);

@@ -36,7 +36,7 @@ public class Display {
 				this.boxArray = boxArray;
 			}
 			if (boxArray.get(0) instanceof PlacedPentomino) {
-				this.boxArray = PentToBox.convert(boxArray);
+				this.boxArray = PentToParcel.convert(boxArray);
 				spacing = 1;
 			}
 		}
