@@ -26,7 +26,7 @@ public class D extends CargoSpace{
 		print();
 
 		if(!solutionFound){
-			System.out.println("No solution found!");
+			System.out.println("No solution found");
 		}
 	}
 
