@@ -87,6 +87,55 @@ public class Menu {
 		JButton go = new JButton("Compute!");
 		go.setPreferredSize(new Dimension(120, 50));
 		rightPanel2.add(go, BorderLayout.CENTER);
+		
+	go.addActionListener(new ActionListener() { 
+	
+		
+		
+  public void actionPerformed(ActionEvent e) { 
+		double storageLength = Double.parseDouble(sl.getText());
+		double storageWidth = Double.parseDouble(sw.getText());
+		double storageHeight = Double.parseDouble(sh.getText());
+		
+		double LengthA = Double.parseDouble(aLength.getText());
+		double LengthB = Double.parseDouble(bLength.getText());
+		double LengthC = Double.parseDouble(cLength.getText());
+		double WidthA = Double.parseDouble(aWidth.getText());
+		double WidthB = Double.parseDouble(bWidth.getText());
+		double WidthC = Double.parseDouble(cWidth.getText());
+		double HeightA = Double.parseDouble(aHeight.getText());
+		double HeightB = Double.parseDouble(bHeight.getText());
+		double HeightC = Double.parseDouble(cHeight.getText());
+		
+		double valueA = Double.parseDouble(aValue.getText());
+		double valueB = Double.parseDouble(bValue.getText());
+		double valueC = Double.parseDouble(cValue.getText());
+		
+		CargoSpace cargo = new CargoSpace();
+		cargo.setSpaceLength(storageLength);
+		cargo.setSpaceWidth(storageWidth);
+		cargo.setSpaceHeight(storageHeight);
+		
+		Parcel A = new Parcel(LengthA, HeightA, WidthA, 'A', valueA);
+		Parcel B = new Parcel(LengthB, HeightB, WidthB, 'B', valueB);
+		Parcel C = new Parcel(LengthC, HeightC, WidthC, 'C', valueC);
+		 
+		 Parcel[] parcels = {A,B,C};
+    if(a.isSelected()){
+		A classA = new A(parcels);
+	}
+	 if(b.isSelected()){
+		B classB = new B(parcels);
+	}
+	 if(c.isSelected()){
+		C classC = new C();
+	}
+	 if(d.isSelected()){
+		D classD = new D();
+	}
+	
+  } 
+} );
 
 		frame.add(leftPanel1);
 		frame.add(rightPanel1);
