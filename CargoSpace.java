@@ -3,44 +3,41 @@ import java.util.*;
 /*
 	A class meant to be the superclass for all solving algorithms.
 	It saves general variables such as the size of the cargo space.
-	It is able to find the coordinates for a new box, place it in there, keep track of the steps made, how full the space is, and more.
+	It is able to find the coordinates for a new parcel, place it in there, keep track of the steps made, how full the space is, and more.
 */
 
 public class CargoSpace {
 
 	//these variables describe the cargo-space
-	protected static final double SPACELENGTH = 4;
-	protected static final double SPACEHEIGHT = 5;
-	protected static final double SPACEWIDTH = 3;
 
-	protected static final double SPACEVOLUME = SPACELENGTH*SPACEWIDTH*SPACEHEIGHT;
-	protected static final double STOPPERCENTAGE = 0.8;
-	protected static double cargoVolume = 0;
-	protected static double cargoValue = 0;
-	protected static double bestCargoValue = 0;
+	protected double spaceVolume;
+	protected final double STOPPERCENTAGE = 0.8;
+	protected double cargoVolume = 0;
+	protected double cargoValue = 0;
+	protected double bestCargoValue = 0;
 
-	protected static ArrayList<PlacedParcel> solution = new ArrayList<PlacedParcel>();
-	protected static ArrayList<PlacedPentomino> pentSolution = new ArrayList<PlacedPentomino>();
+	protected  ArrayList<PlacedParcel> solution = new ArrayList<PlacedParcel>();
+	protected  ArrayList<PlacedPentomino> pentSolution = new ArrayList<PlacedPentomino>();
 
 	//space is a three-dimensional array where every single spot acts as a 0.5*0.5*0.5 block.
-	protected static char[][][] space = new char[(int)SPACELENGTH][(int)SPACEHEIGHT][(int)SPACEWIDTH];
+	protected  char[][][] space;
 
-	//checks if a specific box//pentomino fits at a specific place with the coordinates x, y, and z
-	public static boolean fits(Parcel box, int x, int y, int z) {
+	//checks if a specific parcel//pentomino fits at a specific place with the coordinates x, y, and z
+	public  boolean fits(Parcel parcel, int x, int y, int z) {
 		//checks for out-of-bound-errors
-		if (x + box.getLength() > space.length) {
+		if (x + parcel.getLength() > space.length) {
 			return false;
 		}
-		if (y + box.getHeight() > space[0].length) {
+		if (y + parcel.getHeight() > space[0].length) {
 			return false;
 		}
-		if (z + box.getWidth() > space[0][0].length) {
+		if (z + parcel.getWidth() > space[0][0].length) {
 			return false;
 		}
 		//checks for every single spot in the array to be empty
-		for(int i = 0; i < box.getLength(); i++) {
-			for (int j = 0; j < box.getHeight(); j++) {
-				for (int k = 0; k < box.getWidth(); k++) {
+		for(int i = 0; i < parcel.getLength(); i++) {
+			for (int j = 0; j < parcel.getHeight(); j++) {
+				for (int k = 0; k < parcel.getWidth(); k++) {
 					if (space[x + i][y + j][z + k] != '\u0000' && space[x + i][y + j][z + k] != '0') {
 						return false;
 					}
@@ -51,8 +48,8 @@ public class CargoSpace {
 		return true;
 	}
 
-	//checks if a specific box//pentomino fits at a specific place with the coordinates x, y, and z
-	public static boolean fits(Pentomino pent, int x, int y, int z) {
+	//checks if a specific parcel//pentomino fits at a specific place with the coordinates x, y, and z
+	public boolean fits(Pentomino pent, int x, int y, int z) {
 		char[][][] pentomino = pent.toArray();
 		//checks for out-of-bound-errors
 		if (x + pentomino.length > space.length) {
@@ -79,24 +76,24 @@ public class CargoSpace {
 		return true;
 	}
 
-	//places a box at a given point with coordinates x, y, and z
-	public static void placeBoxAt(Parcel box, int x, int y, int z) { //CHECK IF FITS FIRST!
-		for (int i = 0; i < box.getLength(); i++) {
-			for (int j = 0; j < box.getHeight(); j++) {
-				for (int k = 0; k < box.getWidth(); k++) {
-					space[x + i][y + j][z + k] = box.getName();
+	//places a parcel at a given point with coordinates x, y, and z
+	public void placeParcelAt(Parcel parcel, int x, int y, int z) { //CHECK IF FITS FIRST!
+		for (int i = 0; i < parcel.getLength(); i++) {
+			for (int j = 0; j < parcel.getHeight(); j++) {
+				for (int k = 0; k < parcel.getWidth(); k++) {
+					space[x + i][y + j][z + k] = parcel.getName();
 				}
 			}
 		}
-		cargoVolume += box.getVolume(); //update the volume
-		cargoValue += box.getValue(); //update the value
+		cargoVolume += parcel.getVolume(); //update the volume
+		cargoValue += parcel.getValue(); //update the value
 
 		//create new PlacedParcel-Object to add to the solution
-		PlacedParcel newBox = new PlacedParcel(box.getLength(), box.getHeight(), box.getWidth(), box.getName(), (double) x / 2, (double) y / 2, (double) z / 2);
-		solution.add(newBox); //add it to solution
+		PlacedParcel newParcel = new PlacedParcel(parcel.getLength(), parcel.getHeight(), parcel.getWidth(), parcel.getName(), (double) x / 2, (double) y / 2, (double) z / 2);
+		solution.add(newParcel); //add it to solution
 	}
 
-	public static void placePentominoAt(Pentomino pentomino, int x, int y, int z) {
+	public void placePentominoAt(Pentomino pentomino, int x, int y, int z) {
 		char[][][] pent = pentomino.toArray();
 		for (int i = 0; i < pent.length; i++) {
 			for (int j = 0; j < pent[0].length; j++) {
@@ -116,20 +113,20 @@ public class CargoSpace {
 		pentSolution.add(newPent); //add it to pent solution
 	}
 
-	//deletes the last box in the solution-Array and updates the space accordingly
-	public static void deleteBox(int index) {
+	//deletes the last parcel in the solution-Array and updates the space accordingly
+	public void deleteParcel(int index) {
 		//update the space
-		PlacedParcel deleteBox = solution.get(index);
-		for (int i = 0; i < deleteBox.getLength(); i++) {
-			for (int j = 0; j < deleteBox.getHeight(); j++) {
-				for (int k = 0; k < deleteBox.getWidth(); k++) {
+		PlacedParcel deleteParcel = solution.get(index);
+		for (int i = 0; i < deleteParcel.getLength(); i++) {
+			for (int j = 0; j < deleteParcel.getHeight(); j++) {
+				for (int k = 0; k < deleteParcel.getWidth(); k++) {
 					//System.out.println(i + " " + j + " " + k + " " + solution.size() + " " + index);
-					space[(int) (deleteBox.getX()*2 + i)][(int) (deleteBox.getY()*2 + j)][(int) (deleteBox.getZ()*2 + k)] = '\u0000';
+					space[(int) (deleteParcel.getX()*2 + i)][(int) (deleteParcel.getY()*2 + j)][(int) (deleteParcel.getZ()*2 + k)] = '\u0000';
 				}
 			}
 		}
-        cargoVolume -= deleteBox.getVolume(); //update the volume
-		cargoValue -= deleteBox.getValue(); //update the value
+        cargoVolume -= deleteParcel.getVolume(); //update the volume
+		cargoValue -= deleteParcel.getValue(); //update the value
 		//update the arrayList
 		solution.remove(index); //delete it from the solution
 	}
@@ -153,15 +150,15 @@ public class CargoSpace {
 	}
 
 	//returns true if a certain percentage of the cargo-space is full (for exercise b and d)
-	public static boolean isFullEnough() {
-		if (cargoVolume >= STOPPERCENTAGE*SPACEVOLUME) {
+	public boolean isFullEnough() {
+		if (cargoVolume >= STOPPERCENTAGE*spaceVolume) {
 			return true;
 		}
 		return false;
 	}
 
 	//returns true if the entire cargo-space is full (for exercise a and c)
-	public static boolean isFull() {
+	public boolean isFull() {
 		for (int i = 0; i < space.length; i++) { //height
 			for (int j = 0; j < space[0].length; j++) { //width
 				for (int k = 0; k < space[0][0].length; k++) { //length
@@ -175,35 +172,15 @@ public class CargoSpace {
 	}
 
 	//returns true if the value is higher then a certain threshold
-	public static boolean isValuaBleEnough(double maxValue){
+	public boolean isValuaBleEnough(double maxValue){
 		if(cargoValue > (maxValue * STOPPERCENTAGE)){
 			return true;
 		}
 		return false;
 	}
 
-	public double getSpaceLength(){
-		return SPACELENGTH;
-	}
-	public double getSpaceHeight(){
-		return SPACEHEIGHT;
-	}
-	public double getSpaceWidth(){
-		return SPACEWIDTH;
-	}
-	public void setSpaceLength(double SPACELENGTH){
-		this.SPACELENGTH = SPACELENGTH;
-	}
-
-	public void setSpaceWidth(double SPACEWIDTH){
-		this.SPACEWIDTH = SPACEWIDTH;
-	}
-	public void setSpaceHeight(double SPACEHEIGHT){
-		this.SPACEHEIGHT =  SPACEHEIGHT;
-	}
-
 	//prints the entire cargo-space in array form
-	public static void print() {
+	public void print() {
 		for(int j = 0; j < space[0].length; j++) {
 			for(int i = 0; i < space.length; i++) {
 				for(int k = 0; k < space[0][0].length; k++) {

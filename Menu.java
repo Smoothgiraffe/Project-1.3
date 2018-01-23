@@ -36,12 +36,12 @@ public class Menu {
 		JLabel spaceSize = new JLabel("Fill the length, width and height of the cargo space in here.");
 		spaceSize.setFont(font);
 		JTextField sl = new JTextField("16.5", 3);
-		JTextField sw = new JTextField("4", 3);
-		JTextField sh = new JTextField("2.5", 3);
+		JTextField sh = new JTextField("4", 3);
+		JTextField sw = new JTextField("2.5", 3);
 		leftPanel2.add(spaceSize);
 		leftPanel2.add(sl);
-		leftPanel2.add(sw);
 		leftPanel2.add(sh);
+		leftPanel2.add(sw);
 
 		JPanel rightPanel1 = new JPanel();
 		rightPanel1.setLayout(new GridLayout(2, 1));
@@ -93,45 +93,42 @@ public class Menu {
 		
 		
   public void actionPerformed(ActionEvent e) { 
-		double storageLength = Double.parseDouble(sl.getText());
-		double storageWidth = Double.parseDouble(sw.getText());
-		double storageHeight = Double.parseDouble(sh.getText());
+	  double storageLength = 2 * Double.parseDouble(sl.getText());
+	  double storageHeight = 2 * Double.parseDouble(sh.getText());
+	  double storageWidth = 2 * Double.parseDouble(sw.getText());
+
+	  double LengthA = Double.parseDouble(aLength.getText());
+	  double LengthB = Double.parseDouble(bLength.getText());
+	  double LengthC = Double.parseDouble(cLength.getText());
+	  double WidthA = Double.parseDouble(aWidth.getText());
+	  double WidthB = Double.parseDouble(bWidth.getText());
+	  double WidthC = Double.parseDouble(cWidth.getText());
+	  double HeightA = Double.parseDouble(aHeight.getText());
+	  double HeightB = Double.parseDouble(bHeight.getText());
+	  double HeightC = Double.parseDouble(cHeight.getText());
 		
-		double LengthA = Double.parseDouble(aLength.getText());
-		double LengthB = Double.parseDouble(bLength.getText());
-		double LengthC = Double.parseDouble(cLength.getText());
-		double WidthA = Double.parseDouble(aWidth.getText());
-		double WidthB = Double.parseDouble(bWidth.getText());
-		double WidthC = Double.parseDouble(cWidth.getText());
-		double HeightA = Double.parseDouble(aHeight.getText());
-		double HeightB = Double.parseDouble(bHeight.getText());
-		double HeightC = Double.parseDouble(cHeight.getText());
-		
-		double valueA = Double.parseDouble(aValue.getText());
-		double valueB = Double.parseDouble(bValue.getText());
-		double valueC = Double.parseDouble(cValue.getText());
-		
-		CargoSpace cargo = new CargoSpace();
-		cargo.setSpaceLength(storageLength);
-		cargo.setSpaceWidth(storageWidth);
-		cargo.setSpaceHeight(storageHeight);
-		
-		Parcel A = new Parcel(LengthA, HeightA, WidthA, 'A', valueA);
-		Parcel B = new Parcel(LengthB, HeightB, WidthB, 'B', valueB);
-		Parcel C = new Parcel(LengthC, HeightC, WidthC, 'C', valueC);
+	  double valueA = Double.parseDouble(aValue.getText());
+	  double valueB = Double.parseDouble(bValue.getText());
+	  double valueC = Double.parseDouble(cValue.getText());
+
+
+	  Parcel A = new Parcel(LengthA, HeightA, WidthA, 'A', valueA);
+	  Parcel B = new Parcel(LengthB, HeightB, WidthB, 'B', valueB);
+	  Parcel C = new Parcel(LengthC, HeightC, WidthC, 'C', valueC);
 		 
 		 Parcel[] parcels = {A,B,C};
     if(a.isSelected()){
-		A classA = new A(parcels);
+		A classA = new A(parcels, storageLength, storageHeight, storageWidth);
+
 	}
 	 if(b.isSelected()){
-		B classB = new B(parcels);
+		B classB = new B(parcels, storageLength, storageHeight, storageWidth);
 	}
 	 if(c.isSelected()){
-		C classC = new C();
+		C classC = new C(storageLength, storageHeight, storageWidth);
 	}
 	 if(d.isSelected()){
-		D classD = new D();
+		D classD = new D(storageLength, storageHeight, storageWidth);
 	}
 	
   } 

@@ -13,12 +13,12 @@ public class D extends CargoSpace{
 	Display display;
 	long startTime;
 
-	public D(){
+	public D(double storageLength, double storageHeight, double storageWidth){
+		space = new char[(int)storageLength][(int)storageWidth][(int)storageHeight];
+		spaceVolume = storageLength*storageHeight*storageWidth;
 		sortedPents = sortPentominoes(pents);
-		maxValue = sortedPents[0].getValue() / 5 * SPACELENGTH * SPACEHEIGHT * SPACEWIDTH;
-		for(int i = 0; i < 3; i++){
-			System.out.println(sortedPents[i].getName());
-		}
+		maxValue = sortedPents[0].getValue() / 5 * storageLength * storageHeight * storageWidth;
+
 		System.out.println(maxValue);
 		display = new Display(pentSolution);
 		startTime = System.nanoTime();
@@ -83,11 +83,12 @@ public class D extends CargoSpace{
 									if(fits(clone, i, j, k)){
 										placePentominoAt(clone, i, j, k);
 										fillSpace();
-										if(cargoValue >= bestCargoValue){
+										if(cargoValue > bestCargoValue){
 											bestCargoValue = cargoValue;
 											long passedTime = System.nanoTime() - startTime;
 											System.out.println("Time passed: " + passedTime + " current highest value: " + bestCargoValue);
-											display.show(pentSolution);
+											solution = PentToParcel.convert(pentSolution).clone();
+											display.show(solution);
 										}
 										if(isValuaBleEnough(maxValue)){
 											solutionFound = true;
@@ -105,8 +106,5 @@ public class D extends CargoSpace{
 			solutionFound = true;
 			return;
 		}
-	}
-
-	public static void main(String args[]){new D();
 	}
 }

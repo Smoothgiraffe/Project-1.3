@@ -3,20 +3,23 @@ import java.util.ArrayList;
 /*
 	If parcels of type A, B and C represent values of 3, 4 and 5 units respectively, then what is the maximum value that you can store in your cargo-space?
 	A class that is made to solve exercise B.
-	It utilizes a so-called greedy algorithm, where we take the most valuable box first and then put it into the cargo space as often as possible.
-	When there is no space for the most valuable box, the second-most valuable box is considered, and so on.
+	It utilizes a so-called greedy algorithm, where we take the most valuable parcel first and then put it into the cargo space as often as possible.
+	When there is no space for the most valuable parcel, the second-most valuable parcel is considered, and so on.
 */
 
 public class B extends CargoSpace{
 
-	//initiate the three types of boxes
+	//initiate the three types of parceles
 	private boolean solutionFound = false;
 	Parcel[] parcels = null; //put them into an array
 	Parcel[] sortedParcels;
 
-	public B(Parcel[] parcels){
+	public B(Parcel[] parcels, double storageLength, double storageHeight, double storageWidth){
+		space = new char[(int)storageLength][(int)storageWidth][(int)storageHeight];
+		spaceVolume = storageLength*storageHeight*storageWidth;
+
 		this.parcels = parcels;
-		sortedParcels = sortBoxes(parcels);
+		sortedParcels = sortParcels(parcels);
 		fillSpace();
 		print();
 		System.out.println("The value of the entire cargo is " + cargoValue + ".");
@@ -26,38 +29,38 @@ public class B extends CargoSpace{
 		}
 	}
 
-	//sorts an array of boxes by value per unit in descending order and returns them
-   public static Parcel[] sortBoxes(Parcel[] boxes) {
- 	Parcel[] newBoxes = new Parcel[boxes.length];
- 	if (boxes[0].getValuePerUnit() >= boxes[1].getValuePerUnit() && boxes[0].getValuePerUnit() >= boxes[2].getValuePerUnit()) {
- 	  newBoxes[0] = boxes[0];
- 	  if (boxes[1].getValuePerUnit() >= boxes[2].getValuePerUnit()) {
- 		newBoxes[1] = boxes[1];
- 		newBoxes[2] = boxes[2];
+	//sorts an array of parceles by value per unit in descending order and returns them
+   public static Parcel[] sortParcels(Parcel[] parceles) {
+ 	Parcel[] newParcels = new Parcel[parceles.length];
+ 	if (parceles[0].getValuePerUnit() >= parceles[1].getValuePerUnit() && parceles[0].getValuePerUnit() >= parceles[2].getValuePerUnit()) {
+ 	  newParcels[0] = parceles[0];
+ 	  if (parceles[1].getValuePerUnit() >= parceles[2].getValuePerUnit()) {
+ 		newParcels[1] = parceles[1];
+ 		newParcels[2] = parceles[2];
  	  } else {
- 		newBoxes[1] = boxes[2];
- 		newBoxes[2] = boxes[1];
+ 		newParcels[1] = parceles[2];
+ 		newParcels[2] = parceles[1];
  	  }
- 	} else if (boxes[1].getValuePerUnit() >= boxes[0].getValuePerUnit() && boxes[1].getValuePerUnit() >= boxes[2].getValuePerUnit()) {
- 	  newBoxes[0] = boxes[1];
- 	  if (boxes[0].getValuePerUnit() >= boxes[2].getValuePerUnit()) {
- 		newBoxes[1] = boxes[0];
- 		newBoxes[2] = boxes[2];
+ 	} else if (parceles[1].getValuePerUnit() >= parceles[0].getValuePerUnit() && parceles[1].getValuePerUnit() >= parceles[2].getValuePerUnit()) {
+ 	  newParcels[0] = parceles[1];
+ 	  if (parceles[0].getValuePerUnit() >= parceles[2].getValuePerUnit()) {
+ 		newParcels[1] = parceles[0];
+ 		newParcels[2] = parceles[2];
  	  } else {
- 		newBoxes[1] = boxes[2];
- 		newBoxes[2] = boxes[0];
+ 		newParcels[1] = parceles[2];
+ 		newParcels[2] = parceles[0];
  	  }
- 	} else if (boxes[2].getValuePerUnit() >= boxes[0].getValuePerUnit() && boxes[2].getValuePerUnit() >= boxes[1].getValuePerUnit()) {
- 	  newBoxes[0] = boxes[2];
- 	  if (boxes[0].getValuePerUnit() >= boxes[1].getValuePerUnit()) {
- 		newBoxes[1] = boxes[0];
- 		newBoxes[2] = boxes[1];
+ 	} else if (parceles[2].getValuePerUnit() >= parceles[0].getValuePerUnit() && parceles[2].getValuePerUnit() >= parceles[1].getValuePerUnit()) {
+ 	  newParcels[0] = parceles[2];
+ 	  if (parceles[0].getValuePerUnit() >= parceles[1].getValuePerUnit()) {
+ 		newParcels[1] = parceles[0];
+ 		newParcels[2] = parceles[1];
  	  } else {
- 		newBoxes[1] = boxes[1];
- 		newBoxes[2] = boxes[0];
+ 		newParcels[1] = parceles[1];
+ 		newParcels[2] = parceles[0];
  	  }
  	}
- 	return newBoxes;
+ 	return newParcels;
    }
 
 	/*
@@ -72,13 +75,13 @@ public class B extends CargoSpace{
 						for(int l = 0; l < parcels.length; l++){
 							for(int m = 0; m < 6; m++){
 								if(fits(sortedParcels[l].rotate(m), i, j, k)){
-									placeBoxAt(sortedParcels[l].rotate(m), i, j, k);
+									placeParcelAt(sortedParcels[l].rotate(m), i, j, k);
 									fillSpace();
 									if(isFull()){
 										solutionFound = true;
 										return;
 									}
-									deleteBox(solution.size() - 1);
+									deleteParcel(solution.size() - 1);
 									//display.show(solution);
 								}
 							}
@@ -90,15 +93,5 @@ public class B extends CargoSpace{
 			solutionFound = true;
 			return;
 		}
-	}
-
-
-	public static void main(String[] args) {
-	 Parcel A = new Parcel(2, 2, 4,'A', 3);
-	 Parcel B = new Parcel(2, 3, 4, 'B', 4);
-	 Parcel C = new Parcel(3, 3, 3, 'C', 5);
-	 Parcel[] parcels = {A,B,C};
-		new B(parcels);
-
 	}
 }

@@ -11,7 +11,10 @@ public class A extends CargoSpace{
 	Parcel[] parcels = null;
 
 
-	public A(Parcel[] parcels){
+	public A(Parcel[] parcels, double storageLength, double storageHeight, double storageWidth){
+		space = new char[(int)storageLength][(int)storageWidth][(int)storageHeight];
+		spaceVolume = storageLength*storageHeight*storageWidth;
+
 		this.parcels = parcels;
 		fillSpace();
 		print();
@@ -33,15 +36,13 @@ public class A extends CargoSpace{
 						for(int l = 0; l < parcels.length; l++){
 							for(int m = 0; m < 6; m++){
 								if(fits(parcels[l].rotate(m), i, j, k)){
-									placeBoxAt(parcels[l].rotate(m), i, j, k);
+									placeParcelAt(parcels[l].rotate(m), i, j, k);
 									fillSpace();
 									if(isFull()){
 										solutionFound = true;
 										return;
 									}
-									deleteBox(solution.size() - 1);
-									//display.show(solution);
-
+									deleteParcel(solution.size() - 1);
 								}
 							}
 						}
@@ -52,13 +53,5 @@ public class A extends CargoSpace{
 			solutionFound = true;
 			return;
 		}
-	}
-
-	public static void main(String args[]){
-		 Parcel A = new Parcel(2, 2, 4, 'A');
-		 Parcel B = new Parcel(2, 3, 4, 'B');
-		 Parcel C = new Parcel(3, 3, 3, 'C');
-		 Parcel[] parcels = {A,B,C};
-		new A(parcels);
 	}
 }

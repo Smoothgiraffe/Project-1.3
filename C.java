@@ -10,7 +10,10 @@ public class C extends CargoSpace{
 	Pentomino[] pents = {p, t, l}; //put them into an array
 
 
-	public C(){
+	public C(double storageLength, double storageHeight, double storageWidth){
+		space = new char[(int)storageLength][(int)storageWidth][(int)storageHeight];
+		spaceVolume = storageLength*storageHeight*storageWidth;
+
 		fillSpace();
 		print();
 		Display display = new Display(pentSolution);
@@ -53,9 +56,5 @@ public class C extends CargoSpace{
 			solutionFound = true;
 			return;
 		}
-	}
-
-	public static void main(String args[]){
-		new C();
 	}
 }
