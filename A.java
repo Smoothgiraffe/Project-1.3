@@ -7,14 +7,12 @@ import java.util.ArrayList;
 */
 public class A extends CargoSpace{
 	//initiate the three types of boxes
-	private Parcel A = new Parcel(2, 2, 4, 'A');
-	private Parcel B = new Parcel(2, 3, 4, 'B');
-	private Parcel C = new Parcel(3, 3, 3, 'C');
 	private boolean solutionFound = false;
-	Parcel[] parcels = {A, B, C}; //put them into an array
+	Parcel[] parcels = null;
 
 
-	public A(){
+	public A(Parcel[] parcels){
+		this.parcels = parcels;
 		fillSpace();
 		print();
 		Display display = new Display(solution);
@@ -57,6 +55,10 @@ public class A extends CargoSpace{
 	}
 
 	public static void main(String args[]){
-		new A();
+		 Parcel A = new Parcel(2, 2, 4, 'A');
+		 Parcel B = new Parcel(2, 3, 4, 'B');
+		 Parcel C = new Parcel(3, 3, 3, 'C');
+		 Parcel[] parcels = {A,B,C};
+		new A(parcels);
 	}
 }
