@@ -87,7 +87,7 @@ public class D extends CargoSpace{
 											bestCargoValue = cargoValue;
 											long passedTime = System.nanoTime() - startTime;
 											System.out.println("Time passed: " + passedTime + " current highest value: " + bestCargoValue);
-											solution = PentToParcel.convert(pentSolution).clone();
+											solution = PentToParcel.convert(pentSolution);
 											display.show(solution);
 										}
 										if(isValuaBleEnough(maxValue)){
