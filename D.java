@@ -10,15 +10,21 @@ public class D extends CargoSpace{
 	Pentomino[] pents = {l, t, p}; //put them into an array
 	private Pentomino[] sortedPents;
 	private double maxValue;
+	Display display;
 
 	public D(){
 		sortedPents = sortPentominoes(pents);
 		maxValue = sortedPents[0].getValue() / 5 * SPACELENGTH * SPACEHEIGHT * SPACEWIDTH;
+		for(int i = 0; i < 3; i++){
+			System.out.println(sortedPents[i].getName());
+		}
+		System.out.println(maxValue);
+		display = new Display(pentSolution);
 		fillSpace();
 		print();
-		Display display = new Display(solution);
+
 		if(!solutionFound){
-		System.out.println("No solution found!");
+			System.out.println("No solution found!");
 		}
 	}
 
@@ -53,6 +59,7 @@ public class D extends CargoSpace{
 				newPentomino[2] = pentomino[0];
 			}
 		}
+		System.out.println(newPentomino[0].getName() + newPentomino[0].getValue() + " " + newPentomino[1].getName() + newPentomino[1].getValue() + " " + newPentomino[2].getName() + newPentomino[2].getValue());
 		return newPentomino;
 	}
 
@@ -62,6 +69,7 @@ public class D extends CargoSpace{
 	 */
 	private void fillSpace(){
 		if(!isValuaBleEnough(maxValue)) {
+		//if(!isFullEnough()) {
 			for(int i = 0; i < space.length; i++){
 				for(int j = 0; j < space[0].length; j++){
 					for(int k = 0; k < space[0][0].length; k++){
@@ -73,12 +81,18 @@ public class D extends CargoSpace{
 									if(fits(clone, i, j, k)){
 										placePentominoAt(clone, i, j, k);
 										fillSpace();
+										if(cargoValue >= bestCargoValue){
+											bestCargoValue = cargoValue;
+											display.show(pentSolution);
+										}
 										if(isValuaBleEnough(maxValue)){
 											solutionFound = true;
 											return;
 										}
+										System.out.println("before " + cargoValue);
 										deletePentomino(pentSolution.size() - 1);
-										//display.show(solution);
+										System.out.println("after " + cargoValue);
+										//display.show(pentSolution);
 									}
 								}
 							}

@@ -51,7 +51,7 @@ public class Pentomino {
 
 	//creates a new pentomino objects to avoid the changing state of a pentomino in only 1 object
 	public Pentomino clone() {
-		Pentomino clonePent = new Pentomino(name);
+		Pentomino clonePent = new Pentomino(name, value);
 		clonePent.setVersion(getFlipVersion(), getRotation());
 		return clonePent;
 	}

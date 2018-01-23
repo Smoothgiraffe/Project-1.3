@@ -11,16 +11,16 @@ public class CargoSpace {
 	//these variables describe the cargo-space
 	protected static final double SPACELENGTH = 4;
 	protected static final double SPACEHEIGHT = 5;
-	protected static final double SPACEWIDTH = 4;
+	protected static final double SPACEWIDTH = 3;
 
 	protected static final double SPACEVOLUME = SPACELENGTH*SPACEWIDTH*SPACEHEIGHT;
-	protected static final double STOPPERCENTAGE = 0.8;
+	protected static final double STOPPERCENTAGE = 1;
 	protected static double cargoVolume = 0;
 	protected static double cargoValue = 0;
+	protected static double bestCargoValue = 0;
+
 	protected static ArrayList<PlacedParcel> solution = new ArrayList<PlacedParcel>();
-	protected static ArrayList<PlacedParcel> bestSolution = new ArrayList<PlacedParcel>();
 	protected static ArrayList<PlacedPentomino> pentSolution = new ArrayList<PlacedPentomino>();
-	protected static ArrayList<PlacedPentomino> bestPentSolution = new ArrayList<PlacedPentomino>();
 
 	//space is a three-dimensional array where every single spot acts as a 0.5*0.5*0.5 block.
 	protected static char[][][] space = new char[(int)SPACELENGTH][(int)SPACEHEIGHT][(int)SPACEWIDTH];
@@ -42,7 +42,6 @@ public class CargoSpace {
 			for (int j = 0; j < box.getHeight(); j++) {
 				for (int k = 0; k < box.getWidth(); k++) {
 					if (space[x + i][y + j][z + k] != '\u0000' && space[x + i][y + j][z + k] != '0') {
-						//System.out.println(false);
 						return false;
 					}
 				}
@@ -89,8 +88,8 @@ public class CargoSpace {
 				}
 			}
 		}
-		cargoVolume = cargoVolume + box.getVolume(); //update the volume
-		cargoValue = cargoValue + box.getValue(); //update the value
+		cargoVolume += box.getVolume(); //update the volume
+		cargoValue += box.getValue(); //update the value
 
 		//create new PlacedParcel-Object to add to the solution
 		PlacedParcel newBox = new PlacedParcel(box.getLength(), box.getHeight(), box.getWidth(), box.getName(), (double) x / 2, (double) y / 2, (double) z / 2);
@@ -108,11 +107,11 @@ public class CargoSpace {
 				}
 			}
 		}
-		cargoVolume = cargoVolume + 5; //update the volume
-		cargoValue = cargoValue + pentomino.getValue(); //update the value
+		cargoVolume += 5; //update the volume
+		cargoValue += pentomino.getValue(); //update the value
 
 		//create new PlacedPentomino-Object to add to the solution
-		PlacedPentomino newPent = new PlacedPentomino(pentomino.getName(), (double) x / 2, (double) y / 2, (double) z / 2);
+		PlacedPentomino newPent = new PlacedPentomino(pentomino.getName(), pentomino.getValue(), (double) x / 2, (double) y / 2, (double) z / 2);
 		newPent.setVersion(pentomino.getFlipVersion(), pentomino.getRotation());
 		pentSolution.add(newPent); //add it to pent solution
 	}
@@ -121,7 +120,6 @@ public class CargoSpace {
 	public static void deleteBox(int index) {
 		//update the space
 		PlacedParcel deleteBox = solution.get(index);
-		//System.out.println("deletebox " + deleteBox.getName() + " " + deleteBox.getLength() + " " + deleteBox.getWidth() +  " " + deleteBox.getHeight());
 		for (int i = 0; i < deleteBox.getLength(); i++) {
 			for (int j = 0; j < deleteBox.getHeight(); j++) {
 				for (int k = 0; k < deleteBox.getWidth(); k++) {
@@ -130,8 +128,8 @@ public class CargoSpace {
 				}
 			}
 		}
-        cargoVolume = cargoVolume - deleteBox.getVolume(); //update the volume
-				cargoValue = cargoValue - deleteBox.getValue(); //update the value
+        cargoVolume -= deleteBox.getVolume(); //update the volume
+		cargoValue -= deleteBox.getValue(); //update the value
 		//update the arrayList
 		solution.remove(index); //delete it from the solution
 	}
@@ -149,8 +147,8 @@ public class CargoSpace {
 				}
 			}
 		}
-		cargoVolume = cargoVolume - 5; //update the volume
-		cargoValue = cargoValue - deletePent.getValue(); //update the value
+		cargoVolume -= 5; //update the volume
+		cargoValue -= deletePent.getValue(); //update the value
 		pentSolution.remove(index); //delete it from the pent solution
 	}
 

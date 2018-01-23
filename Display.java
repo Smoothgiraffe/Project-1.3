@@ -44,8 +44,16 @@ public class Display {
 		print3DArray();
 	}
 
-	public void show(ArrayList<PlacedParcel> boxArray){
-		this.boxArray = boxArray;
+	public void show(ArrayList boxArray){
+		if(boxArray.size() > 0) {
+			if (boxArray.get(0) instanceof PlacedParcel) {
+				this.boxArray = boxArray;
+			}
+			if (boxArray.get(0) instanceof PlacedPentomino) {
+				this.boxArray = PentToParcel.convert(boxArray);
+				spacing = 1;
+			}
+		}
 		group.detach();
 		//universe.dispose();
 		//universe = new SimpleUniverse();
