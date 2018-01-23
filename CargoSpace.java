@@ -10,8 +10,8 @@ public class CargoSpace {
 
 	//these variables describe the cargo-space
 	protected static final double SPACELENGTH = 4;
-	protected static final double SPACEHEIGHT = 5;
-	protected static final double SPACEWIDTH = 3;
+	protected static final double SPACEHEIGHT = 4;
+	protected static final double SPACEWIDTH = 5;
 
 	protected static final double SPACEVOLUME = SPACELENGTH*SPACEWIDTH*SPACEHEIGHT;
 	protected static final double STOPPERCENTAGE = 1;

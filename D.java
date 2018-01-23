@@ -11,6 +11,7 @@ public class D extends CargoSpace{
 	private Pentomino[] sortedPents;
 	private double maxValue;
 	Display display;
+	long startTime;
 
 	public D(){
 		sortedPents = sortPentominoes(pents);
@@ -20,6 +21,7 @@ public class D extends CargoSpace{
 		}
 		System.out.println(maxValue);
 		display = new Display(pentSolution);
+		startTime = System.nanoTime();
 		fillSpace();
 		print();
 
@@ -83,16 +85,15 @@ public class D extends CargoSpace{
 										fillSpace();
 										if(cargoValue >= bestCargoValue){
 											bestCargoValue = cargoValue;
+											long passedTime = System.nanoTime() - startTime;
+											System.out.println("Time passed: " + passedTime + " current highest value: " + bestCargoValue);
 											display.show(pentSolution);
 										}
 										if(isValuaBleEnough(maxValue)){
 											solutionFound = true;
 											return;
 										}
-										System.out.println("before " + cargoValue);
 										deletePentomino(pentSolution.size() - 1);
-										System.out.println("after " + cargoValue);
-										//display.show(pentSolution);
 									}
 								}
 							}
