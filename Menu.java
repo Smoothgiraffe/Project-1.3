@@ -2,11 +2,16 @@ import java.awt.*;
 import java.util.*;
 import javax.swing.*;
 import java.awt.event.*;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.*;
 
 public class Menu {
 
 	private static final int FRAME_WIDTH = 800;
 	private static final int FRAME_HEIGHT = 300;
+	private static boolean playing = false;
 
 
 	public static void main(String[] args) {
@@ -92,7 +97,22 @@ public class Menu {
 	
 		
 		
-  public void actionPerformed(ActionEvent e) { 
+  public void actionPerformed(ActionEvent e) {
+	  if(!playing){
+	  	 /*
+		 A try catch to play some background music in a loop
+		*/
+		  try{
+			  AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(this.getClass().getResource("music.wav"));
+			  Clip clip = AudioSystem.getClip();
+			  clip.open(audioInputStream);
+			  clip.loop(999);
+		  }
+		  catch(Exception ex){
+		  }
+		  playing = true;
+	  }
+
 	  double storageLength = 2 * Double.parseDouble(sl.getText());
 	  double storageHeight = 2 * Double.parseDouble(sh.getText());
 	  double storageWidth = 2 * Double.parseDouble(sw.getText());
@@ -116,7 +136,7 @@ public class Menu {
 	  Parcel B = new Parcel(LengthB, HeightB, WidthB, 'B', valueB);
 	  Parcel C = new Parcel(LengthC, HeightC, WidthC, 'C', valueC);
 		 
-		 Parcel[] parcels = {A,B,C};
+	  Parcel[] parcels = {A,B,C};
     if(a.isSelected()){
 		A classA = new A(parcels, storageLength, storageHeight, storageWidth);
 
@@ -144,4 +164,5 @@ public class Menu {
     frame.setLocationRelativeTo(null);
     frame.setVisible(true);
 	}
+
 }

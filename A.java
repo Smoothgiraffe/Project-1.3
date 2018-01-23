@@ -9,6 +9,7 @@ public class A extends CargoSpace{
 	//initiate the three types of boxes
 	private boolean solutionFound = false;
 	Parcel[] parcels = null;
+	long startTime;
 
 
 	public A(Parcel[] parcels, double storageLength, double storageHeight, double storageWidth){
@@ -16,9 +17,12 @@ public class A extends CargoSpace{
 		spaceVolume = storageLength*storageHeight*storageWidth;
 
 		this.parcels = parcels;
+		startTime = System.nanoTime();
 		fillSpace();
 		print();
 		Display display = new Display(solution);
+		long passedTime = System.nanoTime() - startTime;
+		System.out.println(passedTime + " time passed");
 		if(!solutionFound){
 			System.out.println("No solution found!");
 		}

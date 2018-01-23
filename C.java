@@ -8,12 +8,13 @@ public class C extends CargoSpace{
 	private Pentomino p = new Pentomino('p');
 	private boolean solutionFound = false;
 	Pentomino[] pents = {p, t, l}; //put them into an array
+	long startTime;
 
 
 	public C(double storageLength, double storageHeight, double storageWidth){
 		space = new char[(int)storageLength][(int)storageWidth][(int)storageHeight];
 		spaceVolume = storageLength*storageHeight*storageWidth;
-
+		startTime = System.nanoTime();
 		fillSpace();
 		print();
 		Display display = new Display(pentSolution);

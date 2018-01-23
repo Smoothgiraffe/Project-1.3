@@ -11,7 +11,7 @@ public class CargoSpace {
 	//these variables describe the cargo-space
 
 	protected double spaceVolume;
-	protected final double STOPPERCENTAGE = 0.8;
+	protected final double STOPPERCENTAGE = 0.7;
 	protected double cargoVolume = 0;
 	protected double cargoValue = 0;
 	protected double bestCargoValue = 0;
@@ -89,7 +89,7 @@ public class CargoSpace {
 		cargoValue += parcel.getValue(); //update the value
 
 		//create new PlacedParcel-Object to add to the solution
-		PlacedParcel newParcel = new PlacedParcel(parcel.getLength(), parcel.getHeight(), parcel.getWidth(), parcel.getName(), (double) x / 2, (double) y / 2, (double) z / 2);
+		PlacedParcel newParcel = new PlacedParcel(parcel.getLength(), parcel.getHeight(), parcel.getWidth(), parcel.getName(), parcel.getValue(),(double) x / 2, (double) y / 2, (double) z / 2);
 		solution.add(newParcel); //add it to solution
 	}
 

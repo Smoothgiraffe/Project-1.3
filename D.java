@@ -10,7 +10,7 @@ public class D extends CargoSpace{
 	Pentomino[] pents = {l, t, p}; //put them into an array
 	private Pentomino[] sortedPents;
 	private double maxValue;
-	Display display = new Display(pentSolution);;
+	Display display = new Display(pentSolution);
 	long startTime;
 
 	public D(double storageLength, double storageHeight, double storageWidth){
@@ -25,7 +25,7 @@ public class D extends CargoSpace{
 		startTime = System.nanoTime();
 		fillSpace();
 		print();
-
+		System.out.println("The value of the entire cargo is " + cargoValue + ".");
 		if(!solutionFound){
 			System.out.println("No solution found");
 		}
@@ -62,7 +62,6 @@ public class D extends CargoSpace{
 				newPentomino[2] = pentomino[0];
 			}
 		}
-		System.out.println(newPentomino[0].getName() + newPentomino[0].getValue() + " " + newPentomino[1].getName() + newPentomino[1].getValue() + " " + newPentomino[2].getName() + newPentomino[2].getValue());
 		return newPentomino;
 	}
 
