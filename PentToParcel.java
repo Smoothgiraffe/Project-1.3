@@ -8,8 +8,7 @@ import java.util.ArrayList;
 public class PentToParcel {
 	public static ArrayList<PlacedParcel> convert(ArrayList<PlacedPentomino> pentArray){
 		double spacing = 1.05; //empty space between the pentominoes to see each seperate pentominoes
-		ArrayList<PlacedParcel> parcelArray = new ArrayList<PlacedParcel>();
-		System.out.println("Converting to parcels");
+		ArrayList<PlacedParcel> parcelArray = new ArrayList();
 
 		for (int p = 0; p < pentArray.size(); p++) {
 			PlacedPentomino pent = pentArray.get(p);

@@ -10,17 +10,18 @@ public class D extends CargoSpace{
 	Pentomino[] pents = {l, t, p}; //put them into an array
 	private Pentomino[] sortedPents;
 	private double maxValue;
-	Display display;
+	Display display = new Display(pentSolution);;
 	long startTime;
 
 	public D(double storageLength, double storageHeight, double storageWidth){
 		space = new char[(int)storageLength][(int)storageWidth][(int)storageHeight];
 		spaceVolume = storageLength*storageHeight*storageWidth;
+
 		sortedPents = sortPentominoes(pents);
 		maxValue = sortedPents[0].getValue() / 5 * storageLength * storageHeight * storageWidth;
 
 		System.out.println(maxValue);
-		display = new Display(pentSolution);
+
 		startTime = System.nanoTime();
 		fillSpace();
 		print();

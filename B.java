@@ -13,6 +13,7 @@ public class B extends CargoSpace{
 	private boolean solutionFound = false;
 	Parcel[] parcels = null; //put them into an array
 	Parcel[] sortedParcels;
+	Display display;
 
 	public B(Parcel[] parcels, double storageLength, double storageHeight, double storageWidth){
 		space = new char[(int)storageLength][(int)storageWidth][(int)storageHeight];
@@ -20,10 +21,11 @@ public class B extends CargoSpace{
 
 		this.parcels = parcels;
 		sortedParcels = sortParcels(parcels);
+		//display.show(solution);
 		fillSpace();
 		print();
 		System.out.println("The value of the entire cargo is " + cargoValue + ".");
-		Display display = new Display(solution);
+		display.show(solution);
 		if(!solutionFound){
 			System.out.println("No solution found!");
 		}

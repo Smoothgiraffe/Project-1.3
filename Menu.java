@@ -97,15 +97,15 @@ public class Menu {
 	  double storageHeight = 2 * Double.parseDouble(sh.getText());
 	  double storageWidth = 2 * Double.parseDouble(sw.getText());
 
-	  double LengthA = Double.parseDouble(aLength.getText());
-	  double LengthB = Double.parseDouble(bLength.getText());
-	  double LengthC = Double.parseDouble(cLength.getText());
-	  double WidthA = Double.parseDouble(aWidth.getText());
-	  double WidthB = Double.parseDouble(bWidth.getText());
-	  double WidthC = Double.parseDouble(cWidth.getText());
-	  double HeightA = Double.parseDouble(aHeight.getText());
-	  double HeightB = Double.parseDouble(bHeight.getText());
-	  double HeightC = Double.parseDouble(cHeight.getText());
+	  double LengthA = 2 * Double.parseDouble(aLength.getText());
+	  double LengthB = 2 * Double.parseDouble(bLength.getText());
+	  double LengthC = 2 * Double.parseDouble(cLength.getText());
+	  double WidthA = 2 * Double.parseDouble(aWidth.getText());
+	  double WidthB = 2 * Double.parseDouble(bWidth.getText());
+	  double WidthC = 2 * Double.parseDouble(cWidth.getText());
+	  double HeightA = 2 * Double.parseDouble(aHeight.getText());
+	  double HeightB = 2 * Double.parseDouble(bHeight.getText());
+	  double HeightC = 2 * Double.parseDouble(cHeight.getText());
 		
 	  double valueA = Double.parseDouble(aValue.getText());
 	  double valueB = Double.parseDouble(bValue.getText());
