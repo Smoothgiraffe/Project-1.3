@@ -14,11 +14,13 @@ public class CargoSpace {
 	protected static final double SPACEWIDTH = 4;
 
 	protected static final double SPACEVOLUME = SPACELENGTH*SPACEWIDTH*SPACEHEIGHT;
-	protected static final double stopPercentage = 0.6;
+	protected static final double STOPPERCENTAGE = 0.8;
 	protected static double cargoVolume = 0;
 	protected static double cargoValue = 0;
 	protected static ArrayList<PlacedParcel> solution = new ArrayList<PlacedParcel>();
+	protected static ArrayList<PlacedParcel> bestSolution = new ArrayList<PlacedParcel>();
 	protected static ArrayList<PlacedPentomino> pentSolution = new ArrayList<PlacedPentomino>();
+	protected static ArrayList<PlacedPentomino> bestPentSolution = new ArrayList<PlacedPentomino>();
 
 	//space is a three-dimensional array where every single spot acts as a 0.5*0.5*0.5 block.
 	protected static char[][][] space = new char[(int)SPACELENGTH][(int)SPACEHEIGHT][(int)SPACEWIDTH];
@@ -27,22 +29,18 @@ public class CargoSpace {
 	public static boolean fits(Parcel box, int x, int y, int z) {
 		//checks for out-of-bound-errors
 		if (x + box.getLength() > space.length) {
-			//System.out.println(box.getName() + " x " + x + " Length " + box.getLength());
 			return false;
 		}
 		if (y + box.getHeight() > space[0].length) {
-			//System.out.println(box.getName() + " y " + y + " height " + box.getHeight());
 			return false;
 		}
 		if (z + box.getWidth() > space[0][0].length) {
-			//System.out.println(box.getName() + " z " + z + " Width " + box.getWidth());
 			return false;
 		}
 		//checks for every single spot in the array to be empty
 		for(int i = 0; i < box.getLength(); i++) {
 			for (int j = 0; j < box.getHeight(); j++) {
 				for (int k = 0; k < box.getWidth(); k++) {
-					//System.out.println((space[x + i][y + j][z + k]+ " " + x + i + " " + y + j + " " + z + k));
 					if (space[x + i][y + j][z + k] != '\u0000' && space[x + i][y + j][z + k] != '0') {
 						//System.out.println(false);
 						return false;
@@ -59,22 +57,18 @@ public class CargoSpace {
 		char[][][] pentomino = pent.toArray();
 		//checks for out-of-bound-errors
 		if (x + pentomino.length > space.length) {
-			//System.out.println(box.getName() + " x " + x + " Length " + box.getLength());
 			return false;
 		}
 		if (y + pentomino[0].length > space[0].length) {
-			//System.out.println(box.getName() + " y " + y + " height " + box.getHeight());
 			return false;
 		}
 		if (z + pentomino[0][0].length > space[0][0].length) {
-			//System.out.println(box.getName() + " z " + z + " Width " + box.getWidth());
 			return false;
 		}
 		//checks for every single spot in the array to be empty
 		for(int i = 0; i < pentomino.length; i++) {
 			for (int j = 0; j < pentomino[0].length; j++) {
 				for (int k = 0; k < pentomino[0][0].length; k++) {
-					//System.out.println((space[x + i][y + j][z + k]+ " " + x + i + " " + y + j + " " + z + k));
 					if (space[x + i][y + j][z + k] != '\u0000' && space[x + i][y + j][z + k] != '0' && pentomino[i][j][k] != '\u0000' && pentomino[i][j][k] != '0') {
 						//System.out.println(false);
 						return false;
@@ -123,22 +117,6 @@ public class CargoSpace {
 		pentSolution.add(newPent); //add it to pent solution
 	}
 
-	//places a pentomino at a certain positon x, y, z
-	/*public static void placePentominoAt(Pentomino pent, int rotation, int version, int x, int y, int z) {
-		pent.setFliptation(version);
-		pent.setRotation(rotation);
-		char[][][] pentArray = Pentomino.toArray();
-		for(int i = 0; i < pentArray.length; i++){
-			for(int j = 0; j < pentArray[0].length; j++) {
-				for(int k = 0; k < pentArray[0][0].length; k++) {
-					if(pentArray[i][j][k] != '\u0000' || space[i][j][k] == '0') {
-						space[x + i][y + j][z + k] = pent[i][j][k];
-					}
-				}
-			}
-		}
-	}*/
-
 	//deletes the last box in the solution-Array and updates the space accordingly
 	public static void deleteBox(int index) {
 		//update the space
@@ -178,7 +156,7 @@ public class CargoSpace {
 
 	//returns true if a certain percentage of the cargo-space is full (for exercise b and d)
 	public static boolean isFullEnough() {
-		if (cargoVolume >= stopPercentage*SPACEVOLUME) {
+		if (cargoVolume >= STOPPERCENTAGE*SPACEVOLUME) {
 			return true;
 		}
 		return false;
@@ -198,9 +176,9 @@ public class CargoSpace {
 		return true;
 	}
 
-
+	//returns true if the value is higher then a certain threshold
 	public static boolean isValuaBleEnough(double maxValue){
-		if(cargoValue > (maxValue * stopPercentage)){
+		if(cargoValue > (maxValue * STOPPERCENTAGE)){
 			return true;
 		}
 		return false;

@@ -12,7 +12,7 @@ public class D extends CargoSpace{
 	private double maxValue;
 
 	public D(){
-		Pentomino[] sortedPents = sortPentominoes(pents);
+		sortedPents = sortPentominoes(pents);
 		maxValue = sortedPents[0].getValue() / 5 * SPACELENGTH * SPACEHEIGHT * SPACEWIDTH;
 		fillSpace();
 		print();
