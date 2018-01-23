@@ -17,7 +17,7 @@ public class B extends CargoSpace{
 	Parcel[] parcels = {A, B, C}; //put them into an array
 
 	public B() {
-		Parcel[] sortedParcels = sortBoxes(parcels);
+		sortedParcels = sortBoxes(parcels);
 		fillSpace();
 		print();
 		System.out.println("The value of the entire cargo is " + cargoValue + ".");
