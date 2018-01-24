@@ -21,8 +21,10 @@ public class A extends CargoSpace{
 		fillSpace();
 		print();
 		long passedTime = System.nanoTime() - startTime;
-		Display display = new Display(solution);
 		System.out.println(passedTime + " time passed");
+
+		Display display = new Display(solution);
+
 		if(!solutionFound){
 			System.out.println("No solution found!");
 		}

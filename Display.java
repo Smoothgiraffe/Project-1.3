@@ -148,22 +148,14 @@ public class Display {
 		universe.getViewingPlatform().getViewPlatformTransform().setTransform(rotation);
 		universe.getViewingPlatform().getViewPlatformTransform().getTransform(viewTransform);
 
-		//This sets the lighting of our universe so our objects are visible
-		/*Color3f light1Color = new Color3f(.1f, 1.4f, .1f); // green light
-		BoundingSphere bounds = new BoundingSphere(new Point3d(0.0,0.0,0.0), 1000.0);
-		Vector3f light1Direction = new Vector3f(100.0f, 100.0f, 100.0f);
-		DirectionalLight light1 = new DirectionalLight(light1Color, light1Direction);
-		light1.setInfluencingBounds(bounds);
-		group.addChild(light1);*/
-
 		// adds the group of objects to the Universe
 		universe.addBranchGraph(group);
 
 	}
 
-		/*
-		Gui is for creating a little popup window with camera controls
-		 */
+	/*
+	Gui is for creating a little popup window with camera controls
+	 */
 	class GUI extends JFrame implements KeyListener{
 		/*
 		This class creates a seperate JFrame that is our user interface
@@ -212,22 +204,5 @@ public class Display {
 		@Override
 		public void keyTyped(KeyEvent e) {
 		}
-	}
-
-
-	public static void main(String[] args){
-		PlacedParcel box = new PlacedParcel( 2,6,2,'A',0,0,0);
-		PlacedParcel box1 = new PlacedParcel( 2,4,2,'B',0,0,1);
-		PlacedParcel box2 = new PlacedParcel( 2,2,2,'C',1,0,0);
-		PlacedParcel box3 = new PlacedParcel( 2,2,2,'C',1,2,0);
-		ArrayList array = new ArrayList();
-		array.add(box);
-		array.add(box1);
-		array.add(box2);
-		array.add(box3);
-
-
-
-		new Display(array);
 	}
 }

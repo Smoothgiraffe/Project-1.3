@@ -18,6 +18,9 @@ public class C extends CargoSpace{
 		startTime = System.nanoTime();
 		fillSpace();
 		print();
+		long passedTime = System.nanoTime() - startTime;
+		System.out.println(passedTime + " time passed");
+
 		Display display = new Display(pentSolution);
 		if(!solutionFound){
 		System.out.println("No solution found!");

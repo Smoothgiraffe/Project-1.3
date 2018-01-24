@@ -33,6 +33,10 @@ public class D extends CargoSpace{
 		}
 	}
 
+	/*
+	Loop through all of the space and all parcels and their rotation, see if they fit and then place them
+	After placing, call itself recursively, after backtracking delete the box and then continue the loop
+	 */
 	private void fillSpace(){
 		if(!isValuaBleEnough(maxValue)) {
 			//if(!isFullEnough()) {
@@ -105,9 +109,4 @@ public class D extends CargoSpace{
 		}
 		return newPentomino;
 	}
-	/*
-	Loop through all of the space and all parcels and their rotation, see if they fit and then place them
-	After placing, call itself recursively, after backtracking delete the box and then continue the loop
-	 */
-
 }

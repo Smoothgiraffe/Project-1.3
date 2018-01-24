@@ -9,7 +9,7 @@ import java.io.*;
 
 public class Menu {
 
-	private static final int FRAME_WIDTH = 800;
+	private static final int FRAME_WIDTH = 1050;
 	private static final int FRAME_HEIGHT = 300;
 	private static boolean playing = false;
 
@@ -38,7 +38,7 @@ public class Menu {
 		leftPanel1.add(d);
 
 		JPanel leftPanel2 = new JPanel();
-		JLabel spaceSize = new JLabel("Fill the length, height, and width of the cargo space in here.");
+		JLabel spaceSize = new JLabel("Fill in the length, height, and width of the cargo-space and the stopping percentage");
 		spaceSize.setFont(font);
 		JTextField sl = new JTextField("16.5", 3);
 		JTextField sh = new JTextField("4", 3);
@@ -53,7 +53,7 @@ public class Menu {
 		JPanel rightPanel1 = new JPanel();
 		rightPanel1.setLayout(new GridLayout(2, 1));
 		JPanel rightPanel11 = new JPanel();
-		JLabel xbox = new JLabel("Fill the length, height, and width in here for the respective boxes.");
+		JLabel xbox = new JLabel("Fill in the length, height, width, and value in here for the respective boxes");
 		rightPanel11.add(xbox);
 		JPanel rightPanel12 = new JPanel();
 		rightPanel12.setLayout(new GridLayout(3, 5));

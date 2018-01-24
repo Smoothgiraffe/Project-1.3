@@ -188,6 +188,5 @@ public class CargoSpace {
 			}
 			System.out.println();
 		}
-		System.out.println("length " + space.length + " heigth " + space[0].length + " width " + space[0][0].length);
 	}
 }
