@@ -14,13 +14,13 @@ public class D extends CargoSpace{
 	long startTime;
 
 	public D(double storageLength, double storageHeight, double storageWidth){
-		space = new char[(int)storageLength][(int)storageWidth][(int)storageHeight];
+		space = new char[(int)storageLength][(int)storageHeight][(int)storageWidth];
 		spaceVolume = storageLength*storageHeight*storageWidth;
 
 		sortedPents = sortPentominoes(pents);
 		maxValue = sortedPents[0].getValue() / 5 * storageLength * storageHeight * storageWidth;
 
-		System.out.println(maxValue);
+		System.out.println("Aiming for a score of : " + maxValue);
 
 		startTime = System.nanoTime();
 		fillSpace();

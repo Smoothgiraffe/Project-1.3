@@ -18,14 +18,14 @@ public class B extends CargoSpace{
 	double maxValue;
 
 	public B(Parcel[] parcels, double storageLength, double storageHeight, double storageWidth){
-		space = new char[(int)storageLength][(int)storageWidth][(int)storageHeight];
+		space = new char[(int)storageLength][(int)storageHeight][(int)storageWidth];
 		spaceVolume = storageLength*storageHeight*storageWidth;
 
 		this.parcels = parcels;
 		sortedParcels = sortParcels(parcels);
 		maxValue = sortedParcels[0].getValuePerUnit() * storageLength * storageHeight * storageWidth;
 		//display.show(solution);
-		System.out.println(maxValue);
+		System.out.println("Aiming for a score of : " + maxValue);
 		startTime = System.nanoTime();
 		fillSpace();
 		print();
@@ -42,7 +42,7 @@ public class B extends CargoSpace{
      Start with placing the first parcel of the sorted array, if it doesn't fit anymore go to the next parcel in the array
     */
 	private void fillSpace(){
-		if(!isFullEnough()) {
+		if(!isValuaBleEnough(maxValue)) {
 			for(int i = 0; i < space.length; i++){
 				for(int j = 0; j < space[0].length; j++){
 					for(int k = 0; k < space[0][0].length; k++){

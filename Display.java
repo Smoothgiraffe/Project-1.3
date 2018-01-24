@@ -23,7 +23,7 @@ public class Display {
 	private int xCamera = -4;
 	private int yCamera = 1;
 
-	private float spacing = 1.08f;
+	private static float spacing = 1.08f;
 
 	private SimpleUniverse universe = new SimpleUniverse();
 	public BranchGroup group = null;
@@ -36,8 +36,8 @@ public class Display {
 				this.boxArray = boxArray;
 			}
 			if (boxArray.get(0) instanceof PlacedPentomino) {
-				this.boxArray = PentToParcel.convert(boxArray);
 				spacing = 1;
+				this.boxArray = PentToParcel.convert(boxArray);
 			}
 		}
 		GUI g = new GUI();
@@ -50,8 +50,8 @@ public class Display {
 				this.boxArray = boxArray;
 			}
 			if (boxArray.get(0) instanceof PlacedPentomino) {
-				this.boxArray = PentToParcel.convert(boxArray);
 				spacing = 1;
+				this.boxArray = PentToParcel.convert(boxArray);
 			}
 		}
 		group.detach();

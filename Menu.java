@@ -15,7 +15,7 @@ public class Menu {
 
 
 	public static void main(String[] args) {
-		JFrame frame = new JFrame("Gnarly Knapsack");
+		JFrame frame = new JFrame("3D Knapsack Solver");
 		frame.setLayout(new GridLayout(2, 2));
 
 		JPanel leftPanel1 = new JPanel();

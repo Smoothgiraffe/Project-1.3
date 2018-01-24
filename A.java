@@ -13,7 +13,7 @@ public class A extends CargoSpace{
 
 
 	public A(Parcel[] parcels, double storageLength, double storageHeight, double storageWidth){
-		space = new char[(int)storageLength][(int)storageWidth][(int)storageHeight];
+		space = new char[(int)storageLength][(int)storageHeight][(int)storageWidth];
 		spaceVolume = storageLength*storageHeight*storageWidth;
 
 		this.parcels = parcels;

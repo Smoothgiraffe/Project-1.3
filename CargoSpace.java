@@ -11,7 +11,7 @@ public class CargoSpace {
 	//these variables describe the cargo-space
 
 	protected double spaceVolume;
-	protected final double STOPPERCENTAGE = 0.7;
+	protected final double STOPPERCENTAGE = 0.74;
 	protected double cargoVolume = 0;
 	protected double cargoValue = 0;
 	protected double bestCargoValue = 0;
