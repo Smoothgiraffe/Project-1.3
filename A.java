@@ -15,13 +15,13 @@ public class A extends CargoSpace{
 	public A(Parcel[] parcels, double storageLength, double storageHeight, double storageWidth){
 		space = new char[(int)storageLength][(int)storageHeight][(int)storageWidth];
 		spaceVolume = storageLength*storageHeight*storageWidth;
-
 		this.parcels = parcels;
+
 		startTime = System.nanoTime();
 		fillSpace();
 		print();
-		Display display = new Display(solution);
 		long passedTime = System.nanoTime() - startTime;
+		Display display = new Display(solution);
 		System.out.println(passedTime + " time passed");
 		if(!solutionFound){
 			System.out.println("No solution found!");

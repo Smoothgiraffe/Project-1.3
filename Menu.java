@@ -38,51 +38,60 @@ public class Menu {
 		leftPanel1.add(d);
 
 		JPanel leftPanel2 = new JPanel();
-		JLabel spaceSize = new JLabel("Fill the length, width and height of the cargo space in here.");
+		JLabel spaceSize = new JLabel("Fill the length, height, and width of the cargo space in here.");
 		spaceSize.setFont(font);
 		JTextField sl = new JTextField("16.5", 3);
 		JTextField sh = new JTextField("4", 3);
 		JTextField sw = new JTextField("2.5", 3);
+		JTextField sp = new JTextField("80", 3);
 		leftPanel2.add(spaceSize);
 		leftPanel2.add(sl);
 		leftPanel2.add(sh);
 		leftPanel2.add(sw);
+		leftPanel2.add(sp);
 
 		JPanel rightPanel1 = new JPanel();
 		rightPanel1.setLayout(new GridLayout(2, 1));
 		JPanel rightPanel11 = new JPanel();
-		JLabel xbox = new JLabel("Fill the length, width, and height in here for the respective boxes.");
+		JLabel xbox = new JLabel("Fill the length, height, and width in here for the respective boxes.");
 		rightPanel11.add(xbox);
 		JPanel rightPanel12 = new JPanel();
 		rightPanel12.setLayout(new GridLayout(3, 5));
+
 		JTextField aLength = new JTextField("1", 3);
-		JTextField aWidth = new JTextField("2", 3);
 		JTextField aHeight = new JTextField("1", 3);
+		JTextField aWidth = new JTextField("2", 3);
+
 		JTextField bLength = new JTextField("1", 3);
-		JTextField bWidth = new JTextField("2", 3);
 		JTextField bHeight = new JTextField("1.5", 3);
+		JTextField bWidth = new JTextField("2", 3);
+
+
 		JTextField cLength = new JTextField("1.5", 3);
-		JTextField cWidth = new JTextField("1.5", 3);
 		JTextField cHeight = new JTextField("1.5", 3);
+		JTextField cWidth = new JTextField("1.5", 3);
+
 		JLabel aa = new JLabel("A");
 		JLabel bb = new JLabel("B");
 		JLabel cc = new JLabel("C");
+
 		JTextField aValue = new JTextField("3", 3);
 		JTextField bValue = new JTextField("4", 3);
 		JTextField cValue = new JTextField("5", 3);
+
 		rightPanel12.add(aLength);
-		rightPanel12.add(aWidth);
 		rightPanel12.add(aHeight);
+		rightPanel12.add(aWidth);
 		rightPanel12.add(aa);
 		rightPanel12.add(aValue);
 		rightPanel12.add(bLength);
-		rightPanel12.add(bWidth);
 		rightPanel12.add(bHeight);
+		rightPanel12.add(bWidth);
 		rightPanel12.add(bb);
 		rightPanel12.add(bValue);
 		rightPanel12.add(cLength);
-		rightPanel12.add(cWidth);
 		rightPanel12.add(cHeight);
+		rightPanel12.add(cWidth);
 		rightPanel12.add(cc);
 		rightPanel12.add(cValue);
 		rightPanel1.add(rightPanel11);
@@ -116,6 +125,7 @@ public class Menu {
 	  double storageLength = 2 * Double.parseDouble(sl.getText());
 	  double storageHeight = 2 * Double.parseDouble(sh.getText());
 	  double storageWidth = 2 * Double.parseDouble(sw.getText());
+	  double stoppingPercentage = Double.parseDouble(sp.getText()) / 100;
 
 	  double LengthA = 2 * Double.parseDouble(aLength.getText());
 	  double LengthB = 2 * Double.parseDouble(bLength.getText());
@@ -142,13 +152,13 @@ public class Menu {
 
 	}
 	 if(b.isSelected()){
-		B classB = new B(parcels, storageLength, storageHeight, storageWidth);
+		B classB = new B(parcels, storageLength, storageHeight, storageWidth, stoppingPercentage);
 	}
 	 if(c.isSelected()){
 		C classC = new C(storageLength, storageHeight, storageWidth);
 	}
 	 if(d.isSelected()){
-		D classD = new D(storageLength, storageHeight, storageWidth);
+		D classD = new D(storageLength, storageHeight, storageWidth, stoppingPercentage);
 	}
 	
   } 

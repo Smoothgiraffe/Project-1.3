@@ -17,15 +17,20 @@ public class B extends CargoSpace{
 	long startTime;
 	double maxValue;
 
-	public B(Parcel[] parcels, double storageLength, double storageHeight, double storageWidth){
+	public B(Parcel[] parcels, double storageLength, double storageHeight, double storageWidth, double stopPercentage){
 		space = new char[(int)storageLength][(int)storageHeight][(int)storageWidth];
 		spaceVolume = storageLength*storageHeight*storageWidth;
+		this.stopPercentage = stopPercentage;
 
 		this.parcels = parcels;
 		sortedParcels = sortParcels(parcels);
 		maxValue = sortedParcels[0].getValuePerUnit() * storageLength * storageHeight * storageWidth;
 		//display.show(solution);
-		System.out.println("Aiming for a score of : " + maxValue);
+
+		System.out.println(stopPercentage);
+		double stopValue = maxValue * stopPercentage;
+		System.out.println("Aiming for a score of : " + maxValue + " and will stop at: " + stopValue);
+
 		startTime = System.nanoTime();
 		fillSpace();
 		print();

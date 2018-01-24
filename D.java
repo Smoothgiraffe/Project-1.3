@@ -13,14 +13,16 @@ public class D extends CargoSpace{
 	Display display = new Display(pentSolution);
 	long startTime;
 
-	public D(double storageLength, double storageHeight, double storageWidth){
+	public D(double storageLength, double storageHeight, double storageWidth, double stopPercentage){
 		space = new char[(int)storageLength][(int)storageHeight][(int)storageWidth];
 		spaceVolume = storageLength*storageHeight*storageWidth;
+		this.stopPercentage = stopPercentage;
 
 		sortedPents = sortPentominoes(pents);
 		maxValue = sortedPents[0].getValue() / 5 * storageLength * storageHeight * storageWidth;
 
-		System.out.println("Aiming for a score of : " + maxValue);
+		double stopValue = maxValue * stopPercentage;
+		System.out.println("Aiming for a score of : " + maxValue + " and will stop at: " + stopValue);
 
 		startTime = System.nanoTime();
 		fillSpace();
@@ -28,6 +30,45 @@ public class D extends CargoSpace{
 		System.out.println("The value of the entire cargo is " + cargoValue + ".");
 		if(!solutionFound){
 			System.out.println("No solution found");
+		}
+	}
+
+	private void fillSpace(){
+		if(!isValuaBleEnough(maxValue)) {
+			//if(!isFullEnough()) {
+			for(int i = 0; i < space.length; i++){
+				for(int j = 0; j < space[0].length; j++){
+					for(int k = 0; k < space[0][0].length; k++){
+						for(int l = 0; l < sortedPents.length; l++){
+							for(int m = 0; m < 4; m++){
+								for(int n = 0; n < 6; n++) {
+									Pentomino clone = sortedPents[l].clone();
+									clone.setVersion(m, n);
+									if(fits(clone, i, j, k)){
+										placePentominoAt(clone, i, j, k);
+										fillSpace();
+										if(cargoValue > bestCargoValue){
+											bestCargoValue = cargoValue;
+											long passedTime = System.nanoTime() - startTime;
+											System.out.println("Time passed: " + passedTime + " current highest value: " + bestCargoValue);
+											solution = PentToParcel.convert(pentSolution);
+											display.show(solution);
+										}
+										if(isValuaBleEnough(maxValue)){
+											solutionFound = true;
+											return;
+										}
+										deletePentomino(pentSolution.size() - 1);
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		} else{
+			solutionFound = true;
+			return;
 		}
 	}
 
@@ -64,47 +105,9 @@ public class D extends CargoSpace{
 		}
 		return newPentomino;
 	}
-
 	/*
 	Loop through all of the space and all parcels and their rotation, see if they fit and then place them
 	After placing, call itself recursively, after backtracking delete the box and then continue the loop
 	 */
-	private void fillSpace(){
-		if(!isValuaBleEnough(maxValue)) {
-		//if(!isFullEnough()) {
-			for(int i = 0; i < space.length; i++){
-				for(int j = 0; j < space[0].length; j++){
-					for(int k = 0; k < space[0][0].length; k++){
-						for(int l = 0; l < sortedPents.length; l++){
-							for(int m = 0; m < 4; m++){
-								for(int n = 0; n < 6; n++) {
-									Pentomino clone = sortedPents[l].clone();
-									clone.setVersion(m, n);
-									if(fits(clone, i, j, k)){
-										placePentominoAt(clone, i, j, k);
-										fillSpace();
-										if(cargoValue > bestCargoValue){
-											bestCargoValue = cargoValue;
-											long passedTime = System.nanoTime() - startTime;
-											System.out.println("Time passed: " + passedTime + " current highest value: " + bestCargoValue);
-											solution = PentToParcel.convert(pentSolution);
-											display.show(solution);
-										}
-										if(isValuaBleEnough(maxValue)){
-											solutionFound = true;
-											return;
-										}
-										deletePentomino(pentSolution.size() - 1);
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		} else{
-			solutionFound = true;
-			return;
-		}
-	}
+
 }

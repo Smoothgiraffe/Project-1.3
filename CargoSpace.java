@@ -11,7 +11,7 @@ public class CargoSpace {
 	//these variables describe the cargo-space
 
 	protected double spaceVolume;
-	protected final double STOPPERCENTAGE = 0.74;
+	protected double stopPercentage = 0.9;
 	protected double cargoVolume = 0;
 	protected double cargoValue = 0;
 	protected double bestCargoValue = 0;
@@ -66,7 +66,6 @@ public class CargoSpace {
 			for (int j = 0; j < pentomino[0].length; j++) {
 				for (int k = 0; k < pentomino[0][0].length; k++) {
 					if (space[x + i][y + j][z + k] != '\u0000' && space[x + i][y + j][z + k] != '0' && pentomino[i][j][k] != '\u0000' && pentomino[i][j][k] != '0') {
-						//System.out.println(false);
 						return false;
 					}
 				}
@@ -120,7 +119,6 @@ public class CargoSpace {
 		for (int i = 0; i < deleteParcel.getLength(); i++) {
 			for (int j = 0; j < deleteParcel.getHeight(); j++) {
 				for (int k = 0; k < deleteParcel.getWidth(); k++) {
-					//System.out.println(i + " " + j + " " + k + " " + solution.size() + " " + index);
 					space[(int) (deleteParcel.getX()*2 + i)][(int) (deleteParcel.getY()*2 + j)][(int) (deleteParcel.getZ()*2 + k)] = '\u0000';
 				}
 			}
@@ -151,7 +149,7 @@ public class CargoSpace {
 
 	//returns true if a certain percentage of the cargo-space is full (for exercise b and d)
 	public boolean isFullEnough() {
-		if (cargoVolume >= STOPPERCENTAGE*spaceVolume) {
+		if (cargoVolume >= stopPercentage*spaceVolume) {
 			return true;
 		}
 		return false;
@@ -173,7 +171,7 @@ public class CargoSpace {
 
 	//returns true if the value is higher then a certain threshold
 	public boolean isValuaBleEnough(double maxValue){
-		if(cargoValue > (maxValue * STOPPERCENTAGE)){
+		if(cargoValue > (maxValue * stopPercentage)){
 			return true;
 		}
 		return false;
